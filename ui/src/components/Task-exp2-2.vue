@@ -24,82 +24,47 @@
       </div>
     </div>
 
-    <div class="heading">Audio Perceptual Ordering Task</div>
+    <div class="heading row">Audio Perceptual Ordering Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
       Please follow the instructions for each step below to complete this task.
     </div>
-
     <div>&nbsp;</div>
-    <div class="step-content row">
-      <div>1.</div>
-      <div>&nbsp;</div>
-      <div>Listen to the 2 reference audio samples displayed below.</div>
-    </div>
 
-    <div id="all-refs" class="row">
-      <div
-        style="
-          --colorbg: grey;
-          padding: 5px;
-          border: solid black 1px;
-          background-color: var(--colorbg);
-        "
-      >
-        <audio
-          id="ref_1_audio_step1"
-          controls
-          controlsList="nodownload noplaybackrate"
-          @ended="listenedCheck('ref_1_listened')"
-          @play="playCheck($event)"
+    <div id="all-inputs" class="invisible" style="max-height: 10px">
+      <!-- <div id="all-inputs"> -->
+      <div id="ref-1-surrounding" class="dotted-border">
+        <div
+          style="
+            --colorbg: grey;
+            padding: 5px;
+            border: solid black 1px;
+            background-color: var(--colorbg);
+          "
         >
-          <source
-            src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_0.wav"
-            type="audio/wav"
-          />
-        </audio>
+          <audio
+            id="ref_1_audio"
+            controls
+            controlsList="nodownload noplaybackrate"
+            @ended="
+              listenedCheck('ref_1_listened');
+              removeSpotlight($event, 'ref-1-surrounding');
+            "
+            @play="
+              playCheck($event);
+              addSpotlight('ref-1-surrounding', 'ref_1_value');
+            "
+            @pause="removeSpotlight($event, 'ref-1-surrounding', 'ref_1_value')"
+          >
+            <source
+              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_0.wav"
+              type="audio/wav"
+            />
+          </audio>
+        </div>
       </div>
-      <div style="margin-top: 5%; padding: 0px">
-        <div style="border: dashed black 1px; width: 100%"></div>
-      </div>
-      <div
-        style="
-          --colorbg: grey;
-          padding: 5px;
-          border: solid black 1px;
-          background-color: var(--colorbg);
-        "
-      >
-        <audio
-          id="ref_2_audio_step1"
-          controls
-          controlsList="nodownload noplaybackrate"
-          @ended="listenedCheck('ref_2_listened')"
-          @play="playCheck($event)"
-        >
-          <source
-            src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_10.wav"
-            type="audio/wav"
-          />
-        </audio>
-      </div>
-    </div>
-
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-
-    <div class="row step-content">
-      <div>2.</div>
       <div>&nbsp;</div>
-      <div>
-        Listen to all 5 color coded audio samples displayed below. Each audio
-        clip below can be perceptually placed 'in-between' the audio clips in
-        Step 1.
-      </div>
-    </div>
-
-    <div id="all-inputs" class="row">
       <div id="clip-1-surrounding" class="dotted-border">
         <div
           style="
@@ -270,123 +235,8 @@
       </div>
 
       <div>&nbsp;</div>
-    </div>
 
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-
-    <div class="step-content row">
-      <div>3.</div>
-      <div>&nbsp;</div>
-      <div>
-        Each audio color coded audio clip in step 2 above has a corresponding
-        slider thumb below.<br />
-        Move/arrange each audio's corresponding slider to a position between the
-        two reference audio clips.<br />
-        Note that you can play an audio clip by double clicking on its
-        corresponding colored slider thumb.
-      </div>
-    </div>
-    <div id="samples-container">
-      <div
-        id="ref-1-surrounding"
-        class="dotted-border"
-        style="padding-top: 1em"
-      >
-        <div
-          style="
-            --colorbg: grey;
-            padding: 5px;
-            border: solid black 1px;
-            background-color: var(--colorbg);
-          "
-        >
-          <audio
-            id="ref_1_audio"
-            controls
-            controlsList="nodownload noplaybackrate"
-            @ended="
-              listenedCheck('ref_1_listened');
-              removeSpotlight($event, 'ref-1-surrounding');
-            "
-            @play="
-              playCheck($event);
-              addSpotlight('ref-1-surrounding');
-            "
-            @pause="removeSpotlight($event, 'ref-1-surrounding')"
-          >
-            <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_0.wav"
-              type="audio/wav"
-            />
-          </audio>
-        </div>
-      </div>
-
-      <div>&nbsp;</div>
-      <div class="wrap" role="group">
-        <input
-          id="clip_1_value"
-          name="clip_1_value"
-          type="range"
-          min="0"
-          value="50"
-          max="100"
-          style="--thumbcolor: #cd2026; --thumbborder: transparent"
-          @change="sliderChanged('clip_1_slider_changed', $event)"
-          @dblclick="dblclicked('clip_1_audio')"
-        />
-        <input
-          id="clip_2_value"
-          name="clip_2_value"
-          type="range"
-          min="0"
-          value="51"
-          max="100"
-          style="--thumbcolor: #4aa564; --thumbborder: transparent"
-          @change="sliderChanged('clip_2_slider_changed', $event)"
-          @dblclick="dblclicked('clip_2_audio')"
-        />
-        <input
-          id="clip_3_value"
-          name="clip_3_value"
-          type="range"
-          min="0"
-          value="52"
-          max="100"
-          style="--thumbcolor: #f9c642; --thumbborder: transparent"
-          @change="sliderChanged('clip_3_slider_changed', $event)"
-          @dblclick="dblclicked('clip_3_audio')"
-        />
-        <input
-          id="clip_4_value"
-          name="clip_4_value"
-          type="range"
-          min="0"
-          value="53"
-          max="100"
-          style="--thumbcolor: #0071bc; --thumbborder: transparent"
-          @change="sliderChanged('clip_4_slider_changed', $event)"
-          @dblclick="dblclicked('clip_4_audio')"
-        />
-        <input
-          id="clip_5_value"
-          name="clip_5_value"
-          type="range"
-          min="0"
-          value="54"
-          max="100"
-          style="--thumbcolor: darkorange; --thumbborder: transparent"
-          @change="sliderChanged('clip_5_slider_changed', $event)"
-          @dblclick="dblclicked('clip_5_audio')"
-        />
-      </div>
-      <div>&nbsp;</div>
-      <div
-        id="ref-2-surrounding"
-        class="dotted-border"
-        style="padding-top: 1em"
-      >
+      <div id="ref-2-surrounding" class="dotted-border">
         <div
           style="
             --colorbg: grey;
@@ -405,9 +255,9 @@
             "
             @play="
               playCheck($event);
-              addSpotlight('ref-2-surrounding');
+              addSpotlight('ref-2-surrounding', 'ref_2_value');
             "
-            @pause="removeSpotlight($event, 'ref-2-surrounding')"
+            @pause="removeSpotlight($event, 'ref-2-surrounding', 'ref_2_value')"
           >
             <source
               src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_10.wav"
@@ -418,19 +268,124 @@
       </div>
     </div>
 
-
-
-    <div>&nbsp;</div>
-    <div>&nbsp;</div>
-
     <div class="step-content row">
-      <div>4.</div>
+      <div>1.</div>
+      <div>&nbsp;</div>
+      <div>
+        Hover over each of the colored thumbs below to listen to the audio
+        samples.<br />
+        The thumbs in
+        <span style="background-color: #3b3a39; color: white; padding: 2px;">black</span> are
+        your reference audio samples.<br />
+        Please arrange/position the remaining thumbs in
+        <span style="background-color: #cd2026; color: black; padding: 2px;">red</span>,
+        <span style="background-color: #4aa564; color: black; padding: 2px;">green</span>,
+        <span style="background-color: #f9c642; color: black; padding: 2px;">yellow</span>,
+        <span style="background-color: #0071bc; color: black; padding: 2px;">blue</span>,
+        <span style="background-color: darkorange; color: black; padding: 2px;">orange</span> in between the two references in a certain perceptual order.
+      </div>
+    </div>
+
+    <div id="samples-container">
+      <div>&nbsp;</div>
+
+      <div class="wrap" role="group">
+        <input
+          id="ref_1_value"
+          name="ref_1_value"
+          type="range"
+          min="0"
+          value="0"
+          max="100"
+          disabled="true"
+          style="--thumbcolor: #3b3a39; --thumbborder: transparent"
+          @mouseover="mouseoverPlay('ref_1_audio')"
+          @mouseout="mouseoutPause('ref_1_audio')"
+        />
+
+        <input
+          id="clip_1_value"
+          name="clip_1_value"
+          type="range"
+          min="0"
+          value="45"
+          max="100"
+          style="--thumbcolor: #cd2026; --thumbborder: transparent"
+          @change="sliderChanged('clip_1_slider_changed', $event)"
+          @mouseover="mouseoverPlay('clip_1_audio')"
+          @mouseout="mouseoutPause('clip_1_audio')"
+        />
+        <input
+          id="clip_2_value"
+          name="clip_2_value"
+          type="range"
+          min="0"
+          value="47"
+          max="100"
+          style="--thumbcolor: #4aa564; --thumbborder: transparent"
+          @change="sliderChanged('clip_2_slider_changed', $event)"
+          @mouseover="mouseoverPlay('clip_2_audio')"
+          @mouseout="mouseoutPause('clip_2_audio')"
+        />
+        <input
+          id="clip_3_value"
+          name="clip_3_value"
+          type="range"
+          min="0"
+          value="49"
+          max="100"
+          style="--thumbcolor: #f9c642; --thumbborder: transparent"
+          @change="sliderChanged('clip_3_slider_changed', $event)"
+          @mouseover="mouseoverPlay('clip_3_audio')"
+          @mouseout="mouseoutPause('clip_3_audio')"
+        />
+        <input
+          id="clip_4_value"
+          name="clip_4_value"
+          type="range"
+          min="0"
+          value="51"
+          max="100"
+          style="--thumbcolor: #0071bc; --thumbborder: transparent"
+          @change="sliderChanged('clip_4_slider_changed', $event)"
+          @mouseover="mouseoverPlay('clip_4_audio')"
+          @mouseout="mouseoutPause('clip_4_audio')"
+        />
+        <input
+          id="clip_5_value"
+          name="clip_5_value"
+          type="range"
+          min="0"
+          value="53"
+          max="100"
+          style="--thumbcolor: darkorange; --thumbborder: transparent"
+          @change="sliderChanged('clip_5_slider_changed', $event)"
+          @mouseover="mouseoverPlay('clip_5_audio')"
+          @mouseout="mouseoutPause('clip_5_audio')"
+        />
+        <input
+          id="ref_2_value"
+          name="ref_2_value"
+          type="range"
+          min="0"
+          value="100"
+          max="100"
+          disabled="true"
+          style="--thumbcolor: #3b3a39; --thumbborder: transparent"
+          @mouseover="mouseoverPlay('ref_2_audio')"
+          @mouseout="mouseoutPause('ref_2_audio')"
+        />
+      </div>
+    </div>
+
+     <div class="step-content row">
+      <div>2.</div>
       <div>&nbsp;</div>
       <div>
         <span style="font-weight: bold">Adjust Ordering Step</span>: Please
         click the button below to listen to your arrangement. <br />Does the
         arrangement sound to be in some order/seqeuence? If not, please redo
-        from Step 3.
+        from Step 1.
       </div>
     </div>
     <div>&nbsp;</div>
@@ -466,13 +421,13 @@
     <div>&nbsp;</div>
 
     <div class="step-content row">
-      <div>5.</div>
+      <div>3.</div>
       <div>&nbsp;</div>
       <div>
         <span style="font-weight: bold">Adjust Distance Step</span>: Please
         click the button below to listen to your arrangement again. <br />Does
         the arrangement sound such that each clip is at a correct
-        distance/spacing from each other? If not, please redo from Step 3.
+        distance/spacing from each other? If not, please redo from Step 1.
       </div>
     </div>
     <div>&nbsp;</div>
@@ -509,7 +464,7 @@
     <div>&nbsp;</div>
 
     <div class="step-content row">
-      <div>6.</div>
+      <div>4.</div>
       <div>&nbsp;</div>
       <div>
         Please listen to <span style="font-weight: bolder">all</span> sound
@@ -529,10 +484,11 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      num_thumbs: 5,
+      num_thumbs: 7,
       sound_index: 0,
       sounds_in_sequence: [],
-      current_playing_arrangement: ''
+      current_playing_arrangement: "",
+      disable_mouse_over_and_out: false
     };
   },
   computed: {
@@ -558,6 +514,14 @@ export default {
     },
     dblclicked(audio_id) {
       document.getElementById(audio_id).play();
+    },
+    mouseoverPlay(audio_id) {
+      if(!this.disable_mouse_over_and_out)
+        document.getElementById(audio_id).play();
+    },
+    mouseoutPause(audio_id) {
+      if(!this.disable_mouse_over_and_out)
+        document.getElementById(audio_id).pause();
     },
     playCheck(e) {
       var allAudios = document.getElementsByTagName("audio");
@@ -591,8 +555,11 @@ export default {
       if (this.sound_index == this.sounds_in_sequence.length) {
         arrangementBtn_distance.removeAttribute("disabled");
         arrangementBtn_ordering.removeAttribute("disabled");
-        if(this.current_playing_arrangement.includes('ordering')) ordering_checkbox.removeAttribute("disabled");
-        if(this.current_playing_arrangement.includes('distance')) distance_checkbox.removeAttribute("disabled");
+        if (this.current_playing_arrangement.includes("ordering"))
+          ordering_checkbox.removeAttribute("disabled");
+        if (this.current_playing_arrangement.includes("distance"))
+          distance_checkbox.removeAttribute("disabled");
+        this.disable_mouse_over_and_out = false;
         return;
       }
       this.sounds_in_sequence[this.sound_index].addEventListener(
@@ -608,6 +575,9 @@ export default {
       this.sound_index++;
     },
     listenArrangement(e, nm) {
+      
+      this.disable_mouse_over_and_out = true; // When arrangement is playing - nobody disturb it.
+
       arrangementBtn_distance.disabled = true;
       arrangementBtn_ordering.disabled = true;
       this.sounds_in_sequence = [];
@@ -645,7 +615,9 @@ export default {
       const clip_3_listened = this.formData.clip_3_listened;
       const clip_4_listened = this.formData.clip_4_listened;
       const clip_5_listened = this.formData.clip_5_listened;
-      const full_arrangement_listened = this.formData.ordering_arrangement_listened && this.formData.distance_arrangement_listened;
+      const full_arrangement_listened =
+        this.formData.ordering_arrangement_listened &&
+        this.formData.distance_arrangement_listened;
 
       const listened =
         ref_1_listened &&
@@ -721,14 +693,13 @@ audio {
 
 #all-inputs {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 18% 1%);
+  grid-template-columns: repeat(auto-fill, 13% 1%);
   width: 100%;
-  margin-left: 4%;
 }
 
 #samples-container {
   display: grid;
-  grid-template-columns: 19% 1% 60% 1% 19%;
+  grid-template-columns: 2% 80%;
   width: 100%;
   padding-left: 3%;
 }

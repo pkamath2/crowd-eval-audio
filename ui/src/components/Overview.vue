@@ -27,7 +27,7 @@
             sounds for this experiment.
           </li>
           <li>
-            Please only attempt this task if you are in a quiet place with no loud noises/distractions.
+            Please only attempt this task if you are in a quiet place with <span style="font-weight: bold">no loud noises/distractions</span>.
           </li>
         </ul>
       </div>

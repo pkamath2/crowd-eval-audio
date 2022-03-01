@@ -5,7 +5,8 @@
         <p>
           Please listen to all sound clips
           <span style="font-weight: bold">fully</span> and drag/drop all the
-          options or images into the requisite sections before going to the next screen.
+          options or images into the requisite sections before going to the next
+          screen.
         </p>
         <span><button @click="closeModal">ok!</button></span>
       </div>
@@ -28,6 +29,19 @@
     <div>&nbsp;</div>
 
     <div class="row">
+      <div class="col-12">
+        This page outlines 2 audio clips
+        <span style="font-weight: bold">Clip 1</span> and
+        <span style="font-weight: bold">Clip 2</span>. <br />
+        Both clips start at one sound (e.g., sound of fire crackling or an
+        engine running) and slowly transitions towards the end to another sound
+        (e.g., sound made by water filling a
+        container).
+      </div>
+      <div>&nbsp;</div>
+    </div>
+
+    <div class="row">
       <div>
         Please follow the instructions for each step below to complete this
         task.
@@ -36,32 +50,65 @@
 
     <div>&nbsp;</div>
 
-    <div class="row">
-      <div class="col-12">
-        This page outlines 2 audio clips. Both clips start at one sound (e.g.,
-        sound of fire crackling or an engine running) and slowly transitions
-        towards the end to another sound (e.g., sound made by a large crowd or
-        sound made by water filling a container) by using two different
-        algorithms.
+    <div class="row step-content">
+      <div>
+        1.&nbsp;&nbsp;&nbsp;Please listen to both sounds before attempting task below. Make a note of how the sound starts, ends and its transitions in between.
       </div>
       <div>&nbsp;</div>
-      <div class="col-12">
-        Please listen to both sounds before attempting task below and use your
-        mouse to <u>drag/drop the right option in the requisite section</u>.
+      <div class="row">
+        <div class="col-3 text-center">
+          <span style="font-weight: bold">Clip 1</span>
+          <audio
+            id="ref_1_audio_step1"
+            controls
+            controlsList="nodownload noplaybackrate"
+            @ended="listenedCheck('ref_1_listened')"
+            @play="playCheck($event)"
+          >
+            <source
+              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_0.wav"
+              type="audio/wav"
+            />
+          </audio>
+        </div>
+        <div class="col-3 text-center">
+          <span style="font-weight: bold">Clip 2</span>
+          <audio
+            id="ref_2_audio_step1"
+            controls
+            controlsList="nodownload noplaybackrate"
+            @ended="listenedCheck('ref_2_listened')"
+            @play="playCheck($event)"
+          >
+            <source
+              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_10.wav"
+              type="audio/wav"
+            />
+          </audio>
+        </div>
       </div>
       <div>&nbsp;</div>
-      <div class="col-12">
-        <span style="background-color: hsl(170, 75%, 90%); font-weight: bold"
-          >For direct/detour (green section)</span
-        >: Please drag the appropriate image to the clip which
-        <span style="font-weight: bold; font-style: italic"
-          ><u>transitions</u></span
-        >
-        or
-        <span style="font-weight: bold; font-style: italic"><u>morphs</u></span>
-        from one end point to the other <i>directly</i> or via a
-        <i>detour</i> into a third type of sound, in comparison with the other
-        clip.
+      <div>
+        2.&nbsp;&nbsp;&nbsp;Please use your mouse to drag/drop the right option or icon in the
+        requisite section.
+      </div>
+      <div>&nbsp;</div>
+      <div class="row">
+        <div class="col-12">
+          <span style="background-color: hsl(170, 75%, 90%); font-weight: bold"
+            >For direct/detour (green section)</span
+          >: Please drag the appropriate image to the clip which
+          <span style="font-weight: bold; font-style: italic"
+            ><u>transitions</u></span
+          >
+          or
+          <span style="font-weight: bold; font-style: italic"
+            ><u>morphs</u></span
+          >
+          from one end point to the other <i>directly</i> or via a
+          <i>detour</i> into a third type of sound, in comparison with the other
+          clip.
+        </div>
       </div>
       <div>&nbsp;</div>
       <div class="col-12">
@@ -476,6 +523,11 @@ h3 {
 
 .clips-section span {
   padding-top: 20px;
+}
+
+.step-content {
+  padding-left: 3%;
+  padding-right: 5%;
 }
 
 /* The Modal (background) */
