@@ -1,11 +1,11 @@
 {
-  "name": "crowdeval-image-schemas",
+  "name": "crowdeval-audio",
   "private": true,
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/exp2-control/ --outDir=dist/exp2-control",
-    "preview": "vite preview"
+    "build": "vite build",
+    "preview": "vite preview --base=/exp2-2/"
   },
   "dependencies": {
     "dotenv": "^16.0.0",

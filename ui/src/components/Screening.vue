@@ -106,7 +106,7 @@
       </div>
       <div class="col-4">&nbsp;</div>
     </div>
-    <div class="row">&nbsp;</div>
+    
   </div>
 </template>
 

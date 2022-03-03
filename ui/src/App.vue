@@ -1,5 +1,4 @@
 <script setup>
-import Experiment from "./components/Experiment.vue";
 </script>
 
 <template>
@@ -8,9 +7,6 @@ import Experiment from "./components/Experiment.vue";
 
 <script>
 export default {
-  components: {
-    Experiment
-  }
 };
 </script>
 

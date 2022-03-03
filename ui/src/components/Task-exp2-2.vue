@@ -444,7 +444,7 @@
     <div class="step-content">
       <div>&nbsp;</div>
       <div>&nbsp;</div>
-      <div>
+      <div> 
         <input
           type="checkbox"
           id="distance_checkbox"

@@ -1,10 +1,4 @@
 <script setup>
-import Overview from "./Overview.vue";
-import Consent from "./Consent.vue";
-import Screening from "./Screening.vue";
-import Task from "./Task-exp2-2.vue";
-import PostSurvey from "./PostSurvey.vue";
-import Thanks from "./Thanks.vue";
 </script>
 
 <template>
@@ -21,7 +15,7 @@ import Thanks from "./Thanks.vue";
         <Thanks v-show="current_level == 'thanks'" ref="thanksref"></Thanks>
         <br />
       </div>
-      <div class="col-2">&nbsp;</div>
+      <div class="col-2">&nbsp;</div> 
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
@@ -81,14 +75,6 @@ body {
 
 <script>
 export default {
-  components: {
-    Overview,
-    Consent,
-    Screening,
-    Task,
-    PostSurvey,
-    Thanks,
-  },
   data() {
     return {
       levels: [
@@ -107,7 +93,7 @@ export default {
         "Post Test Survey",
         "Thank you",
       ],
-      current_level: "task",
+      current_level: "overview",
     };
   },
   computed: {
@@ -122,7 +108,6 @@ export default {
   },
   methods: {
     proceed_next_level(level_) {
-      console.log(level_);
       if (level_ == "task") {
         const is_valid = this.$refs.taskref.validateForm();
         if (!is_valid) return; // Dont proceed if form is not valid
@@ -134,7 +119,6 @@ export default {
     },
 
     proceed_back_level(level_) {
-      console.log(level_);
       let level_id = this.levels.indexOf(level_) - 1;
       if (level_id < 0) return;
       this.current_level = this.levels[level_id];
