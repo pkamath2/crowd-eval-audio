@@ -12,7 +12,10 @@
         <Screening v-show="current_level == 'hearing_screening'" ref="screeningref"></Screening>
         <Task v-show="current_level == 'task'" ref="taskref"></Task>
         <PostSurvey v-show="current_level == 'post_survey'" ref="postsurveyref"></PostSurvey>
-        <Thanks v-show="current_level == 'thanks'" ref="thanksref"></Thanks>
+
+        <!--Important. The last page with submit button should be v-if and not v-show-->
+        <!--This needs to be dynamically rendered every time the form is updated-->
+        <Thanks v-if="current_level == 'thanks'" ref="thanksref"></Thanks>
         <br />
       </div>
       <div class="col-2">&nbsp;</div> 
@@ -74,6 +77,8 @@ body {
 </style>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -96,6 +101,14 @@ export default {
       current_level: "overview",
     };
   },
+  created(){
+    let uri = window.location.search.substring(1); 
+    let params = new URLSearchParams(uri);
+    this.updateForm('assignmentId',params.get('assignmentId'));
+    this.updateForm('hitId',params.get('hitId'));
+    this.updateForm('turkSubmitTo',params.get('turkSubmitTo'));
+    this.updateForm('workerId',params.get('workerId'));
+  },
   computed: {
     current_level_name() {
       return this.levels_names[this.levels.indexOf(this.current_level)];
@@ -107,6 +120,12 @@ export default {
     },
   },
   methods: {
+    ...mapActions(["updateFormData"]),
+    updateForm(nm, val) {
+      var obj = {};
+      obj[nm] = val;
+      this.updateFormData(obj);
+    },
     proceed_next_level(level_) {
       if (level_ == "task") {
         const is_valid = this.$refs.taskref.validateForm();
@@ -117,7 +136,6 @@ export default {
       if (level_id >= this.levels.length) return;
       this.current_level = this.levels[level_id];
     },
-
     proceed_back_level(level_) {
       let level_id = this.levels.indexOf(level_) - 1;
       if (level_id < 0) return;

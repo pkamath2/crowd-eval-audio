@@ -799,7 +799,7 @@ input[type="range"]:focus {
   /* Hidden by default */
   position: fixed;
   /* Stay in place */
-  z-index: 1;
+  z-index: 10;
   /* Sit on top */
   left: 0;
   top: 0;

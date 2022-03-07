@@ -6,7 +6,13 @@
 
     <div class="row">&nbsp;</div>
     <div class="row">
-      <div><button class='submitbutton'>Submit HIT</button></div>
+      <div>
+        <form id="listeningEvalForm" @submit="submit" :action="turkSubmissionURL" method="POST">
+          <input type="hidden" v-for="key in Object.keys(formData)" :key="key" :name="key" :id="key" :value="formData[key]" />
+          <button type="submit" class="submitbutton">Submit HIT</button>
+        </form>
+        
+      </div>
     </div>
   </div>
 </template>
@@ -18,12 +24,19 @@ export default {
   data() {
     return {};
   },
-  created() {},
+  created() {
+    Object.keys(this.formData).forEach((key) => {
+      console.log(key + " -- " + this.formData[key]);
+    });
+  },
   computed: {
     ...mapGetters(["formData"]),
+    turkSubmissionURL(){
+      return this.formData.turkSubmitTo;
+    }
   },
   methods: {
-    ...mapActions(["updateFormData"]),
+    ...mapActions(["updateFormData"])
   },
 };
 </script>
@@ -49,13 +62,7 @@ audio {
   font-size: 250%;
 }
 
-.notebox {
-  border: solid black 1px;
-  width: 90%;
-  padding: 5px;
-}
-
-.submitbutton{
+.submitbutton {
   background-color: orange;
 }
 </style>
