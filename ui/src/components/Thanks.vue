@@ -32,7 +32,7 @@ export default {
   computed: {
     ...mapGetters(["formData"]),
     turkSubmissionURL(){
-      return this.formData.turkSubmitTo;
+      return this.formData.turkSubmitTo+'/mturk/externalSubmit';
     }
   },
   methods: {
