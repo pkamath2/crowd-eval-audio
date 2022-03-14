@@ -271,7 +271,7 @@ audio {
 
 .heading {
   width: 100%;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   font-size: 250%;
 }

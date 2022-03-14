@@ -32,15 +32,14 @@
       <div class="col-12">
         This page outlines 2 audio clips
         <span style="font-weight: bold">Clip 1</span> and
-        <span style="font-weight: bold">Clip 2</span>. <br />
-        Both clips start at one sound (e.g., sound of fire crackling or an
-        engine running) and slowly transitions towards the end to another sound
-        (e.g., sound made by water filling a
-        container).
+        <span style="font-weight: bold">Clip 2</span>. Both clips start at one
+        sound (e.g., sound of fire crackling or an engine running) and slowly
+        transitions towards the end to another sound (e.g., sound made by water
+        filling a container).
       </div>
       <div>&nbsp;</div>
     </div>
-
+    <div>&nbsp;</div>
     <div class="row">
       <div>
         Please follow the instructions for each step below to complete this
@@ -52,45 +51,16 @@
 
     <div class="row step-content">
       <div>
-        1.&nbsp;&nbsp;&nbsp;Please listen to both sounds before attempting task below. Make a note of how the sound starts, ends and its transitions in between.
-      </div>
-      <div>&nbsp;</div>
-      <div class="row">
-        <div class="col-3 text-center">
-          <span style="font-weight: bold">Clip 1</span>
-          <audio
-            id="ref_1_audio_step1"
-            controls
-            controlsList="nodownload noplaybackrate"
-            @ended="listenedCheck('ref_1_listened')"
-            @play="playCheck($event)"
-          >
-            <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_0.wav"
-              type="audio/wav"
-            />
-          </audio>
-        </div>
-        <div class="col-3 text-center">
-          <span style="font-weight: bold">Clip 2</span>
-          <audio
-            id="ref_2_audio_step1"
-            controls
-            controlsList="nodownload noplaybackrate"
-            @ended="listenedCheck('ref_2_listened')"
-            @play="playCheck($event)"
-          >
-            <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_10.wav"
-              type="audio/wav"
-            />
-          </audio>
-        </div>
+        1.&nbsp;&nbsp;&nbsp;Please listen to both
+        <span style="font-weight: bold">Clip 1</span> and
+        <span style="font-weight: bold">Clip 2</span> in the grid below before
+        attempting task. Make a note of how the sound starts, how it ends and its
+        transitions in between.
       </div>
       <div>&nbsp;</div>
       <div>
-        2.&nbsp;&nbsp;&nbsp;Please use your mouse to drag/drop the right option or icon in the
-        requisite section.
+        2.&nbsp;&nbsp;&nbsp;Please use your mouse to drag/drop the right option
+        or icon in the requisite section.
       </div>
       <div>&nbsp;</div>
       <div class="row">
@@ -101,12 +71,9 @@
           <span style="font-weight: bold; font-style: italic"
             ><u>transitions</u></span
           >
-          or
-          <span style="font-weight: bold; font-style: italic"
-            ><u>morphs</u></span
-          >
-          from one end point to the other <i>directly</i> or via a
-          <i>detour</i> into a third type of sound, in comparison with the other
+          
+          from the start of the sound to its end <span style="font-weight: bold; font-style: italic">directly</span> or via a
+          <span style="font-weight: bold; font-style: italic">detour</span> through a third type of sound, in comparison with the other
           clip.
         </div>
       </div>
@@ -118,10 +85,9 @@
         <span style="font-weight: bold; font-style: italic"
           ><u>transitions</u></span
         >
-        or
-        <span style="font-weight: bold; font-style: italic"><u>morphs</u></span>
-        from one end point to the other either in <i>even step sizes</i> or in a
-        <i>uneven or jumpy fashion, in comparison with the other clip</i>.
+        
+        from the start of the sound to its end either in <span style="font-weight: bold; font-style: italic">even step sizes</span> or in an
+        <span style="font-weight: bold; font-style: italic">uneven or jumpy fashion</span>, in comparison with the other clip.
       </div>
       <div>&nbsp;</div>
       <p style="padding-left: 10px; font-size: small">
@@ -158,7 +124,7 @@
             preload="auto"
           >
             <source
-              src="https://animatedsound.com/neurips2021/combined_data/oreilly_grid/row_14.wav"
+              src="https://animatedsound.com/neurips2021/combined_data/oreilly_grid/row_17.wav"
               type="audio/wav"
             />
           </audio>
@@ -206,7 +172,7 @@
             preload="auto"
           >
             <source
-              src="https://animatedsound.com/neurips2021/combined_data/oreilly_remapped/row_14.wav"
+              src="https://animatedsound.com/neurips2021/combined_data/oreilly_remapped/row_17.wav"
               type="audio/wav"
             /></audio
         ></span>
@@ -476,7 +442,7 @@ audio {
 
 .heading {
   width: 100%;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   font-size: 250%;
 }

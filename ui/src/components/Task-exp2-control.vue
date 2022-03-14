@@ -32,8 +32,7 @@
         This page outlines 2 reference audio samples and few other audio samples
         under test. The 2 reference audio samples are clips from the end points
         of a larger audio sample, listen to each of the 5 audio under test and
-        assign them a rank w.r.t
-        <span style="font-weight: bold">audio reference 1</span>.
+        assign them a rank in-between audio reference 1 and 2.
       </div>
       <div>&nbsp;</div>
 
@@ -91,7 +90,12 @@
     <div class="row">&nbsp;</div>
 
     <div class="row">
-      <p style="padding-left: 10px; font-weight: bold">Samples under test:</p>
+      <div class="col-4">
+        <p style="padding-left: 40%; font-weight: bold">Samples under test</p>
+      </div>
+      <div class="col-4">
+        <p style="padding-left: 20%; font-weight: bold">Rank in-between references</p>
+      </div>
     </div>
 
     <div class="row">&nbsp;</div>
@@ -115,6 +119,7 @@
           ></span>
         </div>
       </div>
+      <div class="col-1 p-1">&nbsp;</div>
       <div class="col-2">
         <div class="row p-2">
           <select
@@ -131,7 +136,11 @@
         </div>
       </div>
     </div>
-    <div class="row">&nbsp;</div>
+    <div class="row">
+      <div class="col-7">
+        <hr/>
+      </div>
+    </div>
     <div class="row">
       <div class="col-1 p-3">
         <span style="text-align: left">Audio 2:</span>
@@ -152,6 +161,7 @@
           ></span>
         </div>
       </div>
+      <div class="col-1 p-1">&nbsp;</div>
       <div class="col-2">
         <div class="row p-2">
           <select
@@ -169,7 +179,11 @@
       </div>
     </div>
 
-    <div class="row">&nbsp;</div>
+    <div class="row">
+      <div class="col-7">
+        <hr/>
+      </div>
+    </div>
     <div class="row">
       <div class="col-1 p-3">
         <span style="text-align: left">Audio 3:</span>
@@ -190,6 +204,7 @@
           ></span>
         </div>
       </div>
+      <div class="col-1 p-1">&nbsp;</div>
       <div class="col-2">
         <div class="row p-2">
           <select
@@ -207,7 +222,11 @@
       </div>
     </div>
 
-    <div class="row">&nbsp;</div>
+    <div class="row">
+      <div class="col-7">
+        <hr/>
+      </div>
+    </div>
     <div class="row">
       <div class="col-1 p-3">
         <span style="text-align: left">Audio 4:</span>
@@ -228,6 +247,7 @@
           ></span>
         </div>
       </div>
+      <div class="col-1 p-1">&nbsp;</div>
       <div class="col-2">
         <div class="row p-2">
           <select
@@ -245,7 +265,11 @@
       </div>
     </div>
 
-    <div class="row">&nbsp;</div>
+    <div class="row">
+      <div class="col-7">
+        <hr/>
+      </div>
+    </div>
     <div class="row">
       <div class="col-1 p-3">
         <span style="text-align: left">Audio 5:</span>
@@ -266,6 +290,7 @@
           ></span>
         </div>
       </div>
+      <div class="col-1 p-1">&nbsp;</div>
       <div class="col-2">
         <div class="row p-2">
           <select
@@ -370,7 +395,7 @@ audio {
 
 .heading {
   width: 100%;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   font-size: 250%;
 }
