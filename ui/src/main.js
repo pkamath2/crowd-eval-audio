@@ -16,7 +16,7 @@ import PostSurvey from "./components/PostSurvey.vue";
 import Thanks from "./components/Thanks.vue";
 import Experiment from "./components/Experiment.vue";
 
-const Task = defineAsyncComponent(() => import("./components/Task-"+conf.experiment_name+".vue"))
+const Task = defineAsyncComponent(() => import("./components/" + conf.experiment_name + "/Task.vue"))
 
 app.component('Experiment', Experiment)
     .component('Overview', Overview)
@@ -25,5 +25,13 @@ app.component('Experiment', Experiment)
     .component('Task', Task)
     .component('PostSurvey', PostSurvey)
     .component('Thanks', Thanks)
+
+let Priming = {};
+if (conf.priming_available) {
+    Priming = defineAsyncComponent(() => import("./components/" + conf.experiment_name + "/Priming.vue"));
+} else {
+    Priming = defineAsyncComponent(() => import("./components/BaseComponent.vue")); // Defaulting all components to BaseComponent
+}
+app.component('Priming', Priming)
 
 app.mount('#app')

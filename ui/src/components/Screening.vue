@@ -172,6 +172,9 @@ export default {
       obj[nm] = e.target.value;
       this.updateFormData(obj);
     },
+    validateForm() {
+      return true;
+    },
   },
 };
 </script>
@@ -192,7 +195,7 @@ audio {
 
 .heading {
   width: 100%;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   font-size: 250%;
 }

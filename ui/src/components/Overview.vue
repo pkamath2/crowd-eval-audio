@@ -6,7 +6,7 @@
     <div class="heading-overview">Audio Quality Evaluation</div>
     <div class="row">&nbsp;</div>
     <div class="row text-center">
-      <span style="font-weight: bolder; font-size: 150%">Overview</span>
+      <span style="font-weight: bolder; font-size: 200%">1. Overview &amp; Instructions</span>
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
@@ -14,20 +14,23 @@
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-      <div class="col-12 notebox">
-        <u>Note:</u>
+      <div class="col-12 notebox card border-danger  mb-3">
+        <u><span style="font-weight: bold">Note:</span></u>
         <ul>
+          <li>
+            Please only attempt this HIT only if you have <span style="font-weight: bold">not attempted</span> a task from 'Animated Sound' in the past 4 weeks.
+          </li>
           <li>
             Please attempt this HIT only if you are on a laptop/desktop with the
             most recent
             <span style="font-weight: bold">Chrome/Firefox browsers</span>
           </li>
           <li>
-            It is important that you use a pair of headphones/earphones to listen to the
-            sounds for this experiment.
+            It is important that you use a pair of <span style="font-weight: bold">headphones/earphones</span> to listen to the
+            sounds for this HIT.
           </li>
           <li>
-            Please only attempt this task if you are in a quiet place with <span style="font-weight: bold">no loud noises/distractions</span>.
+            Please only attempt this HIT if you are in a quiet place with <span style="font-weight: bold">no loud noises/distractions</span>.
           </li>
         </ul>
       </div>
@@ -36,8 +39,8 @@
 
     <div class="row">
       <div class="col-12">
-        In this task, you will need to listen to few audio samples and evaluate
-        their quality. This HIT has been split into 4-5 sections as below.
+        In this HIT, you will need to listen to few audio samples and evaluate
+        their quality. This HIT has been split into 4 sections as below.
       </div>
     </div>
     <div class="row">&nbsp;</div>
@@ -46,8 +49,7 @@
         <ol>
           <li>Overview and instructions (This section)</li>
           <li>Informed Consent</li>
-          <li>Hearing Screening</li>
-          <li>Audio Listening Test</li>
+          <li>Audio Listening Test (1 to 2 listening tests)</li>
           <li>Post test survey</li>
         </ol>
       </div>
@@ -81,6 +83,11 @@ export default {
     return {};
   },
   created() {},
+  methods: {
+    validateForm() {
+      return true;
+    },
+  }
 };
 </script>
 
@@ -91,7 +98,7 @@ export default {
 
 .heading-overview {
   font-weight: bolder;
-  font-size: 200%;
+  font-size: 250%;
   text-align: center;
 }
 .notebox {

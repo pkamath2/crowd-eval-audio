@@ -8,6 +8,7 @@
     "preview": "vite preview --base=/exp2-2/"
   },
   "dependencies": {
+    "axios": "^0.26.0",
     "dotenv": "^16.0.0",
     "vue": "^3.2.25",
     "vuex": "^4.0.2"

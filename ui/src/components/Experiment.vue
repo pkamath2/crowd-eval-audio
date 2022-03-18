@@ -7,15 +7,16 @@
       <div class="col-2">&nbsp;</div>
       <div class="col-8 container" style="">
         <br />
-        <Overview v-show="current_level == 'overview'" ref="overviewref"></Overview>
-        <Consent v-show="current_level == 'consent'" ref="consentref"></Consent>
-        <Screening v-show="current_level == 'hearing_screening'" ref="screeningref"></Screening>
-        <Task v-show="current_level == 'task'" ref="taskref"></Task>
-        <PostSurvey v-show="current_level == 'post_survey'" ref="postsurveyref"></PostSurvey>
+        <Overview v-show="current_level == 'overview'" ref="overview_ref"></Overview>
+        <Consent v-show="current_level == 'consent'" ref="consent_ref"></Consent>
+        <Screening v-show="current_level == 'hearing_screening'" ref="hearing_screening_ref"></Screening>
+        <Priming v-show="current_level == 'priming'" ref="priming_ref"></Priming>
+        <Task v-show="current_level == 'task'" ref="task_ref"></Task>
+        <PostSurvey v-show="current_level == 'post_survey'" ref="post_survey_ref"></PostSurvey>
 
         <!--Important. The last page with submit button should be v-if and not v-show-->
         <!--This needs to be dynamically rendered every time the form is updated-->
-        <Thanks v-if="current_level == 'thanks'" ref="thanksref"></Thanks>
+        <Thanks v-if="current_level == 'thanks'" ref="thanks_ref"></Thanks>
         <br />
       </div>
       <div class="col-2">&nbsp;</div> 
@@ -78,36 +79,24 @@ body {
 
 <script>
 import { mapActions } from "vuex";
+import uiConfig from "../config/config";
 
 export default {
   data() {
     return {
-      levels: [
-        "overview",
-        "consent",
-        "hearing_screening",
-        "task",
-        "post_survey",
-        "thanks",
-      ],
-      levels_names: [
-        "Overview",
-        "Consent",
-        "Hearing Screening",
-        "Listening Test",
-        "Post Test Survey",
-        "Thank you",
-      ],
-      current_level: "overview",
+      levels: [],
+      levels_names: [],
+      current_level: "",
     };
   },
+  beforeMount(){
+    const conf = uiConfig.uiConfig;
+    this.levels = conf.ui_levels
+    this.levels_names = conf.ui_levels_names
+    this.current_level = this.levels[0]
+  },
   created(){
-    let uri = window.location.search.substring(1); 
-    let params = new URLSearchParams(uri);
-    this.updateForm('assignmentId',params.get('assignmentId'));
-    this.updateForm('hitId',params.get('hitId'));
-    this.updateForm('turkSubmitTo',params.get('turkSubmitTo'));
-    this.updateForm('workerId',params.get('workerId'));
+    this.is_priming_available = uiConfig.uiConfig.priming_available;
   },
   computed: {
     current_level_name() {
@@ -127,10 +116,8 @@ export default {
       this.updateFormData(obj);
     },
     proceed_next_level(level_) {
-      if (level_ == "task") {
-        const is_valid = this.$refs.taskref.validateForm();
-        if (!is_valid) return; // Dont proceed if form is not valid
-      }
+      const is_valid = this.$refs[level_+'_ref'].validateForm();
+      if (!is_valid) return;// Dont proceed if form is not valid
 
       let level_id = this.levels.indexOf(level_) + 1;
       if (level_id >= this.levels.length) return;

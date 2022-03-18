@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="heading row">Audio Perceptual Ordering Task</div>
+    <div class="heading row"> 3. Audio Perceptual Ordering Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -58,7 +58,7 @@
             @pause="removeSpotlight($event, 'ref-1-surrounding', 'ref_1_value')"
           >
             <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_0.wav"
+              :src="ref1_url"
               type="audio/wav"
             />
           </audio>
@@ -91,7 +91,7 @@
             "
           >
             <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_8.wav"
+              :src="audio_1_url"
               type="audio/wav"
             />
           </audio>
@@ -125,7 +125,7 @@
             "
           >
             <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_6.wav"
+              :src="audio_2_url"
               type="audio/wav"
             />
           </audio>
@@ -159,7 +159,7 @@
             "
           >
             <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_2.wav"
+              :src="audio_3_url"
               type="audio/wav"
             />
           </audio>
@@ -193,7 +193,7 @@
             "
           >
             <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_4.wav"
+              :src="audio_4_url"
               type="audio/wav"
             />
           </audio>
@@ -227,7 +227,7 @@
             "
           >
             <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_7.wav"
+              :src="audio_5_url"
               type="audio/wav"
             />
           </audio>
@@ -260,7 +260,7 @@
             @pause="removeSpotlight($event, 'ref-2-surrounding', 'ref_2_value')"
           >
             <source
-              src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_10.wav"
+              :src="ref2_url"
               type="audio/wav"
             />
           </audio>
@@ -272,7 +272,7 @@
       <div>1.</div>
       <div>&nbsp;</div>
       <div>
-        Hover over each of the colored thumbs below to listen to the audio
+        Hover your mouse over each of the colored thumbs below to listen to the audio
         samples.<br />
         The thumbs in
         <span style="background-color: #3b3a39; color: white; padding: 2px;">black</span> are
@@ -492,7 +492,28 @@ export default {
     };
   },
   computed: {
-    ...mapGetters(["formData"]),
+    ...mapGetters(["formData", "config"]),
+    ref1_url: function(){
+      return this.config.ref1_url;
+    },
+    ref2_url: function(){
+      return this.config.ref2_url;
+    },
+    audio_1_url: function(){
+      return this.config.audio_1_url;
+    },
+    audio_2_url: function(){
+      return this.config.audio_2_url;
+    },
+    audio_3_url: function(){
+      return this.config.audio_3_url;
+    },
+    audio_4_url: function(){
+      return this.config.audio_4_url;
+    },
+    audio_5_url: function(){
+      return this.config.audio_5_url;
+    }
   },
   methods: {
     ...mapActions(["updateFormData"]),

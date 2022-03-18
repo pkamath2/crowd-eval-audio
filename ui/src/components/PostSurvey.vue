@@ -1,6 +1,6 @@
 <template>
   <div class="row animatedsound-container">
-    <div class="heading">Post Listening Test Survey</div>
+    <div class="heading"> 4. Post Listening Test Survey</div>
     <div>&nbsp;</div>
     <div class="row">Please share some more details with us.</div>
 
@@ -154,6 +154,9 @@ export default {
       obj[nm] = $event.target.value;
       this.updateFormData(obj);
     },
+    validateForm(){
+      return true;
+    }
   },
 };
 </script>
@@ -174,7 +177,7 @@ audio {
 
 .heading {
   width: 100%;
-  text-align: left;
+  text-align: center;
   font-weight: bold;
   font-size: 250%;
 }

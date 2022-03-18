@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="heading">Audio Smoothness Evaluation Task</div>
+    <div class="heading">3. Audio Smoothness Evaluation Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -54,8 +54,8 @@
         1.&nbsp;&nbsp;&nbsp;Please listen to both
         <span style="font-weight: bold">Clip 1</span> and
         <span style="font-weight: bold">Clip 2</span> in the grid below before
-        attempting task. Make a note of how the sound starts, how it ends and its
-        transitions in between.
+        attempting task. Make a note of how the sound starts, how it ends and
+        its transitions in between.
       </div>
       <div>&nbsp;</div>
       <div>
@@ -71,10 +71,12 @@
           <span style="font-weight: bold; font-style: italic"
             ><u>transitions</u></span
           >
-          
-          from the start of the sound to its end <span style="font-weight: bold; font-style: italic">directly</span> or via a
-          <span style="font-weight: bold; font-style: italic">detour</span> through a third type of sound, in comparison with the other
-          clip.
+
+          from the start of the sound to its end
+          <span style="font-weight: bold; font-style: italic">directly</span> or
+          via a
+          <span style="font-weight: bold; font-style: italic">detour</span>
+          through a third type of sound, in comparison with the other clip.
         </div>
       </div>
       <div>&nbsp;</div>
@@ -85,9 +87,15 @@
         <span style="font-weight: bold; font-style: italic"
           ><u>transitions</u></span
         >
-        
-        from the start of the sound to its end either in <span style="font-weight: bold; font-style: italic">even step sizes</span> or in an
-        <span style="font-weight: bold; font-style: italic">uneven or jumpy fashion</span>, in comparison with the other clip.
+
+        from the start of the sound to its end either in
+        <span style="font-weight: bold; font-style: italic"
+          >even step sizes</span
+        >
+        or in an
+        <span style="font-weight: bold; font-style: italic"
+          >uneven or jumpy fashion</span
+        >, in comparison with the other clip.
       </div>
       <div>&nbsp;</div>
       <p style="padding-left: 10px; font-size: small">
@@ -95,93 +103,77 @@
       </p>
     </div>
 
-    <div class="grid">
-      <div class="item2 item"></div>
-      <div class="item3 item center">
-        <span style="font-weight: bold">Detour/Direct</span><br />
-        <span style="font-size: small"
-          ><i>Drag icons to best match the clip differences</i></span
-        >
-      </div>
-      <div class="item4 item"></div>
-      <div class="item5 item center">
-        <span style="font-weight: bold">Even/Uneven</span><br />
-        <span style="font-size: small"
-          ><i>Drag icons to best match the clip differences</i></span
-        >
-      </div>
-      <div class="item6 item grid-inner-item">
-        <span style="padding-top: 10px; padding-left: 7px"
-          ><span style="font-weight: bold">Clip 1</span></span
-        >
-        <span>&nbsp;</span>
-        <span
-          ><audio
-            controls
-            controlsList="nodownload noplaybackrate"
-            @ended="listenedCheck('first_sound_listened_test')"
-            @play="playCheck($event)"
-            preload="auto"
-          >
-            <source
-              src="https://animatedsound.com/neurips2021/combined_data/oreilly_grid/row_17.wav"
-              type="audio/wav"
-            />
-          </audio>
-        </span>
-      </div>
-      <div class="item7 item" id="clip1DetourParking"></div>
-      <div class="item8 item" id="clip1DirectParking"></div>
-      <div class="item9 item"></div>
-      <div class="item10 item" id="clip1JumpyParking"></div>
-      <div class="item11 item" id="clip1EvenParking"></div>
-      <div class="item12 item"></div>
-      <div class="item13 item" id="neutralDetourParking">
-        <div id="detour" style="padding: 5%; padding-left: 20%">
-          <img style="max-width: 85%" src="../assets/exp1/detour.png" />
-        </div>
-      </div>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div class="grid">
+          <div class="item2 item" style="width: 100%;padding-top:10%;padding-left:20%">
+            <span style="font-weight: bold; font-style: italic;"
+              >Drag icons to best match each clip</span
+            >
+          </div>
+          <div class="item3_1 item" style="width: 100%;padding-top:20%;padding-left:25%">
+            <span style="font-weight: bold; font-style: italic;">Detour &amp; Uneven</span><br />
+          </div>
+          <div class="item3_2 item" style="width: 100%;padding-top:20%;padding-left:25%">
+            <span style="font-weight: bold; font-style: italic;">Direct &amp; Even</span><br />
+          </div>
+          <div class="item6 item grid-inner-item">
+            <span style="padding: 20px"
+              ><span style="font-weight: bold; font-style: italic;">Clip 1</span></span
+            >
+            <span
+              ><audio
+                controls
+                controlsList="nodownload noplaybackrate"
+                @ended="listenedCheck('first_sound_listened_test')"
+                @play="playCheck($event)"
+                preload="auto"
+              >
+                <source :src="first_sound_url" type="audio/wav" />
+              </audio>
+            </span>
+          </div>
+          <div class="item7 item" id="clip1DetourParking"></div>
+          <div class="item8 item" id="clip1DirectParking"></div>
+          <div class="item12 item"></div>
+          <div class="item13 item" id="neutralDetourParking">
+            <div id="detour" style="padding: 5%; padding-left: 25%">
+              <img
+                style="max-width: 80%"
+                src="../../assets/exp1/detour_and_uneven.png"
+              />
+            </div>
+          </div>
 
-      <div class="item14 item" id="neutralDirectParking">
-        <div id="direct" style="padding: 5%; padding-left: 20%">
-          <img style="max-width: 85%" src="../assets/exp1/direct.png" />
+          <div class="item14 item" id="neutralDirectParking">
+            <div id="direct" style="padding: 5%; padding-left: 25%">
+              <img
+                style="max-width: 80%"
+                src="../../assets/exp1/direct_and_even.png"
+              />
+            </div>
+          </div>
+          <div class="item18 item grid-inner-item">
+            <span style="padding: 20px"
+              ><span style="font-weight: bold; font-style: italic;">Clip 2</span></span
+            >
+            <span
+              ><audio
+                controls
+                controlsList="nodownload noplaybackrate"
+                @ended="listenedCheck('second_sound_listened_test')"
+                @play="playCheck($event)"
+                preload="auto"
+              >
+                <source :src="second_sound_url" type="audio/wav" /></audio
+            ></span>
+          </div>
+          <div class="item19 item" id="clip2DetourParking"></div>
+          <div class="item20 item" id="clip2DirectParking"></div>
         </div>
       </div>
-      <div class="item15 item"></div>
-      <div class="item16 item" id="neutralJumpyParking">
-        <div id="jumpy" style="padding: 5%; padding-left: 20%">
-          <img style="max-width: 90%" src="../assets/exp1/uneven.png" />
-        </div>
-      </div>
-      <div class="item17 item" id="neutralEvenParking">
-        <div id="even" style="padding: 5%; padding-left: 20%">
-          <img style="max-width: 90%" src="../assets/exp1/even.png" />
-        </div>
-      </div>
-      <div class="item18 item grid-inner-item">
-        <span style="padding-top: 10px; padding-left: 7px"
-          ><span style="font-weight: bold">Clip 2</span></span
-        >
-        <span>&nbsp;</span>
-        <span
-          ><audio
-            controls
-            controlsList="nodownload noplaybackrate"
-            @ended="listenedCheck('second_sound_listened_test')"
-            @play="playCheck($event)"
-            preload="auto"
-          >
-            <source
-              src="https://animatedsound.com/neurips2021/combined_data/oreilly_remapped/row_17.wav"
-              type="audio/wav"
-            /></audio
-        ></span>
-      </div>
-      <div class="item19 item" id="clip2DetourParking"></div>
-      <div class="item20 item" id="clip2DirectParking"></div>
-      <div class="item21 item"></div>
-      <div class="item22 item" id="clip2JumpyParking"></div>
-      <div class="item23 item" id="clip2EvenParking"></div>
+      <div class="col-1"></div>
     </div>
   </div>
 </template>
@@ -196,27 +188,23 @@ export default {
   mounted: function () {
     let classes = document.getElementsByClassName("item");
     for (let i = 0; i < classes.length; i++) {
-      classes[i].style["background-color"] = `hsl(${Math.floor(240)},10%,85%)`;
-      switch (i) {
-        case 5:
-        case 6:
-        case 11:
-        case 12:
-        case 17:
-        case 18:
-          classes[i].style.background = `hsl(${Math.floor(170)},75%,90%)`;
-          break;
+      classes[i].style["background-color"] = `hsl(${Math.floor(240)},10%,80%)`;
+      // classes[i].style["background-color"] = 'whitesmoke';
 
-        case 8:
-        case 9:
-        case 14:
-        case 15:
-        case 20:
-        case 21:
-          classes[i].style.background = `hsl(${Math.floor(25)},75%,90%)`;
-          break;
+      if ([3, 4, 5].indexOf(i) > -1) {
+        classes[i].style.background = `hsl(${Math.floor(25)},75%,90%)`;
+      }
+
+      if ([9, 10, 11].indexOf(i) > -1) {
+        classes[i].style.background = `hsl(${Math.floor(170)},75%,90%)`;
+      }
+
+      if ([3, 4, 6, 7, 9, 10].indexOf(i) > -1) {
+        // classes[i].style.background = `hsl(${Math.floor(170)},75%,90%)`;
       }
     }
+
+    const _this = this; // Argh, I am losing my Vue! My sinceremost apologies to the purists.
 
     let dragging = false;
     let dragmousey;
@@ -233,8 +221,6 @@ export default {
       dragmousey = ev.clientY;
       ev.preventDefault();
     });
-
-    const _this = this; // Argh, I am losing my Vue! My sinceremost apologies to the purists.
 
     document.addEventListener("mouseup", function (ev) {
       console.log("mouseup");
@@ -382,7 +368,13 @@ export default {
     });
   },
   computed: {
-    ...mapGetters(["formData"]),
+    ...mapGetters(["formData", "config"]),
+    first_sound_url: function () {
+      return this.config.first_sound_url;
+    },
+    second_sound_url: function () {
+      return this.config.second_sound_url;
+    },
   },
   methods: {
     ...mapActions(["updateFormData"]),
@@ -550,8 +542,8 @@ h3 {
 /* Lonce CSS Begins */
 .grid {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  grid-template-rows: repeat(4, 100px);
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(4, 120px);
   grid-gap: 3px;
   background-color: rgb(70, 70, 70);
 
@@ -608,7 +600,7 @@ h3 {
 
 .grid-inner-item {
   display: grid;
-  grid-template-columns: 20% 5% 70%;
+  grid-template-columns: 25% 70%;
   padding-top: 5%;
 }
 

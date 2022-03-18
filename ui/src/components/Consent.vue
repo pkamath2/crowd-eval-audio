@@ -3,7 +3,7 @@
 
 <template>
   <div id="" class="consent-container">
-    <div class="heading-consent">Research Informed Consent</div>
+    <div class="heading-consent"> 2. Research Informed Consent</div>
     <div>
       <table>
         <tr>
@@ -146,6 +146,11 @@ export default {
     return {};
   },
   created() {},
+  methods: {
+    validateForm(){
+      return true;
+    }
+  }
 };
 </script>
 
@@ -155,8 +160,9 @@ export default {
 }
 
 .heading-consent {
-  font-weight: bolder;
-  font-size: 200%;
+  width: 100%;
   text-align: center;
+  font-weight: bold;
+  font-size: 250%;
 }
 </style>

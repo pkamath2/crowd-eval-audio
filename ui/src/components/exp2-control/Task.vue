@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="heading">Audio Perceptual Ordering Task</div>
+    <div class="heading"> 3. Audio Perceptual Ordering Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -57,7 +57,7 @@
               @play="playCheck($event)"
             >
               <source
-                src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_0.wav"
+                :src="ref1_url"
                 type="audio/wav"
               /></audio
           ></span>
@@ -78,7 +78,7 @@
               @play="playCheck($event)"
             >
               <source
-                src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_10.wav"
+                :src="ref2_url"
                 type="audio/wav"
               /></audio
           ></span>
@@ -113,7 +113,7 @@
               @play="playCheck($event)"
             >
               <source
-                src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_8.wav"
+                :src="audio_1_url"
                 type="audio/wav"
               /></audio
           ></span>
@@ -133,6 +133,8 @@
               {{ item }}
             </option>
           </select>
+          <!-- <input type="number" name="age" id="age"
+                min="18" max="100" step="1" value="18"> -->
         </div>
       </div>
     </div>
@@ -155,7 +157,7 @@
               @play="playCheck($event)"
             >
               <source
-                src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_6.wav"
+                :src="audio_2_url"
                 type="audio/wav"
               /></audio
           ></span>
@@ -198,7 +200,7 @@
               @play="playCheck($event)"
             >
               <source
-                src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_2.wav"
+                :src="audio_3_url"
                 type="audio/wav"
               /></audio
           ></span>
@@ -241,7 +243,7 @@
               @play="playCheck($event)"
             >
               <source
-                src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_4.wav"
+                :src="audio_4_url"
                 type="audio/wav"
               /></audio
           ></span>
@@ -284,7 +286,7 @@
               @play="playCheck($event)"
             >
               <source
-                src="../assets/audio-samples/waterfill/ZOOM0050_waterfilling_22secs_7.wav"
+                :src="audio_5_url"
                 type="audio/wav"
               /></audio
           ></span>
@@ -324,7 +326,28 @@ export default {
   },
   mounted: function () {},
   computed: {
-    ...mapGetters(["formData"]),
+    ...mapGetters(["formData", "config"]),
+    ref1_url: function(){
+      return this.config.ref1_url;
+    },
+    ref2_url: function(){
+      return this.config.ref2_url;
+    },
+    audio_1_url: function(){
+      return this.config.audio_1_url;
+    },
+    audio_2_url: function(){
+      return this.config.audio_2_url;
+    },
+    audio_3_url: function(){
+      return this.config.audio_3_url;
+    },
+    audio_4_url: function(){
+      return this.config.audio_4_url;
+    },
+    audio_5_url: function(){
+      return this.config.audio_5_url;
+    }
   },
   methods: {
     ...mapActions(["updateFormData"]),
@@ -373,7 +396,17 @@ export default {
         audio_listened_test_4 &&
         audio_listened_test_5;
 
-      return listened;
+      const allFieldsUpdated =
+        ((this.formData.audio_1_select != undefined) && 
+         (this.formData.audio_2_select != undefined) && 
+         (this.formData.audio_3_select != undefined) && 
+         (this.formData.audio_4_select != undefined) && 
+         (this.formData.audio_5_select != undefined));
+
+      if (!(listened && allFieldsUpdated)) {
+        errorModal.style.display = "block";
+      }
+      return listened && allFieldsUpdated;
     },
   },
 };

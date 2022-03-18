@@ -4,7 +4,8 @@
       <div class="modal-content">
         <p>
           Please listen to all sound clips
-          <span style="font-weight: bold">fully</span> and answer the questions before going to the next screen.
+          <span style="font-weight: bold">fully</span> and answer the questions
+          before going to the next screen.
         </p>
         <span><button @click="closeModal">ok!</button></span>
       </div>
@@ -23,15 +24,16 @@
       </div>
     </div>
 
-    <div class="heading">Audio Smoothness Evaluation Task</div>
+    <div class="heading">3. Audio Smoothness Evaluation Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
       <div class="col-12">
-        This page outlines 2 audio clips. Please listen to the 2 clips before answering the questions. Both clips start at one sound (e.g.,
-        sound of fire crackling or an engine running) and slowly transitions
-        towards the end to another sound (e.g., sound made by a large crowd or
-        sound made by water filling a container).
+        This page outlines 2 audio clips. Please listen to the 2 clips before
+        answering the questions. Both clips start at one sound (e.g., sound of
+        fire crackling or an engine running) and slowly transitions towards the
+        end to another sound (e.g., sound made by a large crowd or sound made by
+        water filling a container).
       </div>
       <div>&nbsp;</div>
       <div class="col-12">
@@ -57,10 +59,7 @@
               @ended="listenedCheck('first_sound_listened_test')"
               @play="playCheck($event)"
             >
-              <source
-                src="https://animatedsound.com/neurips2021/combined_data/oreilly_grid/row_13.wav"
-                type="audio/wav"
-              /></audio
+              <source :src="first_sound_url" type="audio/wav" /></audio
           ></span>
         </div>
       </div>
@@ -74,10 +73,7 @@
               @ended="listenedCheck('second_sound_listened_test')"
               @play="playCheck($event)"
             >
-              <source
-                src="https://animatedsound.com/neurips2021/combined_data/oreilly_remapped/row_13.wav"
-                type="audio/wav"
-              /></audio
+              <source :src="second_sound_url" type="audio/wav" /></audio
           ></span>
         </div>
       </div>
@@ -103,6 +99,7 @@
           name="smooth_better_clip"
           id="smooth_first_clip_better"
           value="smooth_first_clip_better"
+          @change="updateForm('smooth_better_clip', 'smooth_first_clip_better')"
         />
       </div>
       <div class="col-6">
@@ -119,6 +116,9 @@
           name="smooth_better_clip"
           id="smooth_second_clip_better"
           value="smooth_second_clip_better"
+          @change="
+            updateForm('smooth_better_clip', 'smooth_second_clip_better')
+          "
         />
       </div>
       <div class="col-6">
@@ -135,6 +135,7 @@
           name="smooth_better_clip"
           id="smooth_both_similar"
           value="smooth_both_similar"
+          @change="updateForm('smooth_better_clip', 'smooth_both_similar')"
         />
       </div>
       <div class="col-6">
@@ -165,6 +166,7 @@
           name="steady_better_clip"
           id="steady_first_clip_better"
           value="steady_first_clip_better"
+          @change="updateForm('steady_better_clip', 'steady_first_clip_better')"
         />
       </div>
       <div class="col-6">
@@ -181,6 +183,9 @@
           name="steady_better_clip"
           id="steady_second_clip_better"
           value="steady_second_clip_better"
+          @change="
+            updateForm('steady_better_clip', 'steady_second_clip_better')
+          "
         />
       </div>
       <div class="col-6">
@@ -197,6 +202,7 @@
           name="steady_better_clip"
           id="steady_both_similar"
           value="steady_both_similar"
+          @change="updateForm('steady_better_clip', 'steady_both_similar')"
         />
       </div>
       <div class="col-6">
@@ -218,7 +224,13 @@ export default {
   },
   mounted: function () {},
   computed: {
-    ...mapGetters(["formData"]),
+    ...mapGetters(["formData", "config"]),
+    first_sound_url: function () {
+      return this.config.first_sound_url;
+    },
+    second_sound_url: function () {
+      return this.config.second_sound_url;
+    },
   },
   methods: {
     ...mapActions(["updateFormData"]),
@@ -248,8 +260,14 @@ export default {
       const clip_2_listened = this.formData.second_sound_listened_test;
 
       const listened = clip_1_listened && clip_2_listened;
+      const allFieldsUpdated =
+        ((this.formData.steady_better_clip != undefined) && (this.formData.smooth_better_clip != undefined));
+      
 
-      return listened;
+      if (!(listened && allFieldsUpdated)) {
+        errorModal.style.display = "block";
+      }
+      return listened && allFieldsUpdated;
     },
   },
 };
