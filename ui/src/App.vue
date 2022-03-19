@@ -39,6 +39,19 @@
       <div class="col-2"></div>
     </div>
     <Experiment v-if="workerExists == false"></Experiment>
+    <div id="overlay-disabled" :class="isChromeOrFirefox">
+      <div
+        style="
+          padding: 25%;
+          font-size: xx-large;
+          font-weight: bolder;
+          color: grey;
+          text-align: center;
+        "
+      >
+        Please attempt this task only if you are on Firefox or Chrome.
+      </div>
+    </div>
   </div>
 </template>
 <style scoped>
@@ -52,6 +65,17 @@
   visibility: visible;
   z-index: 5;
 }
+
+#overlay-disabled {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  visibility: visible;
+  background-color: rgba(0, 0, 0, 0.9);
+}
 </style>
 <script>
 import { mapActions, mapGetters } from "vuex";
@@ -62,7 +86,7 @@ export default {
   data() {
     return {
       workerExists: false,
-      workerCallComplete: false
+      workerCallComplete: false,
     };
   },
   created() {
@@ -117,15 +141,25 @@ export default {
   },
   computed: {
     ...mapGetters(["formData"]),
-    showSpinner: function(){
-      let visibilityClass = 'visible'
-      if(this.isModePreview() || this.isViewOnly()){
-        visibilityClass = 'invisible'
-      } else if (this.workerCallComplete){
-        visibilityClass = 'invisible'
+    showSpinner: function () {
+      let visibilityClass = "visible";
+      if (this.isModePreview() || this.isViewOnly()) {
+        visibilityClass = "invisible";
+      } else if (this.workerCallComplete) {
+        visibilityClass = "invisible";
       }
       return visibilityClass;
-    }
+    },
+    isChromeOrFirefox: function () {
+      let overlayClass = "";
+      const isChromeOrFirefoxStr =
+        navigator.userAgent.indexOf("Chrome") > -1 ||
+        navigator.userAgent.indexOf("Firefox") > -1;
+      if (!isChromeOrFirefoxStr) overlayClass = "visible";
+      else overlayClass = "invisible";
+
+      return overlayClass;
+    },
   },
   methods: {
     ...mapActions(["updateFormData", "updateConfig"]),
