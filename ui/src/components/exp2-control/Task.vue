@@ -4,8 +4,9 @@
       <div class="modal-content">
         <p>
           Please listen to all sound clips
-          <span style="font-weight: bold">fully</span>, ensure you have updated all the required inputs and answered all the
-          questions before going to the next screen.
+          <span style="font-weight: bold">fully</span>, ensure you have updated
+          all the required inputs and answered all the questions before going to
+          the next screen.
         </p>
         <span><button @click="closeModal">ok!</button></span>
       </div>
@@ -69,7 +70,10 @@
                   controls
                   controlsList="nodownload noplaybackrate"
                   @ended="listenedCheck('first_reference_listened_test')"
-                  @play="playCheck($event)"
+                  @play="
+                    playCheck($event);
+                    updateAudioClickAnalytics('task_ref_1_sound');
+                  "
                 >
                   <source :src="ref1_url" type="audio/wav" /></audio
               ></span>
@@ -88,7 +92,10 @@
                   controls
                   controlsList="nodownload noplaybackrate"
                   @ended="listenedCheck('second_reference_listened_test')"
-                  @play="playCheck($event)"
+                  @play="
+                    playCheck($event);
+                    updateAudioClickAnalytics('task_ref_2_sound');
+                  "
                 >
                   <source :src="ref2_url" type="audio/wav" /></audio
               ></span>
@@ -147,7 +154,12 @@
                   controls
                   controlsList="nodownload noplaybackrate"
                   @ended="listenedCheck('audio_listened_test_' + position)"
-                  @play="playCheck($event)"
+                  @play="
+                    playCheck($event);
+                    updateAudioClickAnalytics(
+                      'task_audio_' + position + '_sound'
+                    );
+                  "
                 >
                   <source :src="audio_url(position)" type="audio/wav" /></audio
               ></span>
@@ -162,7 +174,16 @@
                   :name="'audio_' + position + '_select'"
                   :id="'audio_' + position + '_select'"
                   :value="0"
-                  @change="numberRangeCheck($event);update_field($event)"
+                  @change="
+                    numberRangeCheck($event);
+                    update_field($event);
+                  "
+                  @focusout="
+                    updateClickAnalytics(
+                      'task_audio_' + position + '_rank',
+                      $event
+                    )
+                  "
                   min="0"
                   max="100"
                   step="1"
@@ -217,7 +238,10 @@
       <div>
         <button
           id="arrangementBtn_ordering"
-          @click="listenArrangement($event, 'ordering_arrangement_listened')"
+          @click="
+            listenArrangement($event, 'ordering_arrangement_listened');
+            updateClickAnalytics('task_ordering_arrangement_button');
+          "
         >
           Click Here To Listen to the Arrangement To Verify Ordering
         </button>
@@ -268,7 +292,10 @@
       <div>
         <button
           id="arrangementBtn_distance"
-          @click="listenArrangement($event, 'distance_arrangement_listened')"
+          @click="
+            listenArrangement($event, 'distance_arrangement_listened');
+            updateClickAnalytics('task_distance_arrangement_button');
+          "
         >
           Click Here To Listen to the Arrangement To Verify Distance/Spacing
         </button>
@@ -342,7 +369,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["updateFormData"]),
+    ...mapActions(["updateFormData", "updateClickAnalytics"]),
     audio_url(loc) {
       const nm = "audio_" + loc + "_url";
       return this.config[nm];
@@ -354,6 +381,12 @@ export default {
     },
     listenedCheck(nm) {
       this.updateForm(nm, true);
+    },
+    updateAudioClickAnalytics(nm) {
+      if (this.current_playing_arrangement == "") {
+        //Update audio analytics only if arrangement is not playing
+        this.updateClickAnalytics(nm);
+      }
     },
     numberRangeCheck($event) {
       const pos = $event.target.name.split("_")[1];
@@ -394,6 +427,7 @@ export default {
           ordering_checkbox.removeAttribute("disabled");
         if (this.current_playing_arrangement.includes("distance"))
           distance_checkbox.removeAttribute("disabled");
+        this.current_playing_arrangement = ""; //Reset flag
         return;
       }
       this.sounds_in_sequence[this.sound_index].addEventListener(
@@ -438,6 +472,9 @@ export default {
       this.listenedCheck(nm);
       this.playSequence();
     },
+    validateNumberField(f) {
+      return f != undefined && f != "" && parseInt(f) > 0 && parseInt(f) < 100;
+    },
     validateForm() {
       const ref_clip_1_listened = this.formData.first_reference_listened_test;
       const ref_clip_2_listened = this.formData.second_reference_listened_test;
@@ -458,13 +495,15 @@ export default {
         audio_listened_test_5;
 
       const allFieldsUpdated =
-        this.formData.audio_1_select != undefined &&
-        this.formData.audio_2_select != undefined &&
-        this.formData.audio_3_select != undefined &&
-        this.formData.audio_4_select != undefined &&
-        this.formData.audio_5_select != undefined &&
-        (this.formData.distance_checkbox != undefined && this.formData.distance_checkbox != false) &&
-        (this.formData.ordering_checkbox != undefined && this.formData.ordering_checkbox != false);
+        this.validateNumberField(this.formData.audio_1_select) &&
+        this.validateNumberField(this.formData.audio_2_select) &&
+        this.validateNumberField(this.formData.audio_3_select) &&
+        this.validateNumberField(this.formData.audio_4_select) &&
+        this.validateNumberField(this.formData.audio_5_select) &&
+        this.formData.distance_checkbox != undefined &&
+        this.formData.distance_checkbox != false &&
+        this.formData.ordering_checkbox != undefined &&
+        this.formData.ordering_checkbox != false;
 
       if (!(listened && allFieldsUpdated)) {
         errorModal.style.display = "block";

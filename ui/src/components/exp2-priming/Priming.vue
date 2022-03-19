@@ -55,12 +55,15 @@
               playCheck($event);
               addSpotlight('ref-1-surrounding-priming', 'ref_1_value_priming');
             "
-            @pause="removeSpotlight($event, 'ref-1-surrounding-priming', 'ref_1_value_priming')"
+            @pause="
+              removeSpotlight(
+                $event,
+                'ref-1-surrounding-priming',
+                'ref_1_value_priming'
+              )
+            "
           >
-            <source
-              :src="ref1_url"
-              type="audio/wav"
-            />
+            <source :src="ref1_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -80,20 +83,28 @@
             controlsList="nodownload noplaybackrate"
             @ended="
               listenedCheck('clip_1_listened_priming');
-              removeSpotlight($event, 'clip-1-surrounding-priming', 'clip_1_value_priming');
+              removeSpotlight(
+                $event,
+                'clip-1-surrounding-priming',
+                'clip_1_value_priming'
+              );
             "
             @play="
               playCheck($event);
-              addSpotlight('clip-1-surrounding-priming', 'clip_1_value_priming');
+              addSpotlight(
+                'clip-1-surrounding-priming',
+                'clip_1_value_priming'
+              );
             "
             @pause="
-              removeSpotlight($event, 'clip-1-surrounding-priming', 'clip_1_value_priming')
+              removeSpotlight(
+                $event,
+                'clip-1-surrounding-priming',
+                'clip_1_value_priming'
+              )
             "
           >
-            <source
-              :src="audio_1_url"
-              type="audio/wav"
-            />
+            <source :src="audio_1_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -114,20 +125,28 @@
             controlsList="nodownload noplaybackrate"
             @ended="
               listenedCheck('clip_2_listened_priming');
-              removeSpotlight($event, 'clip-2-surrounding-priming', 'clip_2_value_priming');
+              removeSpotlight(
+                $event,
+                'clip-2-surrounding-priming',
+                'clip_2_value_priming'
+              );
             "
             @play="
               playCheck($event);
-              addSpotlight('clip-2-surrounding-priming', 'clip_2_value_priming');
+              addSpotlight(
+                'clip-2-surrounding-priming',
+                'clip_2_value_priming'
+              );
             "
             @pause="
-              removeSpotlight($event, 'clip-2-surrounding-priming', 'clip_2_value_priming')
+              removeSpotlight(
+                $event,
+                'clip-2-surrounding-priming',
+                'clip_2_value_priming'
+              )
             "
           >
-            <source
-              :src="audio_2_url"
-              type="audio/wav"
-            />
+            <source :src="audio_2_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -148,20 +167,28 @@
             controlsList="nodownload noplaybackrate"
             @ended="
               listenedCheck('clip_3_listened_priming');
-              removeSpotlight($event, 'clip-3-surrounding-priming', 'clip_3_value_priming');
+              removeSpotlight(
+                $event,
+                'clip-3-surrounding-priming',
+                'clip_3_value_priming'
+              );
             "
             @play="
               playCheck($event);
-              addSpotlight('clip-3-surrounding-priming', 'clip_3_value_priming');
+              addSpotlight(
+                'clip-3-surrounding-priming',
+                'clip_3_value_priming'
+              );
             "
             @pause="
-              removeSpotlight($event, 'clip-3-surrounding-priming', 'clip_3_value_priming')
+              removeSpotlight(
+                $event,
+                'clip-3-surrounding-priming',
+                'clip_3_value_priming'
+              )
             "
           >
-            <source
-              :src="audio_3_url"
-              type="audio/wav"
-            />
+            <source :src="audio_3_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -182,20 +209,28 @@
             controlsList="nodownload noplaybackrate"
             @ended="
               listenedCheck('clip_4_listened_priming');
-              removeSpotlight($event, 'clip-4-surrounding-priming', 'clip_4_value_priming');
+              removeSpotlight(
+                $event,
+                'clip-4-surrounding-priming',
+                'clip_4_value_priming'
+              );
             "
             @play="
               playCheck($event);
-              addSpotlight('clip-4-surrounding-priming', 'clip_4_value_priming');
+              addSpotlight(
+                'clip-4-surrounding-priming',
+                'clip_4_value_priming'
+              );
             "
             @pause="
-              removeSpotlight($event, 'clip-4-surrounding-priming', 'clip_4_value_priming')
+              removeSpotlight(
+                $event,
+                'clip-4-surrounding-priming',
+                'clip_4_value_priming'
+              )
             "
           >
-            <source
-              :src="audio_4_url"
-              type="audio/wav"
-            />
+            <source :src="audio_4_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -216,20 +251,28 @@
             controlsList="nodownload noplaybackrate"
             @ended="
               listenedCheck('clip_5_listened_priming');
-              removeSpotlight($event, 'clip-5-surrounding-priming', 'clip_5_value_priming');
+              removeSpotlight(
+                $event,
+                'clip-5-surrounding-priming',
+                'clip_5_value_priming'
+              );
             "
             @play="
               playCheck($event);
-              addSpotlight('clip-5-surrounding-priming', 'clip_5_value_priming');
+              addSpotlight(
+                'clip-5-surrounding-priming',
+                'clip_5_value_priming'
+              );
             "
             @pause="
-              removeSpotlight($event, 'clip-5-surrounding-priming', 'clip_5_value_priming')
+              removeSpotlight(
+                $event,
+                'clip-5-surrounding-priming',
+                'clip_5_value_priming'
+              )
             "
           >
-            <source
-              :src="audio_5_url"
-              type="audio/wav"
-            />
+            <source :src="audio_5_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -257,12 +300,15 @@
               playCheck($event);
               addSpotlight('ref-2-surrounding-priming', 'ref_2_value_priming');
             "
-            @pause="removeSpotlight($event, 'ref-2-surrounding-priming', 'ref_2_value_priming')"
+            @pause="
+              removeSpotlight(
+                $event,
+                'ref-2-surrounding-priming',
+                'ref_2_value_priming'
+              )
+            "
           >
-            <source
-              :src="ref2_url"
-              type="audio/wav"
-            />
+            <source :src="ref2_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -272,17 +318,30 @@
       <div>1.</div>
       <div>&nbsp;</div>
       <div>
-        Hover your mouse over each of the colored thumbs below to listen to the audio
-        samples.<br /><br />
+        Hover your mouse over each of the colored thumbs below to listen to the
+        audio samples.<br /><br />
         The thumbs in
-        <span style="background-color: #3b3a39; color: white; padding: 2px;">black</span> are
-        your reference audio samples.<br />
+        <span style="background-color: #3b3a39; color: white; padding: 2px"
+          >black</span
+        >
+        are your reference audio samples.<br />
         Please arrange/position the remaining thumbs in
-        <span style="background-color: #cd2026; color: black; padding: 2px;">red</span>,
-        <span style="background-color: #4aa564; color: black; padding: 2px;">green</span>,
-        <span style="background-color: #f9c642; color: black; padding: 2px;">yellow</span>,
-        <span style="background-color: #0071bc; color: black; padding: 2px;">blue</span>,
-        <span style="background-color: darkorange; color: black; padding: 2px;">orange</span> in between the two references in a certain perceptual order.
+        <span style="background-color: #cd2026; color: black; padding: 2px"
+          >red</span
+        >,
+        <span style="background-color: #4aa564; color: black; padding: 2px"
+          >green</span
+        >,
+        <span style="background-color: #f9c642; color: black; padding: 2px"
+          >yellow</span
+        >,
+        <span style="background-color: #0071bc; color: black; padding: 2px"
+          >blue</span
+        >,
+        <span style="background-color: darkorange; color: black; padding: 2px"
+          >orange</span
+        >
+        in between the two references in a certain perceptual order.
       </div>
     </div>
 
@@ -299,7 +358,10 @@
           max="100"
           disabled="true"
           style="--thumbcolor: #3b3a39; --thumbborder: transparent"
-          @mouseover="mouseoverPlay('ref_1_audio_priming')"
+          @mouseover="
+            mouseoverPlay('ref_1_audio_priming');
+            updateClickAnalytics('priming_ref_1_sound');
+          "
           @mouseout="mouseoutPause('ref_1_audio_priming')"
         />
 
@@ -311,8 +373,14 @@
           value="45"
           max="100"
           style="--thumbcolor: #cd2026; --thumbborder: transparent"
-          @change="sliderChanged('clip_1_slider_changed_priming', $event)"
-          @mouseover="mouseoverPlay('clip_1_audio_priming')"
+          @change="
+            sliderChanged('clip_1_slider_changed_priming', $event);
+            updateClickAnalytics('priming_clip_1_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_1_audio_priming');
+            updateClickAnalytics('priming_clip_1_sound');
+          "
           @mouseout="mouseoutPause('clip_1_audio_priming')"
         />
         <input
@@ -323,8 +391,14 @@
           value="47"
           max="100"
           style="--thumbcolor: #4aa564; --thumbborder: transparent"
-          @change="sliderChanged('clip_2_slider_changed_priming', $event)"
-          @mouseover="mouseoverPlay('clip_2_audio_priming')"
+          @change="
+            sliderChanged('clip_2_slider_changed_priming', $event);
+            updateClickAnalytics('priming_clip_2_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_2_audio_priming');
+            updateClickAnalytics('priming_clip_2_sound');
+          "
           @mouseout="mouseoutPause('clip_2_audio_priming')"
         />
         <input
@@ -335,8 +409,14 @@
           value="49"
           max="100"
           style="--thumbcolor: #f9c642; --thumbborder: transparent"
-          @change="sliderChanged('clip_3_slider_changed_priming', $event)"
-          @mouseover="mouseoverPlay('clip_3_audio_priming')"
+          @change="
+            sliderChanged('clip_3_slider_changed_priming', $event);
+            updateClickAnalytics('priming_clip_3_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_3_audio_priming');
+            updateClickAnalytics('priming_clip_3_sound');
+          "
           @mouseout="mouseoutPause('clip_3_audio_priming')"
         />
         <input
@@ -347,8 +427,14 @@
           value="51"
           max="100"
           style="--thumbcolor: #0071bc; --thumbborder: transparent"
-          @change="sliderChanged('clip_4_slider_changed_priming', $event)"
-          @mouseover="mouseoverPlay('clip_4_audio_priming')"
+          @change="
+            sliderChanged('clip_4_slider_changed_priming', $event);
+            updateClickAnalytics('priming_clip_4_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_4_audio_priming');
+            updateClickAnalytics('priming_clip_4_sound');
+          "
           @mouseout="mouseoutPause('clip_4_audio_priming')"
         />
         <input
@@ -359,8 +445,14 @@
           value="53"
           max="100"
           style="--thumbcolor: darkorange; --thumbborder: transparent"
-          @change="sliderChanged('clip_5_slider_changed_priming', $event)"
-          @mouseover="mouseoverPlay('clip_5_audio_priming')"
+          @change="
+            sliderChanged('clip_5_slider_changed_priming', $event);
+            updateClickAnalytics('priming_clip_5_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_5_audio_priming');
+            updateClickAnalytics('priming_clip_5_sound');
+          "
           @mouseout="mouseoutPause('clip_5_audio_priming')"
         />
         <input
@@ -372,13 +464,16 @@
           max="100"
           disabled="true"
           style="--thumbcolor: #3b3a39; --thumbborder: transparent"
-          @mouseover="mouseoverPlay('ref_2_audio_priming')"
+          @mouseover="
+            mouseoverPlay('ref_2_audio_priming');
+            updateClickAnalytics('priming_ref_2_sound');
+          "
           @mouseout="mouseoutPause('ref_2_audio_priming')"
         />
       </div>
     </div>
 
-     <div class="step-content-priming row">
+    <div class="step-content-priming row">
       <div>2.</div>
       <div>&nbsp;</div>
       <div>
@@ -393,7 +488,13 @@
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       <div>
-        <button id="arrangementBtn_ordering_priming" @click="listenArrangement($event, 'ordering_arrangement_listened_priming')">
+        <button
+          id="arrangementBtn_ordering_priming"
+          @click="
+            listenArrangement($event, 'ordering_arrangement_listened_priming');
+            updateClickAnalytics('task_ordering_arrangement_button');
+          "
+        >
           Click Here To Listen to the Arrangement To Verify Ordering
         </button>
       </div>
@@ -412,7 +513,8 @@
           disabled
         />
         <label for="ordering_checkbox_priming">
-          &nbsp;I have listened to the arrangement and verified that it is in the correct order of sequence.</label
+          &nbsp;I have listened to the arrangement and verified that it is in
+          the correct order of sequence.</label
         ><br />
       </div>
     </div>
@@ -424,10 +526,9 @@
       <div>3.</div>
       <div>&nbsp;</div>
       <div>
-        <span style="font-weight: bold">Adjust Distance Step</span>: Please
-        click the button below to listen to your arrangement again. <br />Does
-        the arrangement sound such that each clip is at a correct
-        distance/spacing from each other? If not, please redo from Step 1.
+        <span style="font-weight: bold">Adjust Relative Position Step</span>: Please
+        click the button below to listen to your arrangement again. <br />Does the arrangement sound such that each clip is at a correct
+        distance/spacing relative to its neighbor? If not, please redo from Step 1.
       </div>
     </div>
     <div>&nbsp;</div>
@@ -435,7 +536,13 @@
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       <div>
-        <button id="arrangementBtn_distance_priming" @click="listenArrangement($event, 'distance_arrangement_listened_priming')">
+        <button
+          id="arrangementBtn_distance_priming"
+          @click="
+            listenArrangement($event, 'distance_arrangement_listened_priming');
+            updateClickAnalytics('task_distance_arrangement_button');
+          "
+        >
           Click Here To Listen to the Arrangement To Verify Distance/Spacing
         </button>
       </div>
@@ -444,7 +551,7 @@
     <div class="step-content-priming">
       <div>&nbsp;</div>
       <div>&nbsp;</div>
-      <div> 
+      <div>
         <input
           type="checkbox"
           id="distance_checkbox_priming"
@@ -462,7 +569,6 @@
 
     <div>&nbsp;</div>
     <div>&nbsp;</div>
-
   </div>
 </template>
 
@@ -476,35 +582,35 @@ export default {
       sound_index: 0,
       sounds_in_sequence: [],
       current_playing_arrangement: "",
-      disable_mouse_over_and_out: false
+      disable_mouse_over_and_out: false,
     };
   },
   computed: {
     ...mapGetters(["formData", "config"]),
-    ref1_url: function(){
+    ref1_url: function () {
       return this.config.ref1_priming_url;
     },
-    ref2_url: function(){
+    ref2_url: function () {
       return this.config.ref2_priming_url;
     },
-    audio_1_url: function(){
+    audio_1_url: function () {
       return this.config.audio_1_priming_url;
     },
-    audio_2_url: function(){
+    audio_2_url: function () {
       return this.config.audio_2_priming_url;
     },
-    audio_3_url: function(){
+    audio_3_url: function () {
       return this.config.audio_3_priming_url;
     },
-    audio_4_url: function(){
+    audio_4_url: function () {
       return this.config.audio_4_priming_url;
     },
-    audio_5_url: function(){
+    audio_5_url: function () {
       return this.config.audio_5_priming_url;
-    }
+    },
   },
   methods: {
-    ...mapActions(["updateFormData"]),
+    ...mapActions(["updateFormData", "updateClickAnalytics"]),
     sliderChanged(nm, e) {
       var obj = {};
       obj[nm] = true;
@@ -525,11 +631,11 @@ export default {
       document.getElementById(audio_id).play();
     },
     mouseoverPlay(audio_id) {
-      if(!this.disable_mouse_over_and_out)
+      if (!this.disable_mouse_over_and_out)
         document.getElementById(audio_id).play();
     },
     mouseoutPause(audio_id) {
-      if(!this.disable_mouse_over_and_out)
+      if (!this.disable_mouse_over_and_out)
         document.getElementById(audio_id).pause();
     },
     playCheck(e) {
@@ -557,7 +663,8 @@ export default {
       document.getElementById(contId).style.border = "none";
     },
     closeModal() {
-      if (oneAudioOnlyModalPriming) oneAudioOnlyModalPriming.style.display = "none";
+      if (oneAudioOnlyModalPriming)
+        oneAudioOnlyModalPriming.style.display = "none";
       if (errorModalPriming) errorModalPriming.style.display = "none";
     },
     playSequence() {
@@ -584,7 +691,6 @@ export default {
       this.sound_index++;
     },
     listenArrangement(e, nm) {
-      
       this.disable_mouse_over_and_out = true; // When arrangement is playing - nobody disturb it.
 
       arrangementBtn_distance_priming.disabled = true;
@@ -607,7 +713,9 @@ export default {
 
       let ind = 0;
       for (const key in arrangement) {
-        this.sounds_in_sequence[ind] = document.getElementById(key + "_audio_priming");
+        this.sounds_in_sequence[ind] = document.getElementById(
+          key + "_audio_priming"
+        );
         ind++;
       }
 
@@ -652,10 +760,13 @@ export default {
         clip_5_slider_changed;
 
       const allFieldsUpdated =
-        (this.formData.distance_checkbox_priming != undefined && this.formData.distance_checkbox_priming != false) &&
-        (this.formData.ordering_checkbox_priming != undefined && this.formData.ordering_checkbox_priming != false);
+        this.formData.distance_checkbox_priming != undefined &&
+        this.formData.distance_checkbox_priming != false &&
+        this.formData.ordering_checkbox_priming != undefined &&
+        this.formData.ordering_checkbox_priming != false;
 
-      if (!(listened && sliderChangedTest && allFieldsUpdated)) errorModalPriming.style.display = "block";
+      if (!(listened && sliderChangedTest && allFieldsUpdated))
+        errorModalPriming.style.display = "block";
       return listened && sliderChangedTest && allFieldsUpdated;
     },
   },

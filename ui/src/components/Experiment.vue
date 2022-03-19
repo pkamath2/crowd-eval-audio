@@ -9,7 +9,7 @@
         <br />
         <Overview v-show="current_level == 'overview'" ref="overview_ref"></Overview>
         <Consent v-show="current_level == 'consent'" ref="consent_ref"></Consent>
-        <Screening v-show="current_level == 'hearing_screening'" ref="hearing_screening_ref"></Screening>
+        <!-- <Screening v-show="current_level == 'hearing_screening'" ref="hearing_screening_ref"></Screening> --><!-- Screening is now moved to a qualifier on AMT -->
         <Priming v-show="current_level == 'priming'" ref="priming_ref"></Priming>
         <Task v-show="current_level == 'task'" ref="task_ref"></Task>
         <PostSurvey v-show="current_level == 'post_survey'" ref="post_survey_ref"></PostSurvey>
@@ -87,13 +87,15 @@ export default {
       levels: [],
       levels_names: [],
       current_level: "",
+      current_level_starttime: ""
     };
   },
   beforeMount(){
     const conf = uiConfig.uiConfig;
-    this.levels = conf.ui_levels
-    this.levels_names = conf.ui_levels_names
-    this.current_level = this.levels[0]
+    this.levels = conf.ui_levels;
+    this.levels_names = conf.ui_levels_names;
+    this.current_level = this.levels[0];
+    this.current_level_starttime = new Date();
   },
   created(){
     this.is_priming_available = uiConfig.uiConfig.priming_available;
@@ -109,24 +111,36 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["updateFormData"]),
+    ...mapActions(["updateFormData","updateTimeSpent"]),
     updateForm(nm, val) {
       var obj = {};
       obj[nm] = val;
       this.updateFormData(obj);
     },
+    updateLevelTimeSpent(nm, val) {
+      var obj = {};
+      obj[nm] = val/1000;//convert to seconds from millisec
+      this.updateTimeSpent(obj)
+    },
     proceed_next_level(level_) {
       const is_valid = this.$refs[level_+'_ref'].validateForm();
       if (!is_valid) return;// Dont proceed if form is not valid
 
+      this.updateLevelTimeSpent(this.current_level, (new Date() - this.current_level_starttime))
+
       let level_id = this.levels.indexOf(level_) + 1;
       if (level_id >= this.levels.length) return;
       this.current_level = this.levels[level_id];
+      this.current_level_starttime = new Date();
     },
     proceed_back_level(level_) {
       let level_id = this.levels.indexOf(level_) - 1;
       if (level_id < 0) return;
+
+      this.updateLevelTimeSpent(this.current_level, (new Date() - this.current_level_starttime))
+
       this.current_level = this.levels[level_id];
+      this.current_level_starttime = new Date();
     },
   },
 };

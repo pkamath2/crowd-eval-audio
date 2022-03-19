@@ -57,7 +57,7 @@
               controls
               controlsList="nodownload noplaybackrate"
               @ended="listenedCheck('first_sound_listened_test')"
-              @play="playCheck($event)"
+              @play="playCheck($event);updateClickAnalytics('task_first_sound');"
             >
               <source :src="first_sound_url" type="audio/wav" /></audio
           ></span>
@@ -71,7 +71,7 @@
               controls
               controlsList="nodownload noplaybackrate"
               @ended="listenedCheck('second_sound_listened_test')"
-              @play="playCheck($event)"
+              @play="playCheck($event);updateClickAnalytics('task_second_sound');"
             >
               <source :src="second_sound_url" type="audio/wav" /></audio
           ></span>
@@ -170,7 +170,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["updateFormData"]),
+    ...mapActions(["updateFormData", "updateClickAnalytics"]),
     updateForm(nm, val) {
       var obj = {};
       obj[nm] = val;

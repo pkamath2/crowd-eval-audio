@@ -137,7 +137,7 @@
                 controls
                 controlsList="nodownload noplaybackrate"
                 @ended="listenedCheckPriming('first_sound_listened_test_priming')"
-                @play="playCheckPriming($event)"
+                @play="playCheckPriming($event);updateClickAnalytics('priming_first_sound');"
                 preload="auto"
               >
                 <source :src="first_sound_url" type="audio/wav" />
@@ -173,7 +173,7 @@
                 controls
                 controlsList="nodownload noplaybackrate"
                 @ended="listenedCheckPriming('second_sound_listened_test_priming')"
-                @play="playCheckPriming($event)"
+                @play="playCheckPriming($event);updateClickAnalytics('priming_second_sound');"
                 preload="auto"
               >
                 <source :src="second_sound_url" type="audio/wav" /></audio
@@ -241,7 +241,6 @@ export default {
         draggingpriming.parent.removeChild(draggingpriming);
         dragOtherpriming.parent.removeChild(dragOtherpriming);
         if (ev.clientY < dragmouseypriming) {
-          console.log("movin on up");
           draggingpriming.parent = document.getElementById(
             "clip1PrimingDetourUnevenParking"
           );
@@ -249,7 +248,6 @@ export default {
             "clip2PrimingDirectEvenParking"
           );
 
-          console.log(_thispriming);
           _thispriming.updateFormPriming(
             "first_clip_direct_detour_priming",
             "detour_uneven"
@@ -258,9 +256,10 @@ export default {
             "second_clip_direct_detour_priming",
             "direct_even"
           );
+
+          _thispriming.updateClickAnalytics('priming_icon_moved');
         }
-        if (ev.clientY >= dragmouseypriming) {
-          console.log("movin on down");
+        if (ev.clientY > dragmouseypriming) {
           draggingpriming.parent = document.getElementById(
             "clip2PrimingDetourUnevenParking"
           );
@@ -276,6 +275,8 @@ export default {
             "second_clip_direct_detour_priming",
             "detour_uneven"
           );
+
+          _thispriming.updateClickAnalytics('priming_icon_moved');
         }
         draggingpriming.parent.appendChild(draggingpriming);
         dragOtherpriming.parent.appendChild(dragOtherpriming);
@@ -294,7 +295,6 @@ export default {
     });
 
     document.addEventListener("mouseup", function (ev) {
-      console.log("mouseup");
       ev.preventDefault();
       if (draggingpriming == directEvenPriming) {
         dragOtherpriming = detourUnevenPriming;
@@ -302,7 +302,6 @@ export default {
         draggingpriming.parent.removeChild(draggingpriming);
         dragOtherpriming.parent.removeChild(dragOtherpriming);
         if (ev.clientY < dragmouseypriming) {
-          console.log("movin on up");
           draggingpriming.parent = document.getElementById(
             "clip1PrimingDirectEvenParking"
           );
@@ -318,9 +317,10 @@ export default {
             "second_clip_direct_detour_priming",
             "detour_uneven"
           );
+
+          _thispriming.updateClickAnalytics('priming_icon_moved');
         }
         if (ev.clientY > dragmouseypriming) {
-          console.log("movin on down");
           draggingpriming.parent = document.getElementById(
             "clip2PrimingDirectEvenParking"
           );
@@ -336,6 +336,8 @@ export default {
             "second_clip_direct_detour_priming",
             "direct_even"
           );
+
+          _thispriming.updateClickAnalytics('priming_icon_moved');
         }
         draggingpriming.parent.appendChild(draggingpriming);
         dragOtherpriming.parent.appendChild(dragOtherpriming);
@@ -343,121 +345,6 @@ export default {
         draggingpriming = false;
       }
     });
-
-    // jumpypriming.parent = document.getElementById("neutralPrimingJumpyParking");
-    // jumpypriming.addEventListener("mousedown", function (ev) {
-    //   draggingpriming = jumpypriming;
-    //   dragmouseypriming = ev.clientY;
-    //   ev.preventDefault();
-    // });
-
-    // document.addEventListener("mouseup", function (ev) {
-    //   console.log("mouseup");
-    //   ev.preventDefault();
-    //   if (draggingpriming == jumpypriming) {
-    //     dragOtherpriming = evenpriming;
-
-    //     draggingpriming.parent.removeChild(draggingpriming);
-    //     dragOtherpriming.parent.removeChild(dragOtherpriming);
-    //     if (ev.clientY < dragmouseypriming) {
-    //       console.log("movin on up");
-    //       draggingpriming.parent = document.getElementById(
-    //         "clip1PrimingJumpyParking"
-    //       );
-    //       dragOtherpriming.parent = document.getElementById(
-    //         "clip2PrimingEvenParking"
-    //       );
-
-    //       _thispriming.updateFormPriming(
-    //         "first_clip_even_uneven_priming",
-    //         "uneven"
-    //       );
-    //       _thispriming.updateFormPriming(
-    //         "second_clip_even_uneven_priming",
-    //         "even"
-    //       );
-    //     }
-    //     if (ev.clientY >= dragmouseypriming) {
-    //       console.log("movin on down");
-    //       draggingpriming.parent = document.getElementById(
-    //         "clip2PrimingJumpyParking"
-    //       );
-    //       dragOtherpriming.parent = document.getElementById(
-    //         "clip1PrimingEvenParking"
-    //       );
-
-    //       _thispriming.updateFormPriming(
-    //         "first_clip_even_uneven_priming",
-    //         "even"
-    //       );
-    //       _thispriming.updateFormPriming(
-    //         "second_clip_even_uneven_priming",
-    //         "uneven"
-    //       );
-    //     }
-    //     draggingpriming.parent.appendChild(draggingpriming);
-    //     dragOtherpriming.parent.appendChild(dragOtherpriming);
-
-    //     draggingpriming = false;
-    //   }
-    // });
-
-    // evenpriming.parent = document.getElementById("neutralPrimingEvenParking");
-    // evenpriming.addEventListener("mousedown", function (ev) {
-    //   draggingpriming = evenpriming;
-    //   dragmouseypriming = ev.clientY;
-    //   ev.preventDefault();
-    // });
-    // document.addEventListener("mouseup", function (ev) {
-    //   console.log("mouseup");
-    //   ev.preventDefault();
-    //   if (draggingpriming == evenpriming) {
-    //     dragOtherpriming = jumpypriming;
-
-    //     draggingpriming.parent.removeChild(draggingpriming);
-    //     dragOtherpriming.parent.removeChild(dragOtherpriming);
-    //     if (ev.clientY < dragmouseypriming) {
-    //       console.log("movin on up");
-    //       draggingpriming.parent = document.getElementById(
-    //         "clip1PrimingEvenParking"
-    //       );
-    //       dragOtherpriming.parent = document.getElementById(
-    //         "clip2PrimingJumpyParking"
-    //       );
-
-    //       _thispriming.updateFormPriming(
-    //         "first_clip_even_uneven_priming",
-    //         "even"
-    //       );
-    //       _thispriming.updateFormPriming(
-    //         "second_clip_even_uneven_priming",
-    //         "uneven"
-    //       );
-    //     }
-    //     if (ev.clientY > dragmouseypriming) {
-    //       console.log("movin on down");
-    //       draggingpriming.parent = document.getElementById(
-    //         "clip2PrimingEvenParking"
-    //       );
-    //       dragOtherpriming.parent = document.getElementById(
-    //         "clip1PrimingJumpyParking"
-    //       );
-
-    //       _thispriming.updateFormPriming(
-    //         "first_clip_even_uneven_priming",
-    //         "uneven"
-    //       );
-    //       _thispriming.updateFormPriming(
-    //         "second_clip_even_uneven_priming",
-    //         "even"
-    //       );
-    //     }
-    //     draggingpriming.parent.appendChild(draggingpriming);
-    //     dragOtherpriming.parent.appendChild(dragOtherpriming);
-
-    //     draggingpriming = false;
-    //   }
-    // });
   },
   computed: {
     ...mapGetters(["formData", "config"]),
@@ -469,7 +356,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["updateFormData"]),
+    ...mapActions(["updateFormData", "updateClickAnalytics"]),
     updateFormPriming(nm, val) {
       var obj = {};
       obj[nm] = val;

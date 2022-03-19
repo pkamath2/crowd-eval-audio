@@ -291,7 +291,10 @@
           max="100"
           disabled="true"
           style="--thumbcolor: #3b3a39; --thumbborder: transparent"
-          @mouseover="mouseoverPlay('ref_1_audio')"
+          @mouseover="
+            mouseoverPlay('ref_1_audio');
+            updateClickAnalytics('task_ref_1_sound');
+          "
           @mouseout="mouseoutPause('ref_1_audio')"
         />
 
@@ -303,8 +306,14 @@
           value="45"
           max="100"
           style="--thumbcolor: #cd2026; --thumbborder: transparent"
-          @change="sliderChanged('clip_1_slider_changed', $event)"
-          @mouseover="mouseoverPlay('clip_1_audio')"
+          @change="
+            sliderChanged('clip_1_slider_changed', $event);
+            updateClickAnalytics('task_clip_1_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_1_audio');
+            updateClickAnalytics('task_clip_1_sound');
+          "
           @mouseout="mouseoutPause('clip_1_audio')"
         />
         <input
@@ -315,8 +324,14 @@
           value="47"
           max="100"
           style="--thumbcolor: #4aa564; --thumbborder: transparent"
-          @change="sliderChanged('clip_2_slider_changed', $event)"
-          @mouseover="mouseoverPlay('clip_2_audio')"
+          @change="
+            sliderChanged('clip_2_slider_changed', $event);
+            updateClickAnalytics('task_clip_2_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_2_audio');
+            updateClickAnalytics('task_clip_2_sound');
+          "
           @mouseout="mouseoutPause('clip_2_audio')"
         />
         <input
@@ -327,8 +342,14 @@
           value="49"
           max="100"
           style="--thumbcolor: #f9c642; --thumbborder: transparent"
-          @change="sliderChanged('clip_3_slider_changed', $event)"
-          @mouseover="mouseoverPlay('clip_3_audio')"
+          @change="
+            sliderChanged('clip_3_slider_changed', $event);
+            updateClickAnalytics('task_clip_3_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_3_audio');
+            updateClickAnalytics('task_clip_3_sound');
+          "
           @mouseout="mouseoutPause('clip_3_audio')"
         />
         <input
@@ -339,8 +360,14 @@
           value="51"
           max="100"
           style="--thumbcolor: #0071bc; --thumbborder: transparent"
-          @change="sliderChanged('clip_4_slider_changed', $event)"
-          @mouseover="mouseoverPlay('clip_4_audio')"
+          @change="
+            sliderChanged('clip_4_slider_changed', $event);
+            updateClickAnalytics('task_clip_4_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_4_audio');
+            updateClickAnalytics('task_clip_4_sound');
+          "
           @mouseout="mouseoutPause('clip_4_audio')"
         />
         <input
@@ -351,8 +378,14 @@
           value="53"
           max="100"
           style="--thumbcolor: darkorange; --thumbborder: transparent"
-          @change="sliderChanged('clip_5_slider_changed', $event)"
-          @mouseover="mouseoverPlay('clip_5_audio')"
+          @change="
+            sliderChanged('clip_5_slider_changed', $event);
+            updateClickAnalytics('task_clip_5_slider');
+          "
+          @mouseover="
+            mouseoverPlay('clip_5_audio');
+            updateClickAnalytics('task_clip_5_sound');
+          "
           @mouseout="mouseoutPause('clip_5_audio')"
         />
         <input
@@ -364,7 +397,10 @@
           max="100"
           disabled="true"
           style="--thumbcolor: #3b3a39; --thumbborder: transparent"
-          @mouseover="mouseoverPlay('ref_2_audio')"
+          @mouseover="
+            mouseoverPlay('ref_2_audio');
+            updateClickAnalytics('task_ref_2_sound');
+          "
           @mouseout="mouseoutPause('ref_2_audio')"
         />
       </div>
@@ -387,7 +423,10 @@
       <div>
         <button
           id="arrangementBtn_ordering"
-          @click="listenArrangement($event, 'ordering_arrangement_listened')"
+          @click="
+            listenArrangement($event, 'ordering_arrangement_listened');
+            updateClickAnalytics('task_ordering_arrangement_button');
+          "
         >
           Click Here To Listen to the Arrangement To Verify Ordering
         </button>
@@ -420,10 +459,9 @@
       <div>3.</div>
       <div>&nbsp;</div>
       <div>
-        <span style="font-weight: bold">Adjust Distance Step</span>: Please
-        click the button below to listen to your arrangement again. <br />Does
-        the arrangement sound such that each clip is at a correct
-        distance/spacing from each other? If not, please redo from Step 1.
+        <span style="font-weight: bold">Adjust Relative Position Step</span>: Please
+        click the button below to listen to your arrangement again. <br />Does the arrangement sound such that each clip is at a correct
+        distance/spacing relative to its neighbor? If not, please redo from Step 1.
       </div>
     </div>
     <div>&nbsp;</div>
@@ -433,7 +471,10 @@
       <div>
         <button
           id="arrangementBtn_distance"
-          @click="listenArrangement($event, 'distance_arrangement_listened')"
+          @click="
+            listenArrangement($event, 'distance_arrangement_listened');
+            updateClickAnalytics('task_distance_arrangement_button');
+          "
         >
           Click Here To Listen to the Arrangement To Verify Distance/Spacing
         </button>
@@ -502,7 +543,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["updateFormData"]),
+    ...mapActions(["updateFormData", "updateClickAnalytics"]),
     sliderChanged(nm, e) {
       var obj = {};
       obj[nm] = true;
@@ -649,11 +690,14 @@ export default {
         clip_5_slider_changed;
 
       const allFieldsUpdated =
-        (this.formData.distance_checkbox != undefined && this.formData.distance_checkbox != false) &&
-        (this.formData.ordering_checkbox != undefined && this.formData.ordering_checkbox != false);
+        this.formData.distance_checkbox != undefined &&
+        this.formData.distance_checkbox != false &&
+        this.formData.ordering_checkbox != undefined &&
+        this.formData.ordering_checkbox != false;
 
-      console.log(allFieldsUpdated)
-      if (!(listened && sliderChangedTest && allFieldsUpdated)) errorModal.style.display = "block";
+      console.log(allFieldsUpdated);
+      if (!(listened && sliderChangedTest && allFieldsUpdated))
+        errorModal.style.display = "block";
       return listened && sliderChangedTest && allFieldsUpdated;
     },
   },

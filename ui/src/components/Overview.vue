@@ -6,7 +6,9 @@
     <div class="heading-overview">Audio Quality Evaluation</div>
     <div class="row">&nbsp;</div>
     <div class="row text-center">
-      <span style="font-weight: bolder; font-size: 200%">1. Overview &amp; Instructions</span>
+      <span style="font-weight: bolder; font-size: 200%"
+        >1. Overview &amp; Instructions</span
+      >
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
@@ -14,11 +16,13 @@
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-      <div class="col-12 notebox card border-danger  mb-3">
+      <div class="col-12 notebox card border-danger mb-3">
         <u><span style="font-weight: bold">Note:</span></u>
         <ul>
           <li>
-            Please only attempt this HIT only if you have <span style="font-weight: bold">not attempted</span> a task from 'Animated Sound' in the past 4 weeks.
+            Please only attempt this HIT only if you have
+            <span style="font-weight: bold">not attempted</span> a task from
+            'Animated Sound' in the past 4 weeks.
           </li>
           <li>
             Please attempt this HIT only if you are on a laptop/desktop with the
@@ -26,11 +30,13 @@
             <span style="font-weight: bold">Chrome/Firefox browsers</span>
           </li>
           <li>
-            It is important that you use a pair of <span style="font-weight: bold">headphones/earphones</span> to listen to the
-            sounds for this HIT.
+            It is important that you use a pair of
+            <span style="font-weight: bold">headphones/earphones</span> to
+            listen to the sounds for this HIT.
           </li>
           <li>
-            Please only attempt this HIT if you are in a quiet place with <span style="font-weight: bold">no loud noises/distractions</span>.
+            Please only attempt this HIT if you are in a quiet place with
+            <span style="font-weight: bold">no loud noises/distractions</span>.
           </li>
         </ul>
       </div>
@@ -69,7 +75,10 @@
       <div class="col-12">
         Please follow the instructions outlined on each section. We have also
         created an instructional video if you have any further questions -
-        <a href="https://youtube.com" target="_blank"
+        <a
+          :href="instruction_video_url"
+          target="_blank"
+          @click="updateClickAnalytics('overview_instruction_video')"
           >ToDo - Create New Video - Click Here (opens in a new tab)</a
         >
       </div>
@@ -78,16 +87,25 @@
   </div>
 </template>
 <script>
+import { mapActions } from "vuex";
+import uiConfig from "../config/config";
+
 export default {
   data() {
-    return {};
+    return {
+      instruction_video_url: "",
+    };
   },
-  created() {},
+  beforeMount() {
+    const conf = uiConfig.uiConfig;
+    this.instruction_video_url = conf.instruction_video_url;
+  },
   methods: {
+    ...mapActions(["updateClickAnalytics"]),
     validateForm() {
       return true;
     },
-  }
+  },
 };
 </script>
 

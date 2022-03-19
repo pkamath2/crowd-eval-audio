@@ -137,7 +137,7 @@
                 controls
                 controlsList="nodownload noplaybackrate"
                 @ended="listenedCheck('first_sound_listened_test')"
-                @play="playCheck($event)"
+                @play="playCheck($event);updateClickAnalytics('task_first_sound');"
                 preload="auto"
               >
                 <source :src="first_sound_url" type="audio/wav" />
@@ -173,7 +173,7 @@
                 controls
                 controlsList="nodownload noplaybackrate"
                 @ended="listenedCheck('second_sound_listened_test')"
-                @play="playCheck($event)"
+                @play="playCheck($event);updateClickAnalytics('task_second_sound');"
                 preload="auto"
               >
                 <source :src="second_sound_url" type="audio/wav" /></audio
@@ -230,7 +230,6 @@ export default {
     });
 
     document.addEventListener("mouseup", function (ev) {
-      console.log("mouseup");
       ev.preventDefault();
       if (dragging == detourUneven) {
         dragOther = directEven;
@@ -238,21 +237,22 @@ export default {
         dragging.parent.removeChild(dragging);
         dragOther.parent.removeChild(dragOther);
         if (ev.clientY < dragmousey) {
-          console.log("movin on up");
           dragging.parent = document.getElementById("clip1DetourUnevenParking");
           dragOther.parent = document.getElementById("clip2DirectEvenParking");
 
-          console.log(_this);
           _this.updateForm("first_clip_direct_detour", "detour_uneven");
           _this.updateForm("second_clip_direct_detour", "direct_even");
+
+          _this.updateClickAnalytics('task_icon_moved');
         }
-        if (ev.clientY >= dragmousey) {
-          console.log("movin on down");
+        if (ev.clientY > dragmousey) {
           dragging.parent = document.getElementById("clip2DetourUnevenParking");
           dragOther.parent = document.getElementById("clip1DirectEvenParking");
 
           _this.updateForm("first_clip_direct_detour", "direct_even");
           _this.updateForm("second_clip_direct_detour", "detour_uneven");
+
+          _this.updateClickAnalytics('task_icon_moved');
         }
         dragging.parent.appendChild(dragging);
         dragOther.parent.appendChild(dragOther);
@@ -269,28 +269,29 @@ export default {
     });
 
     document.addEventListener("mouseup", function (ev) {
-      console.log("mouseup");
       ev.preventDefault();
       if (dragging == directEven) {
-        dragOther = detour;
+        dragOther = detourUneven;
 
         dragging.parent.removeChild(dragging);
         dragOther.parent.removeChild(dragOther);
         if (ev.clientY < dragmousey) {
-          console.log("movin on up");
           dragging.parent = document.getElementById("clip1DirectEvenParking");
           dragOther.parent = document.getElementById("clip2DetourUnevenParking");
 
           _this.updateForm("first_clip_direct_detour", "direct_even");
           _this.updateForm("second_clip_direct_detour", "detour_uneven");
+
+          _this.updateClickAnalytics('task_icon_moved');
         }
         if (ev.clientY > dragmousey) {
-          console.log("movin on down");
           dragging.parent = document.getElementById("clip2DirectEvenParking");
           dragOther.parent = document.getElementById("clip1DetourUnevenParking");
 
           _this.updateForm("first_clip_direct_detour", "detour_uneven");
           _this.updateForm("second_clip_direct_detour", "direct_even");
+
+          _this.updateClickAnalytics('task_icon_moved');
         }
         dragging.parent.appendChild(dragging);
         dragOther.parent.appendChild(dragOther);
@@ -309,7 +310,7 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["updateFormData"]),
+    ...mapActions(["updateFormData", "updateClickAnalytics"]),
     updateForm(nm, val) {
       var obj = {};
       obj[nm] = val;
@@ -339,9 +340,7 @@ export default {
 
       const allFieldsUpdated =
         this.formData.first_clip_direct_detour &&
-        this.formData.second_clip_direct_detour &&
-        this.formData.first_clip_even_uneven &&
-        this.formData.second_clip_even_uneven;
+        this.formData.second_clip_direct_detour;
 
       if (!(listened && allFieldsUpdated)) errorModal.style.display = "block";
       return listened && allFieldsUpdated;
