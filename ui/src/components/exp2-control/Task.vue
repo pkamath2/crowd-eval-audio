@@ -4,7 +4,7 @@
       <div class="modal-content">
         <p>
           Please listen to all sound clips
-          <span style="font-weight: bold">fully</span> and answer all the
+          <span style="font-weight: bold">fully</span>, ensure you have updated all the required inputs and answered all the
           questions before going to the next screen.
         </p>
         <span><button @click="closeModal">ok!</button></span>
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="heading"> 3. Audio Perceptual Ordering Task</div>
+    <div class="heading">3. Audio Perceptual Ordering Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -41,47 +41,59 @@
       </p>
     </div>
 
-    <div class="row">
-      <div class="col-4">
+    <div class="step-content row">
+      <div>1.</div>
+      <div>&nbsp;</div>
+      <div>Please listen to the two reference clips below</div>
+    </div>
+
+    <div class="row ps-5">
+      <div class="col-12">&nbsp;</div>
+    </div>
+
+    <div class="step-content row">
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>
         <div class="row">
-          <span style="text-align: left; font-weight: bold"
-            >Reference audio 1:</span
-          >
-        </div>
-        <div class="row">
-          <span
-            ><audio
-              controls
-              controlsList="nodownload noplaybackrate"
-              @ended="listenedCheck('first_reference_listened_test')"
-              @play="playCheck($event)"
-            >
-              <source
-                :src="ref1_url"
-                type="audio/wav"
-              /></audio
-          ></span>
-        </div>
-      </div>
-      <div class="col-4">
-        <div class="row">
-          <span style="text-align: left; font-weight: bold"
-            >Reference audio 2:</span
-          >
-        </div>
-        <div class="row">
-          <span
-            ><audio
-              controls
-              controlsList="nodownload noplaybackrate"
-              @ended="listenedCheck('second_reference_listened_test')"
-              @play="playCheck($event)"
-            >
-              <source
-                :src="ref2_url"
-                type="audio/wav"
-              /></audio
-          ></span>
+          <div class="col-4">
+            <div class="row">
+              <span style="text-align: left; font-weight: bold"
+                >Reference audio 1:</span
+              >
+            </div>
+            <div class="row">
+              <span
+                ><audio
+                  id="ref_1_audio"
+                  controls
+                  controlsList="nodownload noplaybackrate"
+                  @ended="listenedCheck('first_reference_listened_test')"
+                  @play="playCheck($event)"
+                >
+                  <source :src="ref1_url" type="audio/wav" /></audio
+              ></span>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="row">
+              <span style="text-align: left; font-weight: bold"
+                >Reference audio 2:</span
+              >
+            </div>
+            <div class="row">
+              <span
+                ><audio
+                  id="ref_2_audio"
+                  controls
+                  controlsList="nodownload noplaybackrate"
+                  @ended="listenedCheck('second_reference_listened_test')"
+                  @play="playCheck($event)"
+                >
+                  <source :src="ref2_url" type="audio/wav" /></audio
+              ></span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -89,224 +101,196 @@
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
 
+    <div class="step-content row">
+      <div>2.</div>
+      <div>&nbsp;</div>
+      <div>
+        Listen to each audio sample below and rank/position each sample
+        in-between the two references above. Consider reference 1 as having
+        rank/position and reference 2 as having rank/position 100.<br />
+        Assign each audio sample a rank/position in-between 0 and 100.
+      </div>
+    </div>
+
+    <div class="row">&nbsp;</div>
     <div class="row">
       <div class="col-4">
         <p style="padding-left: 40%; font-weight: bold">Samples under test</p>
       </div>
-      <div class="col-4">
-        <p style="padding-left: 20%; font-weight: bold">Rank in-between references</p>
+      <div class="col-4 text-center">
+        <p style="padding-left: 10%; font-weight: bold">
+          Relative position in-between references
+        </p>
       </div>
     </div>
 
     <div class="row">&nbsp;</div>
-    <div class="row">
-      <div class="col-1 p-3">
-        <span style="text-align: left">Audio 1:</span>
-      </div>
-      <div class="col-3">
+
+    <div
+      v-for="position in num_positions"
+      :key="position"
+      :value="position"
+      class="step-content row"
+    >
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>
         <div class="row">
-          <span
-            ><audio
-              controls
-              controlsList="nodownload noplaybackrate"
-              @ended="listenedCheck('audio_listened_test_1')"
-              @play="playCheck($event)"
-            >
-              <source
-                :src="audio_1_url"
-                type="audio/wav"
-              /></audio
-          ></span>
-        </div>
-      </div>
-      <div class="col-1 p-1">&nbsp;</div>
-      <div class="col-2">
-        <div class="row p-2">
-          <select
-            name="audio_1_select"
-            id="audio_1_select"
-            style="width: 100%"
-            v-model="audio_1_select"
-            @change="update_field($event, 'audio_1_select')"
-          >
-            <option v-for="item in num_positions" :key="item" :value="item">
-              {{ item }}
-            </option>
-          </select>
-          <!-- <input type="number" name="age" id="age"
-                min="18" max="100" step="1" value="18"> -->
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-7">
-        <hr/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1 p-3">
-        <span style="text-align: left">Audio 2:</span>
-      </div>
-      <div class="col-3">
-        <div class="row">
-          <span
-            ><audio
-              controls
-              controlsList="nodownload noplaybackrate"
-              @ended="listenedCheck('audio_listened_test_2')"
-              @play="playCheck($event)"
-            >
-              <source
-                :src="audio_2_url"
-                type="audio/wav"
-              /></audio
-          ></span>
-        </div>
-      </div>
-      <div class="col-1 p-1">&nbsp;</div>
-      <div class="col-2">
-        <div class="row p-2">
-          <select
-            name="audio_2_select"
-            id="audio_2_select"
-            style="width: 100%"
-            v-model="audio_2_select"
-            @change="update_field($event, 'audio_2_select')"
-          >
-            <option v-for="item in num_positions" :key="item" :value="item">
-              {{ item }}
-            </option>
-          </select>
+          <div class="col-1 pt-3">
+            <span style="text-align: left">Audio {{ position }}:</span>
+          </div>
+          <div class="col-3">
+            <div class="row">
+              <span
+                ><audio
+                  :id="'clip_' + position + '_audio'"
+                  controls
+                  controlsList="nodownload noplaybackrate"
+                  @ended="listenedCheck('audio_listened_test_' + position)"
+                  @play="playCheck($event)"
+                >
+                  <source :src="audio_url(position)" type="audio/wav" /></audio
+              ></span>
+            </div>
+          </div>
+          <div class="col-1 p-1">&nbsp;</div>
+          <div class="col-5">
+            <div class="row">
+              <div class="col-4">
+                <input
+                  type="number"
+                  :name="'audio_' + position + '_select'"
+                  :id="'audio_' + position + '_select'"
+                  :value="0"
+                  @change="numberRangeCheck($event);update_field($event)"
+                  min="0"
+                  max="100"
+                  step="1"
+                  style="width: 100%"
+                />
+              </div>
+              <div class="col-8">
+                <span
+                  :id="'span_' + position + '_error'"
+                  class="badge bg-danger text-wrap"
+                  style="visibility: hidden; font-size: small"
+                >
+                  Error: Enter values in-between 0 and 100.
+                </span>
+              </div>
+            </div>
+            <!-- <div class="row p-2">
+              <select
+                :name="'audio_' + position + '_select'"
+                :id="'audio_' + position + '_select'"
+                style="width: 100%"
+                @change="update_field($event)"
+              >
+                <option v-for="i in 100" :key="i" :value="i">{{i}}</option>
+              </select>
+            </div> -->
+          </div>
         </div>
       </div>
     </div>
 
     <div class="row">
-      <div class="col-7">
-        <hr/>
+      <div class="col-12">
+        <hr />
       </div>
     </div>
-    <div class="row">
-      <div class="col-1 p-3">
-        <span style="text-align: left">Audio 3:</span>
+
+    <div class="step-content row">
+      <div>3.</div>
+      <div>&nbsp;</div>
+      <div>
+        <span style="font-weight: bold">Adjust Ordering Step</span>: Please
+        click the button below to listen to your arrangement. <br />Does the
+        arrangement sound to be in a particular order/seqeuence? If not, please
+        redo from Step 1.
       </div>
-      <div class="col-3">
-        <div class="row">
-          <span
-            ><audio
-              controls
-              controlsList="nodownload noplaybackrate"
-              @ended="listenedCheck('audio_listened_test_3')"
-              @play="playCheck($event)"
-            >
-              <source
-                :src="audio_3_url"
-                type="audio/wav"
-              /></audio
-          ></span>
-        </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="step-content row">
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>
+        <button
+          id="arrangementBtn_ordering"
+          @click="listenArrangement($event, 'ordering_arrangement_listened')"
+        >
+          Click Here To Listen to the Arrangement To Verify Ordering
+        </button>
       </div>
-      <div class="col-1 p-1">&nbsp;</div>
-      <div class="col-2">
-        <div class="row p-2">
-          <select
-            name="audio_3_select"
-            id="audio_3_select"
-            style="width: 100%"
-            v-model="audio_3_select"
-            @change="update_field($event, 'audio_3_select')"
-          >
-            <option v-for="item in num_positions" :key="item" :value="item">
-              {{ item }}
-            </option>
-          </select>
-        </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="step-content">
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>
+        <input
+          type="checkbox"
+          id="ordering_checkbox"
+          name="ordering_checkbox"
+          value="ordered"
+          @change="update_field($event)"
+          disabled
+        />
+        <label for="ordering_checkbox">
+          &nbsp;I have listened to the arrangement and verified that it is in
+          the correct order of sequence.</label
+        ><br />
       </div>
     </div>
 
     <div class="row">
-      <div class="col-7">
-        <hr/>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-1 p-3">
-        <span style="text-align: left">Audio 4:</span>
-      </div>
-      <div class="col-3">
-        <div class="row">
-          <span
-            ><audio
-              controls
-              controlsList="nodownload noplaybackrate"
-              @ended="listenedCheck('audio_listened_test_4')"
-              @play="playCheck($event)"
-            >
-              <source
-                :src="audio_4_url"
-                type="audio/wav"
-              /></audio
-          ></span>
-        </div>
-      </div>
-      <div class="col-1 p-1">&nbsp;</div>
-      <div class="col-2">
-        <div class="row p-2">
-          <select
-            name="audio_4_select"
-            id="audio_4_select"
-            style="width: 100%"
-            v-model="audio_4_select"
-            @change="update_field($event, 'audio_4_select')"
-          >
-            <option v-for="item in num_positions" :key="item" :value="item">
-              {{ item }}
-            </option>
-          </select>
-        </div>
+      <div class="col-12">
+        <hr />
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-7">
-        <hr/>
+    <div class="step-content row">
+      <div>4.</div>
+      <div>&nbsp;</div>
+      <div>
+        <span style="font-weight: bold">Adjust Relative Position Step</span>:
+        Please click the button below to listen to your arrangement again.
+        <br />Does the arrangement sound such that each clip is at a correct
+        distance/spacing relative to each other? If not, please redo from Step
+        1.
       </div>
     </div>
-    <div class="row">
-      <div class="col-1 p-3">
-        <span style="text-align: left">Audio 5:</span>
+
+    <div>&nbsp;</div>
+    <div class="step-content row">
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>
+        <button
+          id="arrangementBtn_distance"
+          @click="listenArrangement($event, 'distance_arrangement_listened')"
+        >
+          Click Here To Listen to the Arrangement To Verify Distance/Spacing
+        </button>
       </div>
-      <div class="col-3">
-        <div class="row">
-          <span
-            ><audio
-              controls
-              controlsList="nodownload noplaybackrate"
-              @ended="listenedCheck('audio_listened_test_5')"
-              @play="playCheck($event)"
-            >
-              <source
-                :src="audio_5_url"
-                type="audio/wav"
-              /></audio
-          ></span>
-        </div>
-      </div>
-      <div class="col-1 p-1">&nbsp;</div>
-      <div class="col-2">
-        <div class="row p-2">
-          <select
-            name="audio_5_select"
-            id="audio_5_select"
-            style="width: 100%"
-            v-model="audio_5_select"
-            @change="update_field($event, 'audio_5_select')"
-          >
-            <option v-for="item in num_positions" :key="item" :value="item">
-              {{ item }}
-            </option>
-          </select>
-        </div>
+    </div>
+    <div>&nbsp;</div>
+    <div class="step-content">
+      <div>&nbsp;</div>
+      <div>&nbsp;</div>
+      <div>
+        <input
+          type="checkbox"
+          id="distance_checkbox"
+          name="distance_checkbox"
+          value="distance"
+          @change="update_field($event)"
+          disabled
+        />
+        <label for="distance_checkbox">
+          &nbsp;I have listened to the arrangement and verified that the
+          distance/spacing of the samples is correct.</label
+        ><br />
       </div>
     </div>
 
@@ -322,35 +306,47 @@ export default {
   data() {
     return {
       num_positions: [1, 2, 3, 4, 5],
+      audio_1_select: 0,
+      audio_2_select: 0,
+      audio_3_select: 0,
+      audio_4_select: 0,
+      audio_5_select: 0,
+      sound_index: 0,
+      sounds_in_sequence: [],
+      current_playing_arrangement: "",
     };
   },
   mounted: function () {},
   computed: {
     ...mapGetters(["formData", "config"]),
-    ref1_url: function(){
+    ref1_url: function () {
       return this.config.ref1_url;
     },
-    ref2_url: function(){
+    ref2_url: function () {
       return this.config.ref2_url;
     },
-    audio_1_url: function(){
+    audio_1_url: function () {
       return this.config.audio_1_url;
     },
-    audio_2_url: function(){
+    audio_2_url: function () {
       return this.config.audio_2_url;
     },
-    audio_3_url: function(){
+    audio_3_url: function () {
       return this.config.audio_3_url;
     },
-    audio_4_url: function(){
+    audio_4_url: function () {
       return this.config.audio_4_url;
     },
-    audio_5_url: function(){
+    audio_5_url: function () {
       return this.config.audio_5_url;
-    }
+    },
   },
   methods: {
     ...mapActions(["updateFormData"]),
+    audio_url(loc) {
+      const nm = "audio_" + loc + "_url";
+      return this.config[nm];
+    },
     updateForm(nm, val) {
       var obj = {};
       obj[nm] = val;
@@ -359,9 +355,22 @@ export default {
     listenedCheck(nm) {
       this.updateForm(nm, true);
     },
+    numberRangeCheck($event) {
+      const pos = $event.target.name.split("_")[1];
+      if ($event.target.value < 0 || $event.target.value > 100) {
+        document.getElementById("span_" + pos + "_error").style.visibility =
+          "visible";
+      } else {
+        document.getElementById("span_" + pos + "_error").style.visibility =
+          "hidden";
+      }
+    },
     update_field($event, nm) {
       var obj = {};
-      obj[nm] = $event.target.value;
+      obj[$event.target.name] = $event.target.value;
+      if ($event.target.type == "checkbox") {
+        obj[$event.target.name] = $event.target.checked;
+      }
       this.updateFormData(obj);
     },
     playCheck(e) {
@@ -376,6 +385,58 @@ export default {
     closeModal() {
       if (oneAudioOnlyModal) oneAudioOnlyModal.style.display = "none";
       if (errorModal) errorModal.style.display = "none";
+    },
+    playSequence() {
+      if (this.sound_index == this.sounds_in_sequence.length) {
+        arrangementBtn_distance.removeAttribute("disabled");
+        arrangementBtn_ordering.removeAttribute("disabled");
+        if (this.current_playing_arrangement.includes("ordering"))
+          ordering_checkbox.removeAttribute("disabled");
+        if (this.current_playing_arrangement.includes("distance"))
+          distance_checkbox.removeAttribute("disabled");
+        return;
+      }
+      this.sounds_in_sequence[this.sound_index].addEventListener(
+        "ended",
+        this.playSequence
+      );
+      if (this.sound_index != 0)
+        this.sounds_in_sequence[this.sound_index - 1].removeEventListener(
+          "ended",
+          this.playSequence
+        );
+      this.sounds_in_sequence[this.sound_index].play();
+      this.sound_index++;
+    },
+    listenArrangement(e, nm) {
+      arrangementBtn_distance.disabled = true;
+      arrangementBtn_ordering.disabled = true;
+      this.sounds_in_sequence = [];
+      this.sound_index = 0;
+      let arrangement = {
+        ref_1: -1,
+        clip_1: parseInt(document.getElementById("audio_1_select").value),
+        clip_2: parseInt(document.getElementById("audio_2_select").value),
+        clip_3: parseInt(document.getElementById("audio_3_select").value),
+        clip_4: parseInt(document.getElementById("audio_4_select").value),
+        clip_5: parseInt(document.getElementById("audio_5_select").value),
+        ref_2: 10000,
+      };
+
+      arrangement = Object.entries(arrangement)
+        .sort(([, a], [, b]) => a - b)
+        .reduce((r, [k, v]) => ({ ...r, [k]: v }), {});
+
+      let ind = 0;
+      for (const key in arrangement) {
+        this.sounds_in_sequence[ind] = document.getElementById(key + "_audio");
+        ind++;
+      }
+
+      this.current_playing_arrangement = nm;
+
+      this.listenedCheck(nm);
+      this.playSequence();
     },
     validateForm() {
       const ref_clip_1_listened = this.formData.first_reference_listened_test;
@@ -397,15 +458,18 @@ export default {
         audio_listened_test_5;
 
       const allFieldsUpdated =
-        ((this.formData.audio_1_select != undefined) && 
-         (this.formData.audio_2_select != undefined) && 
-         (this.formData.audio_3_select != undefined) && 
-         (this.formData.audio_4_select != undefined) && 
-         (this.formData.audio_5_select != undefined));
+        this.formData.audio_1_select != undefined &&
+        this.formData.audio_2_select != undefined &&
+        this.formData.audio_3_select != undefined &&
+        this.formData.audio_4_select != undefined &&
+        this.formData.audio_5_select != undefined &&
+        (this.formData.distance_checkbox != undefined && this.formData.distance_checkbox != false) &&
+        (this.formData.ordering_checkbox != undefined && this.formData.ordering_checkbox != false);
 
       if (!(listened && allFieldsUpdated)) {
         errorModal.style.display = "block";
       }
+
       return listened && allFieldsUpdated;
     },
   },
@@ -437,6 +501,12 @@ audio {
   border: solid black 1px;
   width: 90%;
   padding: 5px;
+}
+
+.step-content {
+  display: grid;
+  grid-template-columns: 2% 1% 95%;
+  margin-left: 1%;
 }
 
 .clipbox-noborder {

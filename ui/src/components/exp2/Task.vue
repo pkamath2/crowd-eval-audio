@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="heading row"> 3. Audio Perceptual Ordering Task</div>
+    <div class="heading row">3. Audio Perceptual Ordering Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -57,10 +57,7 @@
             "
             @pause="removeSpotlight($event, 'ref-1-surrounding', 'ref_1_value')"
           >
-            <source
-              :src="ref1_url"
-              type="audio/wav"
-            />
+            <source :src="ref1_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -90,10 +87,7 @@
               removeSpotlight($event, 'clip-1-surrounding', 'clip_1_value')
             "
           >
-            <source
-              :src="audio_1_url"
-              type="audio/wav"
-            />
+            <source :src="audio_1_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -124,10 +118,7 @@
               removeSpotlight($event, 'clip-2-surrounding', 'clip_2_value')
             "
           >
-            <source
-              :src="audio_2_url"
-              type="audio/wav"
-            />
+            <source :src="audio_2_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -158,10 +149,7 @@
               removeSpotlight($event, 'clip-3-surrounding', 'clip_3_value')
             "
           >
-            <source
-              :src="audio_3_url"
-              type="audio/wav"
-            />
+            <source :src="audio_3_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -192,10 +180,7 @@
               removeSpotlight($event, 'clip-4-surrounding', 'clip_4_value')
             "
           >
-            <source
-              :src="audio_4_url"
-              type="audio/wav"
-            />
+            <source :src="audio_4_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -226,10 +211,7 @@
               removeSpotlight($event, 'clip-5-surrounding', 'clip_5_value')
             "
           >
-            <source
-              :src="audio_5_url"
-              type="audio/wav"
-            />
+            <source :src="audio_5_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -259,10 +241,7 @@
             "
             @pause="removeSpotlight($event, 'ref-2-surrounding', 'ref_2_value')"
           >
-            <source
-              :src="ref2_url"
-              type="audio/wav"
-            />
+            <source :src="ref2_url" type="audio/wav" />
           </audio>
         </div>
       </div>
@@ -272,17 +251,30 @@
       <div>1.</div>
       <div>&nbsp;</div>
       <div>
-        Hover your mouse over each of the colored thumbs below to listen to the audio
-        samples.<br />
+        Hover your mouse over each of the colored thumbs below to listen to the
+        audio samples.<br /><br />
         The thumbs in
-        <span style="background-color: #3b3a39; color: white; padding: 2px;">black</span> are
-        your reference audio samples.<br />
+        <span style="background-color: #3b3a39; color: white; padding: 2px"
+          >black</span
+        >
+        are your reference audio samples.<br />
         Please arrange/position the remaining thumbs in
-        <span style="background-color: #cd2026; color: black; padding: 2px;">red</span>,
-        <span style="background-color: #4aa564; color: black; padding: 2px;">green</span>,
-        <span style="background-color: #f9c642; color: black; padding: 2px;">yellow</span>,
-        <span style="background-color: #0071bc; color: black; padding: 2px;">blue</span>,
-        <span style="background-color: darkorange; color: black; padding: 2px;">orange</span> in between the two references in a certain perceptual order.
+        <span style="background-color: #cd2026; color: black; padding: 2px"
+          >red</span
+        >,
+        <span style="background-color: #4aa564; color: black; padding: 2px"
+          >green</span
+        >,
+        <span style="background-color: #f9c642; color: black; padding: 2px"
+          >yellow</span
+        >,
+        <span style="background-color: #0071bc; color: black; padding: 2px"
+          >blue</span
+        >,
+        <span style="background-color: darkorange; color: black; padding: 2px"
+          >orange</span
+        >
+        in between the two references in a certain perceptual order.
       </div>
     </div>
 
@@ -378,7 +370,7 @@
       </div>
     </div>
 
-     <div class="step-content row">
+    <div class="step-content row">
       <div>2.</div>
       <div>&nbsp;</div>
       <div>
@@ -393,7 +385,10 @@
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       <div>
-        <button id="arrangementBtn_ordering" @click="listenArrangement($event, 'ordering_arrangement_listened')">
+        <button
+          id="arrangementBtn_ordering"
+          @click="listenArrangement($event, 'ordering_arrangement_listened')"
+        >
           Click Here To Listen to the Arrangement To Verify Ordering
         </button>
       </div>
@@ -412,7 +407,8 @@
           disabled
         />
         <label for="ordering_checkbox">
-          &nbsp;I have listened to the arrangement and verified that it is in the correct order of sequence.</label
+          &nbsp;I have listened to the arrangement and verified that it is in
+          the correct order of sequence.</label
         ><br />
       </div>
     </div>
@@ -435,7 +431,10 @@
       <div>&nbsp;</div>
       <div>&nbsp;</div>
       <div>
-        <button id="arrangementBtn_distance" @click="listenArrangement($event, 'distance_arrangement_listened')">
+        <button
+          id="arrangementBtn_distance"
+          @click="listenArrangement($event, 'distance_arrangement_listened')"
+        >
           Click Here To Listen to the Arrangement To Verify Distance/Spacing
         </button>
       </div>
@@ -444,7 +443,7 @@
     <div class="step-content">
       <div>&nbsp;</div>
       <div>&nbsp;</div>
-      <div> 
+      <div>
         <input
           type="checkbox"
           id="distance_checkbox"
@@ -475,32 +474,32 @@ export default {
       sound_index: 0,
       sounds_in_sequence: [],
       current_playing_arrangement: "",
-      disable_mouse_over_and_out: false
+      disable_mouse_over_and_out: false,
     };
   },
   computed: {
     ...mapGetters(["formData", "config"]),
-    ref1_url: function(){
+    ref1_url: function () {
       return this.config.ref1_url;
     },
-    ref2_url: function(){
+    ref2_url: function () {
       return this.config.ref2_url;
     },
-    audio_1_url: function(){
+    audio_1_url: function () {
       return this.config.audio_1_url;
     },
-    audio_2_url: function(){
+    audio_2_url: function () {
       return this.config.audio_2_url;
     },
-    audio_3_url: function(){
+    audio_3_url: function () {
       return this.config.audio_3_url;
     },
-    audio_4_url: function(){
+    audio_4_url: function () {
       return this.config.audio_4_url;
     },
-    audio_5_url: function(){
+    audio_5_url: function () {
       return this.config.audio_5_url;
-    }
+    },
   },
   methods: {
     ...mapActions(["updateFormData"]),
@@ -524,11 +523,11 @@ export default {
       document.getElementById(audio_id).play();
     },
     mouseoverPlay(audio_id) {
-      if(!this.disable_mouse_over_and_out)
+      if (!this.disable_mouse_over_and_out)
         document.getElementById(audio_id).play();
     },
     mouseoutPause(audio_id) {
-      if(!this.disable_mouse_over_and_out)
+      if (!this.disable_mouse_over_and_out)
         document.getElementById(audio_id).pause();
     },
     playCheck(e) {
@@ -583,7 +582,6 @@ export default {
       this.sound_index++;
     },
     listenArrangement(e, nm) {
-      
       this.disable_mouse_over_and_out = true; // When arrangement is playing - nobody disturb it.
 
       arrangementBtn_distance.disabled = true;
@@ -650,8 +648,13 @@ export default {
         clip_4_slider_changed &&
         clip_5_slider_changed;
 
-      if (!(listened && sliderChangedTest)) errorModal.style.display = "block";
-      return listened && sliderChangedTest;
+      const allFieldsUpdated =
+        (this.formData.distance_checkbox != undefined && this.formData.distance_checkbox != false) &&
+        (this.formData.ordering_checkbox != undefined && this.formData.ordering_checkbox != false);
+
+      console.log(allFieldsUpdated)
+      if (!(listened && sliderChangedTest && allFieldsUpdated)) errorModal.style.display = "block";
+      return listened && sliderChangedTest && allFieldsUpdated;
     },
   },
   mounted() {},

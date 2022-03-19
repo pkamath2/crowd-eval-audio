@@ -651,8 +651,12 @@ export default {
         clip_4_slider_changed &&
         clip_5_slider_changed;
 
-      if (!(listened && sliderChangedTest)) errorModal.style.display = "block";
-      return listened && sliderChangedTest;
+      const allFieldsUpdated =
+        (this.formData.distance_checkbox != undefined && this.formData.distance_checkbox != false) &&
+        (this.formData.ordering_checkbox != undefined && this.formData.ordering_checkbox != false);
+
+      if (!(listened && sliderChangedTest && allFieldsUpdated)) errorModal.style.display = "block";
+      return listened && sliderChangedTest && allFieldsUpdated;
     },
   },
   mounted() {},
