@@ -29,8 +29,16 @@
     <div>&nbsp;</div>
 
     <div class="row">
+      <div>
+        Please follow the instructions for each step below to complete this
+        task.
+      </div>
+    </div>
+    <div>&nbsp;</div>
+
+    <div class="row">
       <div class="col-12">
-        This page outlines 2 audio clips
+        This page outlines 2 audio clips,
         <span style="font-weight: bold">Clip 1</span> and
         <span style="font-weight: bold">Clip 2</span>. Both clips start at one
         sound (e.g., sound of fire crackling or an engine running) and slowly
@@ -39,15 +47,7 @@
       </div>
       <div>&nbsp;</div>
     </div>
-    <div>&nbsp;</div>
-    <div class="row">
-      <div>
-        Please follow the instructions for each step below to complete this
-        task.
-      </div>
-    </div>
 
-    <div>&nbsp;</div>
 
     <div class="row step-content">
       <div>
@@ -66,36 +66,33 @@
       <div class="row">
         <div class="col-12">
           <span style="background-color: hsl(170, 75%, 90%); font-weight: bold"
-            >For direct/detour (green section)</span
-          >: Please drag the appropriate image to the clip which
+            >Detour or Uneven (green section)</span
+          >: Please drag the 'Detour or Uneven' image to the clip which
           <span style="font-weight: bold; font-style: italic"
             ><u>transitions</u></span
           >
 
-          from the start of the sound to its end
-          <span style="font-weight: bold; font-style: italic">directly</span> or
-          via a
+          from the start of the sound to its end via a
           <span style="font-weight: bold; font-style: italic">detour</span>
-          through a third type of sound, in comparison with the other clip.
+          through a third type of sound or in
+          <span style="font-weight: bold; font-style: italic">uneven</span>
+          steps, in comparison with the other clip.
         </div>
       </div>
       <div>&nbsp;</div>
       <div class="col-12">
         <span style="background-color: hsl(25, 75%, 90%); font-weight: bold"
-          >For even/uneven (red section)</span
-        >: Please drag the appropriate image to the clip which
-        <span style="font-weight: bold; font-style: italic"
-          ><u>transitions</u></span
-        >
+          >Direct &amp; Even (red section)</span
+        >: Please drag the 'Direct &amp; Even' image to the clip which
+          <span style="font-weight: bold; font-style: italic"
+            ><u>transitions</u></span
+          >
 
-        from the start of the sound to its end either in
-        <span style="font-weight: bold; font-style: italic"
-          >even step sizes</span
-        >
-        or in an
-        <span style="font-weight: bold; font-style: italic"
-          >uneven or jumpy fashion</span
-        >, in comparison with the other clip.
+          from the start of the sound to its end
+          <span style="font-weight: bold; font-style: italic">directly</span>
+          and in
+          <span style="font-weight: bold; font-style: italic">even</span>
+          steps, in comparison with the other clip.
       </div>
       <div>&nbsp;</div>
       <p style="padding-left: 10px; font-size: small">
@@ -107,20 +104,32 @@
       <div class="col-1"></div>
       <div class="col-10">
         <div class="grid">
-          <div class="item2 item" style="width: 100%;padding-top:10%;padding-left:20%">
-            <span style="font-weight: bold; font-style: italic;"
+          <div
+            class="item2 item"
+            style="width: 100%; padding-top: 10%; padding-left: 20%"
+          >
+            <span style="font-weight: bold; color: white"
               >Drag icons to best match each clip</span
             >
           </div>
-          <div class="item3_1 item" style="width: 100%;padding-top:20%;padding-left:25%">
-            <span style="font-weight: bold; font-style: italic;">Detour &amp; Uneven</span><br />
+          <div
+            class="item3_1 item"
+            style="width: 100%; padding-top: 20%; padding-left: 20%"
+          >
+            <span style="font-weight: bold; color: white">Detour or Uneven</span
+            ><br />
           </div>
-          <div class="item3_2 item" style="width: 100%;padding-top:20%;padding-left:25%">
-            <span style="font-weight: bold; font-style: italic;">Direct &amp; Even</span><br />
+          <div
+            class="item3_2 item"
+            style="width: 100%; padding-top: 20%; padding-left: 25%"
+          >
+            <span style="font-weight: bold; color: white"
+              >Direct &amp; Even</span
+            ><br />
           </div>
           <div class="item6 item grid-inner-item">
-            <span style="padding: 20px"
-              ><span style="font-weight: bold; font-style: italic;">Clip 1</span></span
+            <span style="padding-left: 35%; padding-top: 15%"
+              ><span style="font-weight: bold">Clip 1</span></span
             >
             <span
               ><audio
@@ -134,11 +143,11 @@
               </audio>
             </span>
           </div>
-          <div class="item7 item" id="clip1DetourParking"></div>
-          <div class="item8 item" id="clip1DirectParking"></div>
+          <div class="item7 item" id="clip1DetourUnevenParking"></div>
+          <div class="item8 item" id="clip1DirectEvenParking"></div>
           <div class="item12 item"></div>
-          <div class="item13 item" id="neutralDetourParking">
-            <div id="detour" style="padding: 5%; padding-left: 25%">
+          <div class="item13 item" id="neutralDetourUnevenParking">
+            <div id="detourUneven" style="padding: 2%; padding-left: 25%">
               <img
                 style="max-width: 80%"
                 src="../../assets/exp1/detour_and_uneven.png"
@@ -146,8 +155,8 @@
             </div>
           </div>
 
-          <div class="item14 item" id="neutralDirectParking">
-            <div id="direct" style="padding: 5%; padding-left: 25%">
+          <div class="item14 item" id="neutralDirectEvenParking">
+            <div id="directEven" style="padding: 2%; padding-left: 25%">
               <img
                 style="max-width: 80%"
                 src="../../assets/exp1/direct_and_even.png"
@@ -155,8 +164,8 @@
             </div>
           </div>
           <div class="item18 item grid-inner-item">
-            <span style="padding: 20px"
-              ><span style="font-weight: bold; font-style: italic;">Clip 2</span></span
+            <span style="padding-left: 35%; padding-top: 15%"
+              ><span style="font-weight: bold">Clip 2</span></span
             >
             <span
               ><audio
@@ -169,8 +178,8 @@
                 <source :src="second_sound_url" type="audio/wav" /></audio
             ></span>
           </div>
-          <div class="item19 item" id="clip2DetourParking"></div>
-          <div class="item20 item" id="clip2DirectParking"></div>
+          <div class="item19 item" id="clip2DetourUnevenParking"></div>
+          <div class="item20 item" id="clip2DirectEvenParking"></div>
         </div>
       </div>
       <div class="col-1"></div>
@@ -189,18 +198,17 @@ export default {
     let classes = document.getElementsByClassName("item");
     for (let i = 0; i < classes.length; i++) {
       classes[i].style["background-color"] = `hsl(${Math.floor(240)},10%,80%)`;
-      // classes[i].style["background-color"] = 'whitesmoke';
 
-      if ([3, 4, 5].indexOf(i) > -1) {
-        classes[i].style.background = `hsl(${Math.floor(25)},75%,90%)`;
+      if ([0, 1, 2].indexOf(i) > -1) {
+        classes[i].style.background = `hsl(${Math.floor(61)},6%,30%)`;
       }
 
-      if ([9, 10, 11].indexOf(i) > -1) {
+      if ([4, 10].indexOf(i) > -1) {
         classes[i].style.background = `hsl(${Math.floor(170)},75%,90%)`;
       }
 
-      if ([3, 4, 6, 7, 9, 10].indexOf(i) > -1) {
-        // classes[i].style.background = `hsl(${Math.floor(170)},75%,90%)`;
+      if ([5, 11].indexOf(i) > -1) {
+        classes[i].style.background = `hsl(${Math.floor(25)},75%,90%)`;
       }
     }
 
@@ -210,14 +218,12 @@ export default {
     let dragmousey;
     let dragOther;
 
-    const detour = document.getElementById("detour");
-    const direct = document.getElementById("direct");
-    const jumpy = document.getElementById("jumpy");
-    const even = document.getElementById("even");
+    const detourUneven = document.getElementById("detourUneven");
+    const directEven = document.getElementById("directEven");
 
-    detour.parent = document.getElementById("neutralDetourParking");
-    detour.addEventListener("mousedown", function (ev) {
-      dragging = detour;
+    detourUneven.parent = document.getElementById("neutralDetourUnevenParking");
+    detourUneven.addEventListener("mousedown", function (ev) {
+      dragging = detourUneven;
       dragmousey = ev.clientY;
       ev.preventDefault();
     });
@@ -225,27 +231,27 @@ export default {
     document.addEventListener("mouseup", function (ev) {
       console.log("mouseup");
       ev.preventDefault();
-      if (dragging == detour) {
-        dragOther = direct;
+      if (dragging == detourUneven) {
+        dragOther = directEven;
 
         dragging.parent.removeChild(dragging);
         dragOther.parent.removeChild(dragOther);
         if (ev.clientY < dragmousey) {
           console.log("movin on up");
-          dragging.parent = document.getElementById("clip1DetourParking");
-          dragOther.parent = document.getElementById("clip2DirectParking");
+          dragging.parent = document.getElementById("clip1DetourUnevenParking");
+          dragOther.parent = document.getElementById("clip2DirectEvenParking");
 
           console.log(_this);
-          _this.updateForm("first_clip_direct_detour", "detour");
-          _this.updateForm("second_clip_direct_detour", "direct");
+          _this.updateForm("first_clip_direct_detour", "detour_uneven");
+          _this.updateForm("second_clip_direct_detour", "direct_even");
         }
         if (ev.clientY >= dragmousey) {
           console.log("movin on down");
-          dragging.parent = document.getElementById("clip2DetourParking");
-          dragOther.parent = document.getElementById("clip1DirectParking");
+          dragging.parent = document.getElementById("clip2DetourUnevenParking");
+          dragOther.parent = document.getElementById("clip1DirectEvenParking");
 
-          _this.updateForm("first_clip_direct_detour", "direct");
-          _this.updateForm("second_clip_direct_detour", "detour");
+          _this.updateForm("first_clip_direct_detour", "direct_even");
+          _this.updateForm("second_clip_direct_detour", "detour_uneven");
         }
         dragging.parent.appendChild(dragging);
         dragOther.parent.appendChild(dragOther);
@@ -254,9 +260,9 @@ export default {
       }
     });
 
-    direct.parent = document.getElementById("neutralDirectParking");
-    direct.addEventListener("mousedown", function (ev) {
-      dragging = direct;
+    directEven.parent = document.getElementById("neutralDirectEvenParking");
+    directEven.addEventListener("mousedown", function (ev) {
+      dragging = directEven;
       dragmousey = ev.clientY;
       ev.preventDefault();
     });
@@ -264,101 +270,30 @@ export default {
     document.addEventListener("mouseup", function (ev) {
       console.log("mouseup");
       ev.preventDefault();
-      if (dragging == direct) {
+      if (dragging == directEven) {
         dragOther = detour;
 
         dragging.parent.removeChild(dragging);
         dragOther.parent.removeChild(dragOther);
         if (ev.clientY < dragmousey) {
           console.log("movin on up");
-          dragging.parent = document.getElementById("clip1DirectParking");
-          dragOther.parent = document.getElementById("clip2DetourParking");
+          dragging.parent = document.getElementById("clip1DirectEvenParking");
+          dragOther.parent = document.getElementById(
+            "clip2DetourUnevenParking"
+          );
 
-          _this.updateForm("first_clip_direct_detour", "direct");
-          _this.updateForm("second_clip_direct_detour", "detour");
+          _this.updateForm("first_clip_direct_detour", "direct_even");
+          _this.updateForm("second_clip_direct_detour", "detour_uneven");
         }
         if (ev.clientY > dragmousey) {
           console.log("movin on down");
-          dragging.parent = document.getElementById("clip2DirectParking");
-          dragOther.parent = document.getElementById("clip1DetourParking");
+          dragging.parent = document.getElementById("clip2DirectEvenParking");
+          dragOther.parent = document.getElementById(
+            "clip1DetourUnevenParking"
+          );
 
-          _this.updateForm("first_clip_direct_detour", "detour");
-          _this.updateForm("second_clip_direct_detour", "direct");
-        }
-        dragging.parent.appendChild(dragging);
-        dragOther.parent.appendChild(dragOther);
-
-        dragging = false;
-      }
-    });
-
-    jumpy.parent = document.getElementById("neutralJumpyParking");
-    jumpy.addEventListener("mousedown", function (ev) {
-      dragging = jumpy;
-      dragmousey = ev.clientY;
-      ev.preventDefault();
-    });
-
-    document.addEventListener("mouseup", function (ev) {
-      console.log("mouseup");
-      ev.preventDefault();
-      if (dragging == jumpy) {
-        dragOther = even;
-
-        dragging.parent.removeChild(dragging);
-        dragOther.parent.removeChild(dragOther);
-        if (ev.clientY < dragmousey) {
-          console.log("movin on up");
-          dragging.parent = document.getElementById("clip1JumpyParking");
-          dragOther.parent = document.getElementById("clip2EvenParking");
-
-          _this.updateForm("first_clip_even_uneven", "uneven");
-          _this.updateForm("second_clip_even_uneven", "even");
-        }
-        if (ev.clientY >= dragmousey) {
-          console.log("movin on down");
-          dragging.parent = document.getElementById("clip2JumpyParking");
-          dragOther.parent = document.getElementById("clip1EvenParking");
-
-          _this.updateForm("first_clip_even_uneven", "even");
-          _this.updateForm("second_clip_even_uneven", "uneven");
-        }
-        dragging.parent.appendChild(dragging);
-        dragOther.parent.appendChild(dragOther);
-
-        dragging = false;
-      }
-    });
-
-    even.parent = document.getElementById("neutralEvenParking");
-    even.addEventListener("mousedown", function (ev) {
-      dragging = even;
-      dragmousey = ev.clientY;
-      ev.preventDefault();
-    });
-    document.addEventListener("mouseup", function (ev) {
-      console.log("mouseup");
-      ev.preventDefault();
-      if (dragging == even) {
-        dragOther = jumpy;
-
-        dragging.parent.removeChild(dragging);
-        dragOther.parent.removeChild(dragOther);
-        if (ev.clientY < dragmousey) {
-          console.log("movin on up");
-          dragging.parent = document.getElementById("clip1EvenParking");
-          dragOther.parent = document.getElementById("clip2JumpyParking");
-
-          _this.updateForm("first_clip_even_uneven", "even");
-          _this.updateForm("second_clip_even_uneven", "uneven");
-        }
-        if (ev.clientY > dragmousey) {
-          console.log("movin on down");
-          dragging.parent = document.getElementById("clip2EvenParking");
-          dragOther.parent = document.getElementById("clip1JumpyParking");
-
-          _this.updateForm("first_clip_even_uneven", "uneven");
-          _this.updateForm("second_clip_even_uneven", "even");
+          _this.updateForm("first_clip_direct_detour", "detour_uneven");
+          _this.updateForm("second_clip_direct_detour", "direct_even");
         }
         dragging.parent.appendChild(dragging);
         dragOther.parent.appendChild(dragOther);
@@ -407,9 +342,7 @@ export default {
 
       const allFieldsUpdated =
         this.formData.first_clip_direct_detour &&
-        this.formData.second_clip_direct_detour &&
-        this.formData.first_clip_even_uneven &&
-        this.formData.second_clip_even_uneven;
+        this.formData.second_clip_direct_detour;
 
       if (!(listened && allFieldsUpdated)) errorModal.style.display = "block";
       return listened && allFieldsUpdated;
@@ -545,7 +478,7 @@ h3 {
   grid-template-columns: repeat(4, 1fr);
   grid-template-rows: repeat(4, 120px);
   grid-gap: 3px;
-  background-color: rgb(70, 70, 70);
+  background-color: rgb(70 70 70);
 
   /*For AMT*/
   padding: 3px;
@@ -600,7 +533,7 @@ h3 {
 
 .grid-inner-item {
   display: grid;
-  grid-template-columns: 25% 70%;
+  grid-template-columns: 20% 75% 5%;
   padding-top: 5%;
 }
 

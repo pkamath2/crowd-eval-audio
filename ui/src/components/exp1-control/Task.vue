@@ -84,8 +84,8 @@
 
     <div class="row">
       <p style="padding-left: 10px">
-        1. Which of the sounds above makes a
-        <u><span style="font-weight: bold">smoother</span></u> morph or
+        Which of the sounds above makes a
+        <u><span style="font-weight: bold">smoother</span></u> 
         transition between its two endpoints?
       </p>
     </div>
@@ -93,7 +93,7 @@
     <div class="row">&nbsp;</div>
 
     <div class="row">
-      <div class="col-1" style="text-align: right">
+      <div class="col-1 p-0" style="text-align: center">
         <input
           type="radio"
           name="smooth_better_clip"
@@ -102,7 +102,7 @@
           @change="updateForm('smooth_better_clip', 'smooth_first_clip_better')"
         />
       </div>
-      <div class="col-6">
+      <div class="col-6 p-0" style="text-align: left">
         <label for="smooth_first_clip_better"
           >Clip 1 is more smoother than clip 2</label
         >
@@ -110,7 +110,7 @@
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-      <div class="col-1" style="text-align: right">
+      <div class="col-1 p-0" style="text-align: center">
         <input
           type="radio"
           name="smooth_better_clip"
@@ -121,7 +121,7 @@
           "
         />
       </div>
-      <div class="col-6">
+      <div class="col-6 p-0" style="text-align: left">
         <label for="smooth_second_clip_better"
           >Clip 2 is more smoother than clip 1</label
         >
@@ -129,7 +129,7 @@
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-      <div class="col-1" style="text-align: right">
+      <div class="col-1 p-0" style="text-align: center">
         <input
           type="radio"
           name="smooth_better_clip"
@@ -138,7 +138,7 @@
           @change="updateForm('smooth_better_clip', 'smooth_both_similar')"
         />
       </div>
-      <div class="col-6">
+      <div class="col-6 p-0" style="text-align: left">
         <label for="both_similar"
           >Cannot compare or No noticeable difference between the two
           clips</label
@@ -149,69 +149,6 @@
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
 
-    <div class="row">
-      <p style="padding-left: 10px">
-        2. Which of the sounds above makes a
-        <u><span style="font-weight: bold">steadier</span></u> morph or
-        transition between its two endpoints?
-      </p>
-    </div>
-
-    <div class="row">&nbsp;</div>
-
-    <div class="row">
-      <div class="col-1" style="text-align: right">
-        <input
-          type="radio"
-          name="steady_better_clip"
-          id="steady_first_clip_better"
-          value="steady_first_clip_better"
-          @change="updateForm('steady_better_clip', 'steady_first_clip_better')"
-        />
-      </div>
-      <div class="col-6">
-        <label for="steady_first_clip_better"
-          >Clip 1 is more steadier than clip 2</label
-        >
-      </div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      <div class="col-1" style="text-align: right">
-        <input
-          type="radio"
-          name="steady_better_clip"
-          id="steady_second_clip_better"
-          value="steady_second_clip_better"
-          @change="
-            updateForm('steady_better_clip', 'steady_second_clip_better')
-          "
-        />
-      </div>
-      <div class="col-6">
-        <label for="steady_second_clip_better"
-          >Clip 2 is more steadier than clip 1</label
-        >
-      </div>
-    </div>
-    <div class="row">&nbsp;</div>
-    <div class="row">
-      <div class="col-1" style="text-align: right">
-        <input
-          type="radio"
-          name="steady_better_clip"
-          id="steady_both_similar"
-          value="steady_both_similar"
-          @change="updateForm('steady_better_clip', 'steady_both_similar')"
-        />
-      </div>
-      <div class="col-6">
-        <label for="steady_both_similar"
-          >Cannot compare or No noticeable difference between the two
-          clips</label
-        >
-      </div>
-    </div>
   </div>
 </template>
 
@@ -261,7 +198,7 @@ export default {
 
       const listened = clip_1_listened && clip_2_listened;
       const allFieldsUpdated =
-        ((this.formData.steady_better_clip != undefined) && (this.formData.smooth_better_clip != undefined));
+        ((this.formData.smooth_better_clip != undefined));
       
 
       if (!(listened && allFieldsUpdated)) {
