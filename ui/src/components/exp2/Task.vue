@@ -462,19 +462,6 @@
 
     <div>&nbsp;</div>
     <div>&nbsp;</div>
-
-    <div class="step-content row">
-      <div>4.</div>
-      <div>&nbsp;</div>
-      <div>
-        Please listen to <span style="font-weight: bolder">all</span> sound
-        clips and the
-        <span style="font-weight: bolder">arrangement fully</span> and
-        adjust/move/re-position
-        <span style="font-weight: bolder">all the sliders</span> for each audio
-        clip accordingly before clicking on 'Next' below.
-      </div>
-    </div>
   </div>
 </template>
 
