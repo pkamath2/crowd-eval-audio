@@ -12,6 +12,17 @@
       </div>
     </div>
 
+    <div id="listenFirstModalPriming" class="modal-priming">
+      <div class="modal-content-priming">
+        <p>
+          In our experience, listening to both the sound clips
+          <span style="font-weight: bold">fully</span> before attempting to
+          drag/drop the icons helps evaluate the sounds better.
+        </p>
+        <span><button @click="closeModal">ok!</button></span>
+      </div>
+    </div>
+
     <div id="oneAudioOnlyModalPriming" class="modal-priming">
       <div class="modal-content-priming">
         <p>
@@ -48,7 +59,6 @@
       <div>&nbsp;</div>
     </div>
 
-
     <div class="row step-content">
       <div>
         1.&nbsp;&nbsp;&nbsp;Please listen to both
@@ -84,15 +94,15 @@
         <span style="background-color: hsl(25, 75%, 90%); font-weight: bold"
           >Direct &amp; Even (red section)</span
         >: Please drag the 'Direct &amp; Even' image to the clip which
-          <span style="font-weight: bold; font-style: italic"
-            ><u>transitions</u></span
-          >
+        <span style="font-weight: bold; font-style: italic"
+          ><u>transitions</u></span
+        >
 
-          from the start of the sound to its end
-          <span style="font-weight: bold; font-style: italic">directly</span>
-          and in
-          <span style="font-weight: bold; font-style: italic">even</span>
-          steps, in comparison with the other clip.
+        from the start of the sound to its end
+        <span style="font-weight: bold; font-style: italic">directly</span>
+        and in
+        <span style="font-weight: bold; font-style: italic">even</span>
+        steps, in comparison with the other clip.
       </div>
       <div>&nbsp;</div>
       <p style="padding-left: 10px; font-size: small">
@@ -116,8 +126,7 @@
             class="itempriming3_1 itempriming"
             style="width: 100%; padding-top: 20%; padding-left: 25%"
           >
-            <span style="font-weight: bold; color: white"
-              >Detour or Uneven</span
+            <span style="font-weight: bold; color: white">Detour or Uneven</span
             ><br />
           </div>
           <div
@@ -136,29 +145,51 @@
               ><audio
                 controls
                 controlsList="nodownload noplaybackrate"
-                @ended="listenedCheckPriming('first_sound_listened_test_priming')"
-                @play="playCheckPriming($event);updateClickAnalytics('priming_first_sound');"
+                @ended="
+                  listenedCheckPriming('first_sound_listened_test_priming')
+                "
+                @play="
+                  playCheckPriming($event);
+                  updateClickAnalytics('priming_first_sound');
+                "
                 preload="auto"
               >
                 <source :src="first_sound_url" type="audio/wav" />
               </audio>
             </span>
           </div>
-          <div class="itempriming7 itempriming" id="clip1PrimingDetourUnevenParking"></div>
-          <div class="itempriming8 itempriming" id="clip1PrimingDirectEvenParking"></div>
+          <div
+            class="itempriming7 itempriming"
+            id="clip1PrimingDetourUnevenParking"
+          ></div>
+          <div
+            class="itempriming8 itempriming"
+            id="clip1PrimingDirectEvenParking"
+          ></div>
           <div class="itempriming12 itempriming"></div>
-          <div class="itempriming13 itempriming" id="neutralPrimingDetourUnevenParking">
-            <div id="detourUnevenPriming" style="padding: 2%; padding-left: 25%">
+          <div
+            class="itempriming13 itempriming"
+            id="neutralPrimingDetourUnevenParking"
+          >
+            <div
+              id="detourUnevenPriming"
+              style="padding: 2%; padding-left: 25%"
+            >
               <img
+                id="detourUnevenPrimingImg"
                 style="max-width: 80%"
                 src="../../assets/exp1/detour_and_uneven.png"
               />
             </div>
           </div>
 
-          <div class="itempriming14 itempriming" id="neutralPrimingDirectEvenParking">
+          <div
+            class="itempriming14 itempriming"
+            id="neutralPrimingDirectEvenParking"
+          >
             <div id="directEvenPriming" style="padding: 2%; padding-left: 25%">
               <img
+                id="directEvenPrimingImg"
                 style="max-width: 80%"
                 src="../../assets/exp1/direct_and_even.png"
               />
@@ -172,20 +203,30 @@
               ><audio
                 controls
                 controlsList="nodownload noplaybackrate"
-                @ended="listenedCheckPriming('second_sound_listened_test_priming')"
-                @play="playCheckPriming($event);updateClickAnalytics('priming_second_sound');"
+                @ended="
+                  listenedCheckPriming('second_sound_listened_test_priming')
+                "
+                @play="
+                  playCheckPriming($event);
+                  updateClickAnalytics('priming_second_sound');
+                "
                 preload="auto"
               >
                 <source :src="second_sound_url" type="audio/wav" /></audio
             ></span>
           </div>
-          <div class="itempriming19 itempriming" id="clip2PrimingDetourUnevenParking"></div>
-          <div class="itempriming20 itempriming" id="clip2PrimingDirectEvenParking"></div>
+          <div
+            class="itempriming19 itempriming"
+            id="clip2PrimingDetourUnevenParking"
+          ></div>
+          <div
+            class="itempriming20 itempriming"
+            id="clip2PrimingDirectEvenParking"
+          ></div>
         </div>
       </div>
       <div class="col-1"></div>
     </div>
-
   </div>
 </template>
 
@@ -214,7 +255,6 @@ export default {
       }
     }
 
-
     const _thispriming = this; // Argh, I am losing my Vue! My sinceremost apologies to the purists.
 
     let draggingpriming = false;
@@ -236,52 +276,57 @@ export default {
     document.addEventListener("mouseup", function (ev) {
       ev.preventDefault();
       if (draggingpriming == detourUnevenPriming) {
-        dragOtherpriming = directEvenPriming;
-
-        draggingpriming.parent.removeChild(draggingpriming);
-        dragOtherpriming.parent.removeChild(dragOtherpriming);
-        if (ev.clientY < dragmouseypriming) {
-          draggingpriming.parent = document.getElementById(
-            "clip1PrimingDetourUnevenParking"
-          );
-          dragOtherpriming.parent = document.getElementById(
-            "clip2PrimingDirectEvenParking"
-          );
-
-          _thispriming.updateFormPriming(
-            "first_clip_direct_detour_priming",
-            "detour_uneven"
-          );
-          _thispriming.updateFormPriming(
-            "second_clip_direct_detour_priming",
-            "direct_even"
-          );
-
-          _thispriming.updateClickAnalytics('priming_icon_moved');
+        if(!(_thispriming.actionablePrimingTargets().includes(ev.target.id))) {
+          return; // Mouseup not on the icons.
         }
-        if (ev.clientY > dragmouseypriming) {
-          draggingpriming.parent = document.getElementById(
-            "clip2PrimingDetourUnevenParking"
-          );
-          dragOtherpriming.parent = document.getElementById(
-            "clip1PrimingDirectEvenParking"
-          );
+        if (_thispriming.dragDropCheckPriming()) {
+          dragOtherpriming = directEvenPriming;
 
-          _thispriming.updateFormPriming(
-            "first_clip_direct_detour_priming",
-            "direct_even"
-          );
-          _thispriming.updateFormPriming(
-            "second_clip_direct_detour_priming",
-            "detour_uneven"
-          );
+          draggingpriming.parent.removeChild(draggingpriming);
+          dragOtherpriming.parent.removeChild(dragOtherpriming);
+          if (ev.clientY < dragmouseypriming) {
+            draggingpriming.parent = document.getElementById(
+              "clip1PrimingDetourUnevenParking"
+            );
+            dragOtherpriming.parent = document.getElementById(
+              "clip2PrimingDirectEvenParking"
+            );
 
-          _thispriming.updateClickAnalytics('priming_icon_moved');
+            _thispriming.updateFormPriming(
+              "first_clip_direct_detour_priming",
+              "detour_uneven"
+            );
+            _thispriming.updateFormPriming(
+              "second_clip_direct_detour_priming",
+              "direct_even"
+            );
+
+            _thispriming.updateClickAnalytics("priming_icon_moved");
+          }
+          if (ev.clientY > dragmouseypriming) {
+            draggingpriming.parent = document.getElementById(
+              "clip2PrimingDetourUnevenParking"
+            );
+            dragOtherpriming.parent = document.getElementById(
+              "clip1PrimingDirectEvenParking"
+            );
+
+            _thispriming.updateFormPriming(
+              "first_clip_direct_detour_priming",
+              "direct_even"
+            );
+            _thispriming.updateFormPriming(
+              "second_clip_direct_detour_priming",
+              "detour_uneven"
+            );
+
+            _thispriming.updateClickAnalytics("priming_icon_moved");
+          }
+          draggingpriming.parent.appendChild(draggingpriming);
+          dragOtherpriming.parent.appendChild(dragOtherpriming);
+
+          draggingpriming = false;
         }
-        draggingpriming.parent.appendChild(draggingpriming);
-        dragOtherpriming.parent.appendChild(dragOtherpriming);
-
-        draggingpriming = false;
       }
     });
 
@@ -297,52 +342,57 @@ export default {
     document.addEventListener("mouseup", function (ev) {
       ev.preventDefault();
       if (draggingpriming == directEvenPriming) {
-        dragOtherpriming = detourUnevenPriming;
-
-        draggingpriming.parent.removeChild(draggingpriming);
-        dragOtherpriming.parent.removeChild(dragOtherpriming);
-        if (ev.clientY < dragmouseypriming) {
-          draggingpriming.parent = document.getElementById(
-            "clip1PrimingDirectEvenParking"
-          );
-          dragOtherpriming.parent = document.getElementById(
-            "clip2PrimingDetourUnevenParking"
-          );
-
-          _thispriming.updateFormPriming(
-            "first_clip_direct_detour_priming",
-            "direct_even"
-          );
-          _thispriming.updateFormPriming(
-            "second_clip_direct_detour_priming",
-            "detour_uneven"
-          );
-
-          _thispriming.updateClickAnalytics('priming_icon_moved');
+        if(!(_thispriming.actionablePrimingTargets().includes(ev.target.id))) {
+          return; // Mouseup not on the icons.
         }
-        if (ev.clientY > dragmouseypriming) {
-          draggingpriming.parent = document.getElementById(
-            "clip2PrimingDirectEvenParking"
-          );
-          dragOtherpriming.parent = document.getElementById(
-            "clip1PrimingDetourUnevenParking"
-          );
+        if (_thispriming.dragDropCheckPriming()) {
+          dragOtherpriming = detourUnevenPriming;
 
-          _thispriming.updateFormPriming(
-            "first_clip_direct_detour_priming",
-            "detour_uneven"
-          );
-          _thispriming.updateFormPriming(
-            "second_clip_direct_detour_priming",
-            "direct_even"
-          );
+          draggingpriming.parent.removeChild(draggingpriming);
+          dragOtherpriming.parent.removeChild(dragOtherpriming);
+          if (ev.clientY < dragmouseypriming) {
+            draggingpriming.parent = document.getElementById(
+              "clip1PrimingDirectEvenParking"
+            );
+            dragOtherpriming.parent = document.getElementById(
+              "clip2PrimingDetourUnevenParking"
+            );
 
-          _thispriming.updateClickAnalytics('priming_icon_moved');
+            _thispriming.updateFormPriming(
+              "first_clip_direct_detour_priming",
+              "direct_even"
+            );
+            _thispriming.updateFormPriming(
+              "second_clip_direct_detour_priming",
+              "detour_uneven"
+            );
+
+            _thispriming.updateClickAnalytics("priming_icon_moved");
+          }
+          if (ev.clientY > dragmouseypriming) {
+            draggingpriming.parent = document.getElementById(
+              "clip2PrimingDirectEvenParking"
+            );
+            dragOtherpriming.parent = document.getElementById(
+              "clip1PrimingDetourUnevenParking"
+            );
+
+            _thispriming.updateFormPriming(
+              "first_clip_direct_detour_priming",
+              "detour_uneven"
+            );
+            _thispriming.updateFormPriming(
+              "second_clip_direct_detour_priming",
+              "direct_even"
+            );
+
+            _thispriming.updateClickAnalytics("priming_icon_moved");
+          }
+          draggingpriming.parent.appendChild(draggingpriming);
+          dragOtherpriming.parent.appendChild(dragOtherpriming);
+
+          draggingpriming = false;
         }
-        draggingpriming.parent.appendChild(draggingpriming);
-        dragOtherpriming.parent.appendChild(dragOtherpriming);
-
-        draggingpriming = false;
       }
     });
   },
@@ -374,10 +424,24 @@ export default {
         }
       }
     },
+    dragDropCheckPriming() {
+      const clip_1_listened = this.formData.first_sound_listened_test_priming;
+      const clip_2_listened = this.formData.second_sound_listened_test_priming;
+
+      const listened = clip_1_listened && clip_2_listened;
+
+      if (!listened) {
+        listenFirstModalPriming.style.display = "block";
+        return false;
+      }
+      return true;
+    },
     closeModal() {
       if (oneAudioOnlyModalPriming)
         oneAudioOnlyModalPriming.style.display = "none";
       if (errorModalPriming) errorModalPriming.style.display = "none";
+      if (listenFirstModalPriming)
+        listenFirstModalPriming.style.display = "none";
     },
     validateForm() {
       const clip_1_listened = this.formData.first_sound_listened_test_priming;
@@ -387,12 +451,22 @@ export default {
 
       const allFieldsUpdated =
         this.formData.first_clip_direct_detour_priming &&
-        this.formData.second_clip_direct_detour_priming ;
+        this.formData.second_clip_direct_detour_priming;
 
       if (!(listened && allFieldsUpdated))
         errorModalPriming.style.display = "block";
       return listened && allFieldsUpdated;
     },
+    actionablePrimingTargets() {
+      return ['directEvenPrimingImg',
+      'detourUnevenPrimingImg',
+      'neutralPrimingDirectEvenParking',
+      'neutralPrimingDetourUnevenParking',
+      'clip1PrimingDirectEvenParking',
+      'clip1PrimingDetourUnevenParking',
+      'clip2PrimingDirectEvenParking',
+      'clip2PrimingDetourUnevenParking'];
+    }
   },
 };
 </script>

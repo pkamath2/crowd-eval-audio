@@ -12,6 +12,17 @@
       </div>
     </div>
 
+    <div id="listenFirstModal" class="modal">
+      <div class="modal-content">
+        <p>
+          In our experience, listening to both the sound clips
+          <span style="font-weight: bold">fully</span> before attempting to
+          drag/drop the icons helps evaluate the sounds better.
+        </p>
+        <span><button @click="closeModal">ok!</button></span>
+      </div>
+    </div>
+
     <div id="oneAudioOnlyModal" class="modal">
       <div class="modal-content">
         <p>
@@ -48,7 +59,6 @@
       <div>&nbsp;</div>
     </div>
 
-
     <div class="row step-content">
       <div>
         1.&nbsp;&nbsp;&nbsp;Please listen to both
@@ -84,15 +94,15 @@
         <span style="background-color: hsl(25, 75%, 90%); font-weight: bold"
           >Direct &amp; Even (red section)</span
         >: Please drag the 'Direct &amp; Even' image to the clip which
-          <span style="font-weight: bold; font-style: italic"
-            ><u>transitions</u></span
-          >
+        <span style="font-weight: bold; font-style: italic"
+          ><u>transitions</u></span
+        >
 
-          from the start of the sound to its end
-          <span style="font-weight: bold; font-style: italic">directly</span>
-          and in
-          <span style="font-weight: bold; font-style: italic">even</span>
-          steps, in comparison with the other clip.
+        from the start of the sound to its end
+        <span style="font-weight: bold; font-style: italic">directly</span>
+        and in
+        <span style="font-weight: bold; font-style: italic">even</span>
+        steps, in comparison with the other clip.
       </div>
       <div>&nbsp;</div>
       <p style="padding-left: 10px; font-size: small">
@@ -116,8 +126,7 @@
             class="item3_1 item"
             style="width: 100%; padding-top: 20%; padding-left: 25%"
           >
-            <span style="font-weight: bold; color: white"
-              >Detour or Uneven</span
+            <span style="font-weight: bold; color: white">Detour or Uneven</span
             ><br />
           </div>
           <div
@@ -137,7 +146,10 @@
                 controls
                 controlsList="nodownload noplaybackrate"
                 @ended="listenedCheck('first_sound_listened_test')"
-                @play="playCheck($event);updateClickAnalytics('task_first_sound');"
+                @play="
+                  playCheck($event);
+                  updateClickAnalytics('task_first_sound');
+                "
                 preload="auto"
               >
                 <source :src="first_sound_url" type="audio/wav" />
@@ -150,6 +162,7 @@
           <div class="item13 item" id="neutralDetourUnevenParking">
             <div id="detourUneven" style="padding: 2%; padding-left: 25%">
               <img
+                id="detourUnevenImg"
                 style="max-width: 80%"
                 src="../../assets/exp1/detour_and_uneven.png"
               />
@@ -159,6 +172,7 @@
           <div class="item14 item" id="neutralDirectEvenParking">
             <div id="directEven" style="padding: 2%; padding-left: 25%">
               <img
+                id="directEvenImg"
                 style="max-width: 80%"
                 src="../../assets/exp1/direct_and_even.png"
               />
@@ -173,7 +187,10 @@
                 controls
                 controlsList="nodownload noplaybackrate"
                 @ended="listenedCheck('second_sound_listened_test')"
-                @play="playCheck($event);updateClickAnalytics('task_second_sound');"
+                @play="
+                  playCheck($event);
+                  updateClickAnalytics('task_second_sound');
+                "
                 preload="auto"
               >
                 <source :src="second_sound_url" type="audio/wav" /></audio
@@ -232,32 +249,45 @@ export default {
     document.addEventListener("mouseup", function (ev) {
       ev.preventDefault();
       if (dragging == detourUneven) {
-        dragOther = directEven;
-
-        dragging.parent.removeChild(dragging);
-        dragOther.parent.removeChild(dragOther);
-        if (ev.clientY < dragmousey) {
-          dragging.parent = document.getElementById("clip1DetourUnevenParking");
-          dragOther.parent = document.getElementById("clip2DirectEvenParking");
-
-          _this.updateForm("first_clip_direct_detour", "detour_uneven");
-          _this.updateForm("second_clip_direct_detour", "direct_even");
-
-          _this.updateClickAnalytics('task_icon_moved');
+        if(!(_this.actionableTargets().includes(ev.target.id))) {
+          return; // Mouseup not on the icons.
         }
-        if (ev.clientY > dragmousey) {
-          dragging.parent = document.getElementById("clip2DetourUnevenParking");
-          dragOther.parent = document.getElementById("clip1DirectEvenParking");
+        if (_this.dragDropCheck()) {
+          dragOther = directEven;
 
-          _this.updateForm("first_clip_direct_detour", "direct_even");
-          _this.updateForm("second_clip_direct_detour", "detour_uneven");
+          dragging.parent.removeChild(dragging);
+          dragOther.parent.removeChild(dragOther);
+          if (ev.clientY < dragmousey) {
+            dragging.parent = document.getElementById(
+              "clip1DetourUnevenParking"
+            );
+            dragOther.parent = document.getElementById(
+              "clip2DirectEvenParking"
+            );
 
-          _this.updateClickAnalytics('task_icon_moved');
+            _this.updateForm("first_clip_direct_detour", "detour_uneven");
+            _this.updateForm("second_clip_direct_detour", "direct_even");
+
+            _this.updateClickAnalytics("task_icon_moved");
+          }
+          if (ev.clientY > dragmousey) {
+            dragging.parent = document.getElementById(
+              "clip2DetourUnevenParking"
+            );
+            dragOther.parent = document.getElementById(
+              "clip1DirectEvenParking"
+            );
+
+            _this.updateForm("first_clip_direct_detour", "direct_even");
+            _this.updateForm("second_clip_direct_detour", "detour_uneven");
+
+            _this.updateClickAnalytics("task_icon_moved");
+          }
+          dragging.parent.appendChild(dragging);
+          dragOther.parent.appendChild(dragOther);
+
+          dragging = false;
         }
-        dragging.parent.appendChild(dragging);
-        dragOther.parent.appendChild(dragOther);
-
-        dragging = false;
       }
     });
 
@@ -271,32 +301,41 @@ export default {
     document.addEventListener("mouseup", function (ev) {
       ev.preventDefault();
       if (dragging == directEven) {
-        dragOther = detourUneven;
-
-        dragging.parent.removeChild(dragging);
-        dragOther.parent.removeChild(dragOther);
-        if (ev.clientY < dragmousey) {
-          dragging.parent = document.getElementById("clip1DirectEvenParking");
-          dragOther.parent = document.getElementById("clip2DetourUnevenParking");
-
-          _this.updateForm("first_clip_direct_detour", "direct_even");
-          _this.updateForm("second_clip_direct_detour", "detour_uneven");
-
-          _this.updateClickAnalytics('task_icon_moved');
+        if(!(_this.actionableTargets().includes(ev.target.id))) {
+          return; // Mouseup not on the icons.
         }
-        if (ev.clientY > dragmousey) {
-          dragging.parent = document.getElementById("clip2DirectEvenParking");
-          dragOther.parent = document.getElementById("clip1DetourUnevenParking");
+        if (_this.dragDropCheck()) {
+          dragOther = detourUneven;
 
-          _this.updateForm("first_clip_direct_detour", "detour_uneven");
-          _this.updateForm("second_clip_direct_detour", "direct_even");
+          dragging.parent.removeChild(dragging);
+          dragOther.parent.removeChild(dragOther);
+          if (ev.clientY < dragmousey) {
+            dragging.parent = document.getElementById("clip1DirectEvenParking");
+            dragOther.parent = document.getElementById(
+              "clip2DetourUnevenParking"
+            );
 
-          _this.updateClickAnalytics('task_icon_moved');
+            _this.updateForm("first_clip_direct_detour", "direct_even");
+            _this.updateForm("second_clip_direct_detour", "detour_uneven");
+
+            _this.updateClickAnalytics("task_icon_moved");
+          }
+          if (ev.clientY > dragmousey) {
+            dragging.parent = document.getElementById("clip2DirectEvenParking");
+            dragOther.parent = document.getElementById(
+              "clip1DetourUnevenParking"
+            );
+
+            _this.updateForm("first_clip_direct_detour", "detour_uneven");
+            _this.updateForm("second_clip_direct_detour", "direct_even");
+
+            _this.updateClickAnalytics("task_icon_moved");
+          }
+          dragging.parent.appendChild(dragging);
+          dragOther.parent.appendChild(dragOther);
+
+          dragging = false;
         }
-        dragging.parent.appendChild(dragging);
-        dragOther.parent.appendChild(dragOther);
-
-        dragging = false;
       }
     });
   },
@@ -328,9 +367,22 @@ export default {
         }
       }
     },
+    dragDropCheck() {
+      const clip_1_listened = this.formData.first_sound_listened_test;
+      const clip_2_listened = this.formData.second_sound_listened_test;
+
+      const listened = clip_1_listened && clip_2_listened;
+
+      if (!listened) {
+        listenFirstModal.style.display = "block";
+        return false;
+      }
+      return true;
+    },
     closeModal() {
       if (oneAudioOnlyModal) oneAudioOnlyModal.style.display = "none";
       if (errorModal) errorModal.style.display = "none";
+      if (listenFirstModal) listenFirstModal.style.display = "none";
     },
     validateForm() {
       const clip_1_listened = this.formData.first_sound_listened_test;
@@ -345,6 +397,16 @@ export default {
       if (!(listened && allFieldsUpdated)) errorModal.style.display = "block";
       return listened && allFieldsUpdated;
     },
+    actionableTargets() {
+      return ['directEvenImg',
+      'detourUnevenImg',
+      'neutralDirectEvenParking',
+      'neutralDetourUnevenParking',
+      'clip1DirectEvenParking',
+      'clip1DetourUnevenParking',
+      'clip2DirectEvenParking',
+      'clip2DetourUnevenParking'];
+    }
   },
 };
 </script>

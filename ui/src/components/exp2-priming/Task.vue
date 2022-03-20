@@ -31,6 +31,12 @@
       Please follow the instructions for each step below to complete this task.
     </div>
     <div>&nbsp;</div>
+    <div class="row">
+      The aim of this task is to position few audio samples between 2 reference
+      samples, in a certain order (based on how your hear/perceive the sounds).
+    </div>
+
+    <div>&nbsp;</div>
 
     <div id="all-inputs" class="invisible" style="max-height: 10px">
       <!-- <div id="all-inputs"> -->
@@ -412,8 +418,10 @@
       <div>
         <span style="font-weight: bold">Adjust Ordering Step</span>: Please
         click the button below to listen to your arrangement. <br />Does the
-        arrangement sound to be in some order/seqeuence? If not, please redo
-        from Step 1.
+        arrangement sound to be in a certain order/seqeuence
+        <span style="font-weight: bold; text-decoration: underline"
+          >overall</span
+        >? If not, please redo from Step 1.
       </div>
     </div>
     <div>&nbsp;</div>
@@ -459,9 +467,14 @@
       <div>3.</div>
       <div>&nbsp;</div>
       <div>
-        <span style="font-weight: bold">Adjust Relative Position Step</span>: Please
-        click the button below to listen to your arrangement again. <br />Does the arrangement sound such that each clip is at a correct
-        distance/spacing relative to its neighbor? If not, please redo from Step 1.
+        <span style="font-weight: bold">Adjust Relative Position Step</span>:
+        Please click the button below to listen to your arrangement again.
+        <br />Does the arrangement sound such that each clip is at a correct
+        distance/spacing
+        <span style="font-weight: bold; text-decoration: underline"
+          >relative</span
+        >
+        to its neighbor? If not, please redo from Step 1.
       </div>
     </div>
     <div>&nbsp;</div>
