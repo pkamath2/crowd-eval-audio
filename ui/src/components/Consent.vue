@@ -33,8 +33,7 @@
         <span style="font-family: Tahoma, Geneva, sans-serif"
           ><u><strong>Protocol Title:</strong></u
           ><br />
-          Qualitative evaluation of artificially synthesized audio clips
-          synthesized using deep neural networks</span
+          Evaluation of interface design and instructions for crowdsourced evaluation of audio</span
         >
       </p>
 

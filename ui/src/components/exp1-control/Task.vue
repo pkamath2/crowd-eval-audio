@@ -57,7 +57,10 @@
               controls
               controlsList="nodownload noplaybackrate"
               @ended="listenedCheck('first_sound_listened_test')"
-              @play="playCheck($event);updateClickAnalytics('task_first_sound');"
+              @play="
+                playCheck($event);
+                updateClickAnalytics('task_first_sound');
+              "
             >
               <source :src="first_sound_url" type="audio/wav" /></audio
           ></span>
@@ -71,7 +74,10 @@
               controls
               controlsList="nodownload noplaybackrate"
               @ended="listenedCheck('second_sound_listened_test')"
-              @play="playCheck($event);updateClickAnalytics('task_second_sound');"
+              @play="
+                playCheck($event);
+                updateClickAnalytics('task_second_sound');
+              "
             >
               <source :src="second_sound_url" type="audio/wav" /></audio
           ></span>
@@ -84,9 +90,8 @@
 
     <div class="row">
       <p style="padding-left: 10px">
-        Which of the sounds above makes a
-        <u><span style="font-weight: bold">smoother</span></u> 
-        transition between its two endpoints?
+        Which of the sounds above makes a smoother transition between its two
+        endpoints?
       </p>
     </div>
 
@@ -148,7 +153,6 @@
 
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
-
   </div>
 </template>
 
@@ -197,9 +201,7 @@ export default {
       const clip_2_listened = this.formData.second_sound_listened_test;
 
       const listened = clip_1_listened && clip_2_listened;
-      const allFieldsUpdated =
-        ((this.formData.smooth_better_clip != undefined));
-      
+      const allFieldsUpdated = this.formData.smooth_better_clip != undefined;
 
       if (!(listened && allFieldsUpdated)) {
         errorModal.style.display = "block";

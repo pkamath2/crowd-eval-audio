@@ -28,12 +28,12 @@
       <div class="col-2"></div>
       <div class="col-8 p-2 border text-white bg-dark">
         <span style=""
-          >Our records indicate that you have already attempted a similar task
+          >Thank you for your interest in our HIT. Our records indicate that you have already attempted a similar task
           in the recent past.
           <br />
-          <br />We are looking for unique participants to attempt our tasks.
+          <br />For these experiments, we are looking for unique participants to attempt our HITs.
           <br />
-          <br />Kindly return this task on AMT.</span
+          <br />Kindly return this task on AMT. We look forward to your submissions to our other HITs in the future.</span
         >
       </div>
       <div class="col-2"></div>

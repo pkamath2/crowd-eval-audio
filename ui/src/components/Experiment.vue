@@ -132,6 +132,8 @@ export default {
       if (level_id >= this.levels.length) return;
       this.current_level = this.levels[level_id];
       this.current_level_starttime = new Date();
+      
+      window.scrollTo(0,0);
     },
     proceed_back_level(level_) {
       let level_id = this.levels.indexOf(level_) - 1;
@@ -141,6 +143,8 @@ export default {
 
       this.current_level = this.levels[level_id];
       this.current_level_starttime = new Date();
+
+      window.scrollTo(0,0);
     },
   },
 };

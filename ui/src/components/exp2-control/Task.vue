@@ -114,7 +114,7 @@
       <div>
         Listen to each audio sample below and rank/position each sample
         in-between the two references above. Consider reference 1 as having
-        rank/position and reference 2 as having rank/position 100.<br />
+        rank/position 0 and reference 2 as having rank/position 100.<br />
         Assign each audio sample a rank/position in-between 0 and 100.
       </div>
     </div>
