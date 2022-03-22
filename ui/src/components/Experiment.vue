@@ -4,8 +4,8 @@
 <template>
   <div class="row">
     <div class="row">
-      <div class="col-2">&nbsp;</div>
-      <div class="col-8 container" style="">
+      <div class="col-1">&nbsp;</div>
+      <div class="col-10 container" style="">
         <br />
         <Overview v-show="current_level == 'overview'" ref="overview_ref"></Overview>
         <Consent v-show="current_level == 'consent'" ref="consent_ref"></Consent>
@@ -19,12 +19,12 @@
         <Thanks v-if="current_level == 'thanks'" ref="thanks_ref"></Thanks>
         <br />
       </div>
-      <div class="col-2">&nbsp;</div> 
+      <div class="col-1">&nbsp;</div> 
     </div>
     <div class="row">&nbsp;</div>
     <div class="row">
-      <div class="col-2">&nbsp;</div>
-      <div class="col-8 container bottom-section">
+      <div class="col-1">&nbsp;</div>
+      <div class="col-10 container bottom-section">
         <div class="row">
           <div class="col-4">
             <button
@@ -53,7 +53,7 @@
           <div class="col-4"><b>Next Section</b>: {{ next_level_name }}</div>
         </div>
       </div>
-      <div class="col-2">&nbsp;</div>
+      <div class="col-1">&nbsp;</div>
     </div>
     <br />
   </div>

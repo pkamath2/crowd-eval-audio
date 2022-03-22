@@ -163,7 +163,7 @@
             <div id="detourUneven" style="padding: 2%; padding-left: 25%">
               <img
                 id="detourUnevenImg"
-                style="max-width: 80%"
+                style="max-height: 110px"
                 src="../../assets/exp1/detour_and_uneven.png"
               />
             </div>
@@ -173,7 +173,7 @@
             <div id="directEven" style="padding: 2%; padding-left: 25%">
               <img
                 id="directEvenImg"
-                style="max-width: 80%"
+                style="max-height: 110px"
                 src="../../assets/exp1/direct_and_even.png"
               />
             </div>

@@ -24,7 +24,11 @@
       </div>
     </div>
 
-    <div class="heading-priming row">3.1. Audio Perceptual Ordering Task</div>
+    <div class="heading-priming row">
+      <div class="col-3">&nbsp;</div>
+      <div class="col-7 text-center">3.1. Audio Perceptual Ordering Task</div>
+      <div class="col-2">&nbsp;</div>
+    </div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -361,8 +365,7 @@
           type="range"
           min="0"
           value="0"
-          max="100"
-          disabled="true"
+          max="0"
           style="--thumbcolor: #3b3a39; --thumbborder: transparent"
           @mouseover="
             mouseoverPlay('ref_1_audio_priming');
@@ -465,7 +468,7 @@
           id="ref_2_value_priming"
           name="ref_2_value_priming"
           type="range"
-          min="0"
+          min="99"
           value="100"
           max="100"
           disabled="true"
@@ -803,7 +806,6 @@ audio {
 
 .heading-priming {
   width: 100%;
-  padding-left: 25%;
   font-weight: bold;
   font-size: 250%;
 }
