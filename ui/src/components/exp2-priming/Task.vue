@@ -299,7 +299,6 @@
           min="0"
           value="0"
           max="0"
-          disabled="true"
           style="--thumbcolor: #3b3a39; --thumbborder: transparent"
           @mouseover="
             mouseoverPlay('ref_1_audio');
@@ -405,7 +404,6 @@
           min="99"
           value="100"
           max="100"
-          disabled="true"
           style="--thumbcolor: #3b3a39; --thumbborder: transparent"
           @mouseover="
             mouseoverPlay('ref_2_audio');

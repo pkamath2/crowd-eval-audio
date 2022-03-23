@@ -471,7 +471,6 @@
           min="99"
           value="100"
           max="100"
-          disabled="true"
           style="--thumbcolor: #3b3a39; --thumbborder: transparent"
           @mouseover="
             mouseoverPlay('ref_2_audio_priming');
