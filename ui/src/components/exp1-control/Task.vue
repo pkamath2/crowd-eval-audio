@@ -37,11 +37,18 @@
       </div>
       <div>&nbsp;</div>
       <div class="col-12">
+        In this task, an audio sample is said to be smooth if it transitions
+        from one end of the sound to its other end directly and evenly without
+        detour into a third type of sound.
+      </div>
+      <div>&nbsp;</div>
+      <div class="col-12">
         Although both clips may sound quite different from each other, you will
-        need to select the clip which sounds more 'smooth' in quality while
+        need to select the clip which sounds more smooth in quality while
         transitioning from start to its end.
       </div>
       <div>&nbsp;</div>
+      
 
       <p style="padding-left: 10px; font-size: small">
         <i>(Please allow few seconds for the audio clips to load.)</i>
