@@ -104,7 +104,10 @@
           name="smooth_better_clip"
           id="smooth_first_clip_better"
           value="smooth_first_clip_better"
-          @change="updateForm('smooth_better_clip', 'smooth_first_clip_better')"
+          @change="
+            updateForm('smooth_better_clip', 'smooth_first_clip_better');
+            updateClickAnalytics('task_option_changed');
+          "
         />
       </div>
       <div class="col-6 p-0" style="text-align: left">
@@ -122,7 +125,8 @@
           id="smooth_second_clip_better"
           value="smooth_second_clip_better"
           @change="
-            updateForm('smooth_better_clip', 'smooth_second_clip_better')
+            updateForm('smooth_better_clip', 'smooth_second_clip_better');
+            updateClickAnalytics('task_option_changed');
           "
         />
       </div>
@@ -132,7 +136,7 @@
         >
       </div>
     </div>
-    <div class="row">&nbsp;</div>
+    <!-- <div class="row">&nbsp;</div>
     <div class="row">
       <div class="col-1 p-0" style="text-align: center">
         <input
@@ -149,7 +153,7 @@
           clips</label
         >
       </div>
-    </div>
+    </div> -->
 
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
