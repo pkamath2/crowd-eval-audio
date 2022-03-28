@@ -416,6 +416,17 @@
       </div>
     </div>
 
+    <div id="relative-lines-section-container">
+      <div>&nbsp;</div>
+      <div id="relative-lines-section">
+        <div>&nbsp;</div>
+        <div class="relative-lines-section-1">&nbsp;</div>
+        <div class="relative-lines-section-2">&nbsp;</div>
+        <div>&nbsp;</div>
+      </div>
+      <div>&nbsp;</div>
+    </div>
+
     <div class="step-content row">
       <div>2.</div>
       <div>&nbsp;</div>
@@ -528,6 +539,10 @@ export default {
       sounds_in_sequence: [],
       current_playing_arrangement: "",
       disable_mouse_over_and_out: false,
+      rem_left_line_widths:{},
+      left_rel_line_widths: {},
+      right_rel_line_widths: {},
+      rem_right_line_widths:{},
     };
   },
   computed: {
@@ -611,6 +626,35 @@ export default {
       if (oneAudioOnlyModal) oneAudioOnlyModal.style.display = "none";
       if (errorModal) errorModal.style.display = "none";
     },
+    showRelPositionIndicator(){
+      return (this.current_playing_arrangement.indexOf('distance') > -1);
+    },
+    updateRelativePositions(){
+      if(this.showRelPositionIndicator()){
+        this.sounds_in_sequence.forEach((sound, ind) => {
+          const sound_id = sound.id.split('_').slice(0,2).join('_');
+          const sound_val = document.getElementById(sound_id+'_value').value
+
+          if(sound_id.indexOf('ref')==-1){
+            const prev_sound_id = this.sounds_in_sequence[ind-1].id.split('_').slice(0,2).join('_');
+            const prev_sound_val = document.getElementById(prev_sound_id+'_value').value
+            const rem_left_val = prev_sound_val;
+
+            const next_sound_id = this.sounds_in_sequence[ind+1].id.split('_').slice(0,2).join('_');
+            const next_sound_val = document.getElementById(next_sound_id+'_value').value
+            const rem_right_val = 100 - next_sound_val;
+
+            const left_width = (sound_val - prev_sound_val);
+            const right_width = (next_sound_val - sound_val);
+
+            this.left_rel_line_widths[sound_id] = left_width;
+            this.right_rel_line_widths[sound_id] = right_width;
+            this.rem_left_line_widths[sound_id] = rem_left_val;
+            this.rem_right_line_widths[sound_id] = rem_right_val;
+          }
+        });
+      }
+    },
     playSequence() {
       if (this.sound_index == this.sounds_in_sequence.length) {
         arrangementBtn_distance.removeAttribute("disabled");
@@ -631,6 +675,28 @@ export default {
           "ended",
           this.playSequence
         );
+      
+      
+      if(this.showRelPositionIndicator()){
+        const slider_id = this.sounds_in_sequence[this.sound_index].id.split('_').slice(0,2).join('_') ;
+        const sliderThumbColor = document.getElementById(slider_id+"_value").style.getPropertyValue("--thumbcolor");
+        if(slider_id.indexOf('ref') == -1){
+          document.getElementById('relative-lines-section').style.visibility = 'visible';
+          document.getElementById('relative-lines-section').style.setProperty('--leftrelcolor',sliderThumbColor)
+          document.getElementById('relative-lines-section').style.setProperty('--rightrelcolor',sliderThumbColor)
+          document.getElementById('relative-lines-section').style.setProperty('--leftlinewidth',this.left_rel_line_widths[slider_id]+'%')
+          document.getElementById('relative-lines-section').style.setProperty('--rightlinewidth',this.right_rel_line_widths[slider_id]+'%')
+          document.getElementById('relative-lines-section').style.setProperty('--remleftlinewidth',this.rem_left_line_widths[slider_id]+'%')
+          document.getElementById('relative-lines-section').style.setProperty('--remrightlinewidth',this.rem_right_line_widths[slider_id]+'%')
+          console.log(slider_id+'--'+this.rem_left_line_widths[slider_id]+'%'
+          +this.left_rel_line_widths[slider_id]+'%'
+          +this.right_rel_line_widths[slider_id]+'%'
+          +this.rem_right_line_widths[slider_id]+'%')
+        } else {
+          document.getElementById('relative-lines-section').style.visibility = 'hidden';
+        }
+      }
+      
       this.sounds_in_sequence[this.sound_index].play();
       this.sound_index++;
     },
@@ -663,6 +729,7 @@ export default {
 
       this.current_playing_arrangement = nm;
 
+      this.updateRelativePositions();
       this.listenedCheck(nm);
       this.playSequence();
     },
@@ -763,6 +830,30 @@ audio {
   width: 100%;
 }
 
+#relative-lines-section-container{
+  display: grid;
+  grid-template-columns: 3% 78% 17%;
+  padding-left: 3%;
+}
+
+#relative-lines-section{
+  display: grid;
+  /* grid-template-columns: 25% 25% 25% 25%; */
+  grid-template-columns: var(--remleftlinewidth) var(--leftlinewidth) var(--rightlinewidth) var(--remrightlinewidth);
+  width: 100%;
+  max-height: 5px;
+}
+
+.relative-lines-section-1{
+  max-height: 0px;
+  border: solid var(--leftrelcolor) 2px;
+}
+
+.relative-lines-section-2{
+  max-height: 0px;
+  border: solid var(--rightrelcolor) 2px;
+}
+
 #samples-container {
   display: grid;
   grid-template-columns: 2% 80%;
@@ -776,7 +867,7 @@ audio {
   grid-template: repeat(2, max-content) 4em/1fr 1fr;
   overflow: hidden;
   position: relative;
-  margin: 1.2em auto;
+  margin: 0.3em auto;
   width: 100%;
   background-color: rgb(196, 196, 196);
 }

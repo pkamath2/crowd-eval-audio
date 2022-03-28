@@ -69,9 +69,10 @@
         <span style="font-weight: bold">'&lt;&lt;Back'</span> button below.
       </div>
     </div>
-    <div class="row">&nbsp;</div>
+    
 
-    <div class="row">
+    <div class="row" v-if="instruction_video_url != ''">
+      <div class="row">&nbsp;</div>
       <div class="col-12">
         Please follow the instructions outlined on each section. We have also
         created an instructional video if you have any further questions -
@@ -79,11 +80,12 @@
           :href="instruction_video_url"
           target="_blank"
           @click="updateClickAnalytics('overview_instruction_video')"
-          >ToDo - Create New Video - Click Here (opens in a new tab)</a
+          >Click Here (opens in a new browser tab)</a
         >
       </div>
+      <div class="row">&nbsp;</div>
     </div>
-    <div class="row">&nbsp;</div>
+    
   </div>
 </template>
 <script>
