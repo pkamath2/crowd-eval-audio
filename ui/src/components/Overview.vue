@@ -55,7 +55,7 @@
         <ol>
           <li>Overview and instructions (This section)</li>
           <li>Informed Consent</li>
-          <li>Audio Listening Test (1 to 2 listening tests)</li>
+          <li>Audio Listening Test (1 or more listening tests)</li>
           <li>Post test survey</li>
         </ol>
       </div>
