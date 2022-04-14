@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="heading">3.{{test_index}} Audio Smoothness Evaluation Task</div>
+    <div class="heading">3.{{task_index+1}} Audio Smoothness Evaluation Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -209,7 +209,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  props: ['id', 'audio_samples'],
+  props: ['id', 'audio_samples', 'task_index'],
   data() {
     return {};
   },
@@ -353,9 +353,6 @@ export default {
   },
   computed: {
     ...mapGetters(["formData", "config"]),
-    test_index: function () {
-      return this.id.split('_')[1];
-    },
     first_sound_url: function () {
       return this.audio_samples.first_sound_url;
     },

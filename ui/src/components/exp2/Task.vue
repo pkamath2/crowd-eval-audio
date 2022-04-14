@@ -26,7 +26,7 @@
 
     <div class="heading row">
       <div class="col-3">&nbsp;</div>
-      <div class="col-7 text-center">3.{{test_index}} Audio Perceptual Ordering Task</div>
+      <div class="col-7 text-center">3.{{task_index+1}} Audio Perceptual Ordering Task</div>
       <div class="col-2">&nbsp;</div>
     </div>
     <div>&nbsp;</div>
@@ -535,7 +535,7 @@
 <script  type="module">
 import { mapActions, mapGetters } from "vuex";
 export default {
-  props: ['id', 'audio_samples'],
+  props: ['id', 'audio_samples', 'task_index'],
   data() {
     return {
       num_thumbs: 7,
@@ -566,9 +566,6 @@ export default {
   },
   computed: {
     ...mapGetters(["formData", "config", "currentLevel"]),
-    test_index: function () {
-      return this.id.split('_')[1];
-    },
     ref1_url: function () {
       return this.audio_samples.ref1_url;
     },

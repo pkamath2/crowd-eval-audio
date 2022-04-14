@@ -12,8 +12,8 @@
         <!-- Screening is now moved to a qualifier on AMT -->
         <!-- <Screening v-show="current_level == 'hearing_screening'" ref="hearing_screening_ref"></Screening> -->
         <Priming v-show="current_level == 'priming'" ref="priming_ref"></Priming>
-        <div v-for="i in num_tasks" :key="'task_'+i" :value="'task_'+i">
-          <Task :id="'task_'+i"  :key="'task_'+i" v-if="showLevel('task_'+i)" :ref="'task_'+i+'_ref'" :audio_samples="audio_samples['task_'+i]"></Task>
+        <div v-for="task in task_list" :key="task" :value="task">
+          <Task :id="task"  :key="task" v-if="showLevel(task)" :ref="task+'_ref'" :audio_samples="audio_samples[task]" :task_index="task_list.indexOf(task)"></Task>
         </div>
         <PostSurvey v-show="current_level == 'post_survey'" ref="post_survey_ref"></PostSurvey>
         <!--Important. The last page with submit button should be v-if and not v-show. This needs to be dynamically rendered every time the form is updated-->

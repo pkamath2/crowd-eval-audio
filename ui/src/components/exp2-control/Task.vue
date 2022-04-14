@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="heading">3.{{test_index}} Audio Perceptual Ordering Task</div>
+    <div class="heading">3.{{task_index+1}} Audio Perceptual Ordering Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -332,7 +332,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  props: ['id', 'audio_samples'],
+  props: ['id', 'audio_samples', 'task_index'],
   data() {
     return {
       num_positions: [1, 2, 3, 4, 5],
@@ -360,9 +360,6 @@ export default {
   },
   computed: {
     ...mapGetters(["formData", "config"]),
-    test_index: function () {
-      return this.id.split('_')[1];
-    },
     ref1_url: function () {
       return this.audio_samples.ref1_url;
     },

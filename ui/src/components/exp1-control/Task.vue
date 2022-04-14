@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="heading">3.{{test_index}} Audio Smoothness Evaluation Task</div>
+    <div class="heading">3.{{task_index+1}} Audio Smoothness Evaluation Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -145,25 +145,6 @@
         >
       </div>
     </div>
-    <!-- <div class="row">&nbsp;</div>
-    <div class="row">
-      <div class="col-1 p-0" style="text-align: center">
-        <input
-          type="radio"
-          name="smooth_better_clip"
-          id="smooth_both_similar"
-          value="smooth_both_similar"
-          @change="updateForm('smooth_better_clip', 'smooth_both_similar')"
-        />
-      </div>
-      <div class="col-6 p-0" style="text-align: left">
-        <label for="both_similar"
-          >Cannot compare or No noticeable difference between the two
-          clips</label
-        >
-      </div>
-    </div> -->
-
     <div class="row">&nbsp;</div>
     <div class="row">&nbsp;</div>
   </div>
@@ -173,16 +154,13 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
-  props: ['id', 'audio_samples'],
+  props: ['id', 'audio_samples', 'task_index'],
   data() {
     return {};
   },
   mounted: function () {},
   computed: {
     ...mapGetters(["formData", "config"]),
-    test_index: function () {
-      return this.id.split('_')[1];
-    },
     first_sound_url: function () {
       return this.audio_samples.first_sound_url;
     },
