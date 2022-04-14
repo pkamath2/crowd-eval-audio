@@ -1,5 +1,5 @@
 <template>
-  <div class="row animatedsound-container">
+  <div class="row animatedsound-container" :id="id" key="NaN">
     <div id="errorModal" class="modal">
       <div class="modal-content">
         <p>
@@ -36,7 +36,7 @@
       </div>
     </div>
 
-    <div class="heading">3. Audio Smoothness Evaluation Task</div>
+    <div class="heading">3.{{test_index}} Audio Smoothness Evaluation Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -156,11 +156,11 @@
               </audio>
             </span>
           </div>
-          <div class="item7 item" id="clip1DetourUnevenParking"></div>
-          <div class="item8 item" id="clip1DirectEvenParking"></div>
+          <div class="item7 item" :id="id+'_clip1DetourUnevenParking'"></div>
+          <div class="item8 item" :id="id+'_clip1DirectEvenParking'"></div>
           <div class="item12 item"></div>
-          <div class="item13 item" id="neutralDetourUnevenParking">
-            <div id="detourUneven" style="padding: 2%; padding-left: 25%">
+          <div class="item13 item" :id="id+'_neutralDetourUnevenParking'">
+            <div :id="id+'_detourUneven'" style="padding: 2%; padding-left: 25%">
               <img
                 id="detourUnevenImg"
                 style="max-height: 110px"
@@ -169,8 +169,8 @@
             </div>
           </div>
 
-          <div class="item14 item" id="neutralDirectEvenParking">
-            <div id="directEven" style="padding: 2%; padding-left: 25%">
+          <div class="item14 item" :id="id+'_neutralDirectEvenParking'">
+            <div :id="id+'_directEven'" style="padding: 2%; padding-left: 25%">
               <img
                 id="directEvenImg"
                 style="max-height: 110px"
@@ -196,8 +196,8 @@
                 <source :src="second_sound_url" type="audio/wav" /></audio
             ></span>
           </div>
-          <div class="item19 item" id="clip2DetourUnevenParking"></div>
-          <div class="item20 item" id="clip2DirectEvenParking"></div>
+          <div class="item19 item" :id="id+'_clip2DetourUnevenParking'"></div>
+          <div class="item20 item" :id="id+'_clip2DirectEvenParking'"></div>
         </div>
       </div>
       <div class="col-1"></div>
@@ -209,6 +209,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+  props: ['id', 'audio_samples'],
   data() {
     return {};
   },
@@ -236,10 +237,33 @@ export default {
     let dragmousey;
     let dragOther;
 
-    const detourUneven = document.getElementById("detourUneven");
-    const directEven = document.getElementById("directEven");
+    const detourUneven = document.getElementById(this.id+"_detourUneven");
+    const directEven = document.getElementById(this.id+"_directEven");
 
-    detourUneven.parent = document.getElementById("neutralDetourUnevenParking");
+    const neutralDetourParking = document.getElementById(this.id+"_neutralDetourUnevenParking");
+    const neutralDirectParking = document.getElementById(this.id+"_neutralDirectEvenParking");
+    const clip1DetourParking = document.getElementById(this.id+"_clip1DetourUnevenParking");
+    const clip1DirectParking = document.getElementById(this.id+"_clip1DirectEvenParking");
+    const clip2DetourParking = document.getElementById(this.id+"_clip2DetourUnevenParking");
+    const clip2DirectParking = document.getElementById(this.id+"_clip2DirectEvenParking");
+
+    if(Object.keys(this.formData).some((key) => key.startsWith(this.id))){ //Form already filled
+      const clip1_directdetour = this.getFormDataValue('first_clip_direct_detour')
+      if(clip1_directdetour == 'detour_uneven'){
+        detourUneven.parent = clip1DetourParking;
+        directEven.parent = clip2DirectParking;
+      } else {
+        detourUneven.parent = clip2DetourParking;
+        directEven.parent = clip1DirectParking;
+      }
+      detourUneven.parent.appendChild(detourUneven);
+      directEven.parent.appendChild(directEven);
+    }else{
+      detourUneven.parent = neutralDetourParking;
+      directEven.parent = neutralDirectParking;
+    }
+
+
     detourUneven.addEventListener("mousedown", function (ev) {
       dragging = detourUneven;
       dragmousey = ev.clientY;
@@ -258,12 +282,8 @@ export default {
           dragging.parent.removeChild(dragging);
           dragOther.parent.removeChild(dragOther);
           if (ev.clientY < dragmousey) {
-            dragging.parent = document.getElementById(
-              "clip1DetourUnevenParking"
-            );
-            dragOther.parent = document.getElementById(
-              "clip2DirectEvenParking"
-            );
+            dragging.parent = clip1DetourParking;
+            dragOther.parent = clip2DirectParking;
 
             _this.updateForm("first_clip_direct_detour", "detour_uneven");
             _this.updateForm("second_clip_direct_detour", "direct_even");
@@ -271,12 +291,8 @@ export default {
             _this.updateClickAnalytics("task_icon_moved");
           }
           if (ev.clientY > dragmousey) {
-            dragging.parent = document.getElementById(
-              "clip2DetourUnevenParking"
-            );
-            dragOther.parent = document.getElementById(
-              "clip1DirectEvenParking"
-            );
+            dragging.parent = clip2DetourParking;
+            dragOther.parent = clip1DirectParking;
 
             _this.updateForm("first_clip_direct_detour", "direct_even");
             _this.updateForm("second_clip_direct_detour", "detour_uneven");
@@ -291,7 +307,7 @@ export default {
       }
     });
 
-    directEven.parent = document.getElementById("neutralDirectEvenParking");
+    
     directEven.addEventListener("mousedown", function (ev) {
       dragging = directEven;
       dragmousey = ev.clientY;
@@ -310,10 +326,8 @@ export default {
           dragging.parent.removeChild(dragging);
           dragOther.parent.removeChild(dragOther);
           if (ev.clientY < dragmousey) {
-            dragging.parent = document.getElementById("clip1DirectEvenParking");
-            dragOther.parent = document.getElementById(
-              "clip2DetourUnevenParking"
-            );
+            dragging.parent = clip1DirectParking;
+            dragOther.parent = clip2DetourParking;
 
             _this.updateForm("first_clip_direct_detour", "direct_even");
             _this.updateForm("second_clip_direct_detour", "detour_uneven");
@@ -321,10 +335,8 @@ export default {
             _this.updateClickAnalytics("task_icon_moved");
           }
           if (ev.clientY > dragmousey) {
-            dragging.parent = document.getElementById("clip2DirectEvenParking");
-            dragOther.parent = document.getElementById(
-              "clip1DetourUnevenParking"
-            );
+            dragging.parent = clip2DirectParking;
+            dragOther.parent = clip1DetourParking;
 
             _this.updateForm("first_clip_direct_detour", "detour_uneven");
             _this.updateForm("second_clip_direct_detour", "direct_even");
@@ -341,15 +353,21 @@ export default {
   },
   computed: {
     ...mapGetters(["formData", "config"]),
+    test_index: function () {
+      return this.id.split('_')[1];
+    },
     first_sound_url: function () {
-      return this.config.first_sound_url;
+      return this.audio_samples.first_sound_url;
     },
     second_sound_url: function () {
-      return this.config.second_sound_url;
+      return this.audio_samples.second_sound_url;
     },
   },
   methods: {
     ...mapActions(["updateFormData", "updateClickAnalytics"]),
+    getFormDataValue(nm) {
+      return this.formData[this.id+'_'+nm]
+    },
     updateForm(nm, val) {
       var obj = {};
       obj[nm] = val;
@@ -368,8 +386,8 @@ export default {
       }
     },
     dragDropCheck(ev) {
-      const clip_1_listened = this.formData.first_sound_listened_test;
-      const clip_2_listened = this.formData.second_sound_listened_test;
+      const clip_1_listened = this.getFormDataValue('first_sound_listened_test');
+      const clip_2_listened = this.getFormDataValue('second_sound_listened_test');
 
       const listened = clip_1_listened && clip_2_listened;
 
@@ -385,27 +403,28 @@ export default {
       if (listenFirstModal) listenFirstModal.style.display = "none";
     },
     validateForm() {
-      const clip_1_listened = this.formData.first_sound_listened_test;
-      const clip_2_listened = this.formData.second_sound_listened_test;
+      const clip_1_listened = this.getFormDataValue('first_sound_listened_test');
+      const clip_2_listened = this.getFormDataValue('second_sound_listened_test');
 
       const listened = clip_1_listened && clip_2_listened;
 
       const allFieldsUpdated =
-        this.formData.first_clip_direct_detour &&
-        this.formData.second_clip_direct_detour;
+        this.getFormDataValue('first_clip_direct_detour') &&
+        this.getFormDataValue('second_clip_direct_detour');
 
       if (!(listened && allFieldsUpdated)) errorModal.style.display = "block";
       return listened && allFieldsUpdated;
+      return true;
     },
     actionableTargets() {
       return ['directEvenImg',
       'detourUnevenImg',
-      'neutralDirectEvenParking',
-      'neutralDetourUnevenParking',
-      'clip1DirectEvenParking',
-      'clip1DetourUnevenParking',
-      'clip2DirectEvenParking',
-      'clip2DetourUnevenParking'];
+      this.id+'_neutralDirectEvenParking',
+      this.id+'_neutralDetourUnevenParking',
+      this.id+'_clip1DirectEvenParking',
+      this.id+'_clip1DetourUnevenParking',
+      this.id+'_clip2DirectEvenParking',
+      this.id+'_clip2DetourUnevenParking'];
     }
   },
 };

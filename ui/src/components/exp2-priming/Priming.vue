@@ -758,10 +758,6 @@ export default {
           document.getElementById('relative-lines-section-priming').style.setProperty('--rightlinewidth',this.right_rel_line_widths[slider_id]+'%')
           document.getElementById('relative-lines-section-priming').style.setProperty('--remleftlinewidth',this.rem_left_line_widths[slider_id]+'%')
           document.getElementById('relative-lines-section-priming').style.setProperty('--remrightlinewidth',this.rem_right_line_widths[slider_id]+'%')
-          console.log(slider_id+'--'+this.rem_left_line_widths[slider_id]+'%'
-          +this.left_rel_line_widths[slider_id]+'%'
-          +this.right_rel_line_widths[slider_id]+'%'
-          +this.rem_right_line_widths[slider_id]+'%')
         } else {
           document.getElementById('relative-lines-section-priming').style.visibility = 'hidden';
         }

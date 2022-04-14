@@ -1,6 +1,6 @@
 {
     "experiment_name": "exp2",
-    "url_base": "hci/ui/pitched",
+    "url_base": "hci/ui/texture",
     "priming_available": false,
     "ui_levels": [
         "overview",
@@ -16,12 +16,21 @@
         "Post Test Survey",
         "Thank you"
     ],
-    "ref1_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFM_ParamMapper--cf_exp-00.00--v-09.wav",
-    "audio_1_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFM_ParamMapper--cf_exp-00.40--v-09.wav",
-    "audio_2_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFM_ParamMapper--cf_exp-00.70--v-09.wav",
-    "audio_3_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFM_ParamMapper--cf_exp-00.20--v-09.wav",
-    "audio_4_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFM_ParamMapper--cf_exp-00.90--v-09.wav",
-    "audio_5_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFM_ParamMapper--cf_exp-00.60--v-09.wav",
-    "ref2_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFM_ParamMapper--cf_exp-01.00--v-09.wav",
-    "save_worker_api": "<Log Worker Id API>"
+    "task_config": {
+        "num_tasks": 1,
+        "order_random": false,
+        "audio_samples": {
+            "task_1": {
+                "ref1_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/textures/exp2/waterfilldadafilldazedadavdazenn.wav",
+                "audio_1_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/textures/exp2/waterfilldadafilldathdadavdazenn.wav",
+                "audio_2_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/textures/exp2/waterfilldadafilldasxdadavdazenn.wav",
+                "audio_3_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/textures/exp2/waterfilldadafilldaondadavdazenn.wav",
+                "audio_4_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/textures/exp2/waterfilldadafilldaetdadavdazenn.wav",
+                "audio_5_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/textures/exp2/waterfilldadafilldafidadavdazenn.wav",
+                "ref2_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/textures/exp2/waterfilldadafilldaonzedadavdazenn.wav"
+            }
+        }
+    },
+    "save_worker_api": "",
+    "instruction_video_url": ""
 }

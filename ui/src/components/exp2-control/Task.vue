@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <div class="heading">3. Audio Perceptual Ordering Task</div>
+    <div class="heading">3.{{test_index}} Audio Perceptual Ordering Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -173,7 +173,6 @@
                   type="number"
                   :name="'audio_' + position + '_select'"
                   :id="'audio_' + position + '_select'"
-                  :value="0"
                   @change="
                     numberRangeCheck($event);
                     update_field($event);
@@ -184,6 +183,7 @@
                       $event
                     )
                   "
+                  v-model="formData[id+'_audio_' + position + '_select']"
                   min="0"
                   max="100"
                   step="1"
@@ -258,6 +258,7 @@
           name="ordering_checkbox"
           value="ordered"
           @change="update_field($event)"
+          v-model="formData[id+'_ordering_checkbox']"
           disabled
         />
         <label for="ordering_checkbox">
@@ -312,6 +313,7 @@
           name="distance_checkbox"
           value="distance"
           @change="update_field($event)"
+          v-model="formData[id+'_distance_checkbox']"
           disabled
         />
         <label for="distance_checkbox">
@@ -330,6 +332,7 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+  props: ['id', 'audio_samples'],
   data() {
     return {
       num_positions: [1, 2, 3, 4, 5],
@@ -343,36 +346,38 @@ export default {
       current_playing_arrangement: "",
     };
   },
-  mounted: function () {},
+  created: function () {
+    if(!Object.keys(this.formData).some((key) => key.startsWith(this.id))){ 
+      //Init clip positions if user has not moved them yet.
+      var obj = {};
+      obj['audio_1_select'] = '0';
+      obj['audio_2_select'] = '0';
+      obj['audio_3_select'] = '0';
+      obj['audio_4_select'] = '0';
+      obj['audio_5_select'] = '0';
+      this.updateFormData(obj);
+    }
+  },
   computed: {
     ...mapGetters(["formData", "config"]),
+    test_index: function () {
+      return this.id.split('_')[1];
+    },
     ref1_url: function () {
-      return this.config.ref1_url;
+      return this.audio_samples.ref1_url;
     },
     ref2_url: function () {
-      return this.config.ref2_url;
-    },
-    audio_1_url: function () {
-      return this.config.audio_1_url;
-    },
-    audio_2_url: function () {
-      return this.config.audio_2_url;
-    },
-    audio_3_url: function () {
-      return this.config.audio_3_url;
-    },
-    audio_4_url: function () {
-      return this.config.audio_4_url;
-    },
-    audio_5_url: function () {
-      return this.config.audio_5_url;
+      return this.audio_samples.ref2_url;
     },
   },
   methods: {
     ...mapActions(["updateFormData", "updateClickAnalytics"]),
+    getFormDataValue(nm) {
+      return this.formData[this.id+'_'+nm]
+    },
     audio_url(loc) {
       const nm = "audio_" + loc + "_url";
-      return this.config[nm];
+      return this.audio_samples[nm];
     },
     updateForm(nm, val) {
       var obj = {};
@@ -473,17 +478,17 @@ export default {
       this.playSequence();
     },
     validateNumberField(f) {
-      return f != undefined && f != "" && parseInt(f) > 0 && parseInt(f) < 100;
+      return f != undefined && f != "" && parseInt(f) > 0 && parseInt(f) <= 100;
     },
     validateForm() {
-      const ref_clip_1_listened = this.formData.first_reference_listened_test;
-      const ref_clip_2_listened = this.formData.second_reference_listened_test;
+      const ref_clip_1_listened = this.getFormDataValue('first_reference_listened_test');
+      const ref_clip_2_listened = this.getFormDataValue('second_reference_listened_test');
 
-      const audio_listened_test_1 = this.formData.audio_listened_test_1;
-      const audio_listened_test_2 = this.formData.audio_listened_test_2;
-      const audio_listened_test_3 = this.formData.audio_listened_test_3;
-      const audio_listened_test_4 = this.formData.audio_listened_test_4;
-      const audio_listened_test_5 = this.formData.audio_listened_test_5;
+      const audio_listened_test_1 = this.getFormDataValue('audio_listened_test_1');
+      const audio_listened_test_2 = this.getFormDataValue('audio_listened_test_2');
+      const audio_listened_test_3 = this.getFormDataValue('audio_listened_test_3');
+      const audio_listened_test_4 = this.getFormDataValue('audio_listened_test_4');
+      const audio_listened_test_5 = this.getFormDataValue('audio_listened_test_5');
 
       const listened =
         ref_clip_1_listened &&
@@ -495,15 +500,15 @@ export default {
         audio_listened_test_5;
 
       const allFieldsUpdated =
-        this.validateNumberField(this.formData.audio_1_select) &&
-        this.validateNumberField(this.formData.audio_2_select) &&
-        this.validateNumberField(this.formData.audio_3_select) &&
-        this.validateNumberField(this.formData.audio_4_select) &&
-        this.validateNumberField(this.formData.audio_5_select) &&
-        this.formData.distance_checkbox != undefined &&
-        this.formData.distance_checkbox != false &&
-        this.formData.ordering_checkbox != undefined &&
-        this.formData.ordering_checkbox != false;
+        this.validateNumberField(this.getFormDataValue('audio_1_select')) &&
+        this.validateNumberField(this.getFormDataValue('audio_2_select')) &&
+        this.validateNumberField(this.getFormDataValue('audio_3_select')) &&
+        this.validateNumberField(this.getFormDataValue('audio_4_select')) &&
+        this.validateNumberField(this.getFormDataValue('audio_5_select')) &&
+        this.getFormDataValue('distance_checkbox') != undefined &&
+        this.getFormDataValue('distance_checkbox') != false &&
+        this.getFormDataValue('ordering_checkbox') != undefined &&
+        this.getFormDataValue('ordering_checkbox') != false;
 
       if (!(listened && allFieldsUpdated)) {
         errorModal.style.display = "block";

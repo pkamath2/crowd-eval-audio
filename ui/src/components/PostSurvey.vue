@@ -16,10 +16,10 @@
       <div class="col-5">
         <input
           type="text"
-          name="postsurvey_speaker_headphones"
-          id="postsurvey_speaker_headphones"
+          name="speaker_headphones"
+          id="speaker_headphones"
           size="50"
-          @change="update_field($event, 'postsurvey_speaker_headphones')"
+          @change="update_field($event, 'speaker_headphones')"
         />
       </div>
       <div class="col-7"></div>
@@ -38,11 +38,11 @@
     <div class="row">
       <div class="col-5">
         <select
-          name="postsurvey_past_audiotests"
-          id="postsurvey_past_audiotests"
+          name="past_audiotests"
+          id="past_audiotests"
           style="width: 100%"
-          v-model="postsurvey_past_audiotests"
-          @change="update_field($event, 'postsurvey_past_audiotests')"
+          v-model="past_audiotests"
+          @change="update_field($event, 'past_audiotests')"
         >
           <option value="0">0</option>
           <option value="1">1</option>
@@ -74,10 +74,10 @@
       <div class="col-5">
         <input
           type="text"
-          name="postsurvey_environment"
-          id="postsurvey_environment"
+          name="environment"
+          id="environment"
           size="50"
-          @change="update_field($event, 'postsurvey_environment')"
+          @change="update_field($event, 'environment')"
         />
       </div>
       <div class="col-7"></div>
@@ -96,13 +96,13 @@
     <div class="row">
       <div class="col-5">
         <textarea
-          id="postsurvey_confusing"
-          name="postsurvey_confusing"
+          id="confusing"
+          name="confusing"
           cols="90"
           rows="4"
           maxlength="300"
           tabindex="9"
-          @change="update_field($event, 'postsurvey_confusing')"
+          @change="update_field($event, 'confusing')"
         ></textarea>
       </div>
       <div class="col-7"></div>
@@ -117,13 +117,13 @@
     <div class="row">
       <div class="col-5">
         <textarea
-          id="postsurvey_additional_comments"
-          name="postsurvey_additional_comments"
+          id="additional_comments"
+          name="additional_comments"
           cols="90"
           rows="4"
           maxlength="300"
           tabindex="9"
-          @change="update_field($event, 'postsurvey_additional_comments')"
+          @change="update_field($event, 'additional_comments')"
         ></textarea>
       </div>
       <div class="col-7"></div>
@@ -137,10 +137,9 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   data() {
     return {
-      postsurvey_continent: "",
-      postsurvey_speaker_headphones: "",
-      postsurvey_past_audiotests: "",
-      postsurvey_environment: "",
+      speaker_headphones: "",
+      past_audiotests: "",
+      environment: "",
     };
   },
   created() {},

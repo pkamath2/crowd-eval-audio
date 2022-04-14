@@ -97,8 +97,6 @@ export default {
     let uri = window.location.search.substring(1);
     let params = new URLSearchParams(uri);
 
-    console.log(window.location.href);
-
     this.updateForm("assignmentId", params.get("assignmentId"));
     this.updateForm("hitId", params.get("hitId"));
     this.updateForm("turkSubmitTo", params.get("turkSubmitTo"));

@@ -1,5 +1,5 @@
 <template>
-  <div class="row animatedsound-container">
+  <div class="row animatedsound-container" :id="id" key="NaN">
     <div id="errorModal" class="modal">
       <div class="modal-content">
         <p>
@@ -24,7 +24,7 @@
       </div>
     </div>
 
-    <div class="heading">3. Audio Smoothness Evaluation Task</div>
+    <div class="heading">3.{{test_index}} Audio Smoothness Evaluation Task</div>
     <div>&nbsp;</div>
 
     <div class="row">
@@ -115,6 +115,7 @@
             updateForm('smooth_better_clip', 'smooth_first_clip_better');
             updateClickAnalytics('task_option_changed');
           "
+          v-model="formData[id+'_smooth_better_clip']"
         />
       </div>
       <div class="col-6 p-0" style="text-align: left">
@@ -135,6 +136,7 @@
             updateForm('smooth_better_clip', 'smooth_second_clip_better');
             updateClickAnalytics('task_option_changed');
           "
+          v-model="formData[id+'_smooth_better_clip']"
         />
       </div>
       <div class="col-6 p-0" style="text-align: left">
@@ -171,21 +173,28 @@
 import { mapActions, mapGetters } from "vuex";
 
 export default {
+  props: ['id', 'audio_samples'],
   data() {
     return {};
   },
   mounted: function () {},
   computed: {
     ...mapGetters(["formData", "config"]),
+    test_index: function () {
+      return this.id.split('_')[1];
+    },
     first_sound_url: function () {
-      return this.config.first_sound_url;
+      return this.audio_samples.first_sound_url;
     },
     second_sound_url: function () {
-      return this.config.second_sound_url;
+      return this.audio_samples.second_sound_url;
     },
   },
   methods: {
     ...mapActions(["updateFormData", "updateClickAnalytics"]),
+    getFormDataValue(nm) {
+      return this.formData[this.id+'_'+nm]
+    },
     updateForm(nm, val) {
       var obj = {};
       obj[nm] = val;
@@ -208,11 +217,11 @@ export default {
       if (errorModal) errorModal.style.display = "none";
     },
     validateForm() {
-      const clip_1_listened = this.formData.first_sound_listened_test;
-      const clip_2_listened = this.formData.second_sound_listened_test;
+      const clip_1_listened = this.getFormDataValue('first_sound_listened_test');
+      const clip_2_listened = this.getFormDataValue('second_sound_listened_test');
 
       const listened = clip_1_listened && clip_2_listened;
-      const allFieldsUpdated = this.formData.smooth_better_clip != undefined;
+      const allFieldsUpdated = this.getFormDataValue('smooth_better_clip') != undefined;
 
       if (!(listened && allFieldsUpdated)) {
         errorModal.style.display = "block";

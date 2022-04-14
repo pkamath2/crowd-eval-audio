@@ -9,13 +9,14 @@
         <br />
         <Overview v-show="current_level == 'overview'" ref="overview_ref"></Overview>
         <Consent v-show="current_level == 'consent'" ref="consent_ref"></Consent>
-        <!-- <Screening v-show="current_level == 'hearing_screening'" ref="hearing_screening_ref"></Screening> --><!-- Screening is now moved to a qualifier on AMT -->
+        <!-- Screening is now moved to a qualifier on AMT -->
+        <!-- <Screening v-show="current_level == 'hearing_screening'" ref="hearing_screening_ref"></Screening> -->
         <Priming v-show="current_level == 'priming'" ref="priming_ref"></Priming>
-        <Task v-show="current_level == 'task'" ref="task_ref"></Task>
+        <div v-for="i in num_tasks" :key="'task_'+i" :value="'task_'+i">
+          <Task :id="'task_'+i"  :key="'task_'+i" v-if="showLevel('task_'+i)" :ref="'task_'+i+'_ref'" :audio_samples="audio_samples['task_'+i]"></Task>
+        </div>
         <PostSurvey v-show="current_level == 'post_survey'" ref="post_survey_ref"></PostSurvey>
-
-        <!--Important. The last page with submit button should be v-if and not v-show-->
-        <!--This needs to be dynamically rendered every time the form is updated-->
+        <!--Important. The last page with submit button should be v-if and not v-show. This needs to be dynamically rendered every time the form is updated-->
         <Thanks v-if="current_level == 'thanks'" ref="thanks_ref"></Thanks>
         <br />
       </div>
@@ -78,7 +79,7 @@ body {
 </style>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import uiConfig from "../config/config";
 
 export default {
@@ -87,20 +88,44 @@ export default {
       levels: [],
       levels_names: [],
       current_level: "",
-      current_level_starttime: ""
+      current_level_starttime: "",
+      num_tasks: 0,
+      task_list: [],
+      audio_samples: [],
     };
   },
   beforeMount(){
-    const conf = uiConfig.uiConfig;
-    this.levels = conf.ui_levels;
-    this.levels_names = conf.ui_levels_names;
+    const conf = this.config;
+
+    this.task_list = Object.keys(conf.task_config.audio_samples)
+    //Shuffle tasks
+    if(conf.task_config.order_random){
+      this.task_list = this.task_list.sort(() => Math.random() - 0.5)
+    }
+    console.log(this.task_list)
+    conf.ui_levels.forEach((lvl,ind) => {
+      if(lvl == 'task'){
+        this.num_tasks = conf.task_config.num_tasks;
+        this.task_list.forEach((item, taskind) => {
+          this.levels.push(item);
+          this.levels_names.push(conf.ui_levels_names[ind]+' '+(taskind+1));
+        });
+      }else{
+        this.levels.push(lvl);
+        this.levels_names.push(conf.ui_levels_names[ind]);
+      }
+    });
     this.current_level = this.levels[0];
     this.current_level_starttime = new Date();
+    this.updateCurrentLevel(this.current_level)
+    this.audio_samples = this.config.task_config.audio_samples;
   },
   created(){
     this.is_priming_available = uiConfig.uiConfig.priming_available;
+    
   },
   computed: {
+    ...mapGetters(["config"]),
     current_level_name() {
       return this.levels_names[this.levels.indexOf(this.current_level)];
     },
@@ -111,7 +136,10 @@ export default {
     },
   },
   methods: {
-    ...mapActions(["updateFormData","updateTimeSpent"]),
+    ...mapActions(["updateCurrentLevel", "updateFormData", "updateTimeSpent"]),
+    showLevel(lvl) {
+      return this.current_level == lvl;
+    },
     updateForm(nm, val) {
       var obj = {};
       obj[nm] = val;
@@ -123,7 +151,13 @@ export default {
       this.updateTimeSpent(obj)
     },
     proceed_next_level(level_) {
-      const is_valid = this.$refs[level_+'_ref'].validateForm();
+      let ref = "";
+      if(this.$refs[level_+'_ref'].constructor == Array)
+        ref = this.$refs[level_+'_ref'][0]
+      else{
+        ref = this.$refs[level_+'_ref']
+      }
+      const is_valid = ref.validateForm();
       if (!is_valid) return;// Dont proceed if form is not valid
 
       this.updateLevelTimeSpent(this.current_level, (new Date() - this.current_level_starttime))
@@ -132,10 +166,11 @@ export default {
       if (level_id >= this.levels.length) return;
       this.current_level = this.levels[level_id];
       this.current_level_starttime = new Date();
+      this.updateCurrentLevel(this.current_level)
       
       window.scrollTo(0,0);
     },
-    proceed_back_level(level_) {
+    proceed_back_level(level_) {console.log('back'+level_)
       let level_id = this.levels.indexOf(level_) - 1;
       if (level_id < 0) return;
 
@@ -143,6 +178,7 @@ export default {
 
       this.current_level = this.levels[level_id];
       this.current_level_starttime = new Date();
+      this.updateCurrentLevel(this.current_level)
 
       window.scrollTo(0,0);
     },

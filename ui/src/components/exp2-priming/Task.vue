@@ -2,7 +2,7 @@
     The sliders on this page were developed based on this superb CodePen by Ana Tudor - https://codepen.io/thebabydino/pen/NWWerZG 
 -->
 <template>
-  <div class="row animatedsound-container">
+  <div class="row animatedsound-container" :id="id">
     <div id="errorModal" class="modal">
       <div class="modal-content">
         <p>
@@ -312,7 +312,6 @@
           name="clip_1_value"
           type="range"
           min="0"
-          value="45"
           max="100"
           style="--thumbcolor: #cd2026; --thumbborder: transparent"
           @change="
@@ -324,13 +323,13 @@
             updateClickAnalytics('task_clip_1_sound');
           "
           @mouseout="mouseoutPause('clip_1_audio')"
+          v-model="formData[id+'_clip_1_value']"
         />
         <input
           id="clip_2_value"
           name="clip_2_value"
           type="range"
           min="0"
-          value="47"
           max="100"
           style="--thumbcolor: #4aa564; --thumbborder: transparent"
           @change="
@@ -342,13 +341,13 @@
             updateClickAnalytics('task_clip_2_sound');
           "
           @mouseout="mouseoutPause('clip_2_audio')"
+          v-model="formData[id+'_clip_2_value']"
         />
         <input
           id="clip_3_value"
           name="clip_3_value"
           type="range"
           min="0"
-          value="49"
           max="100"
           style="--thumbcolor: #f9c642; --thumbborder: transparent"
           @change="
@@ -360,13 +359,13 @@
             updateClickAnalytics('task_clip_3_sound');
           "
           @mouseout="mouseoutPause('clip_3_audio')"
+          v-model="formData[id+'_clip_3_value']"
         />
         <input
           id="clip_4_value"
           name="clip_4_value"
           type="range"
           min="0"
-          value="51"
           max="100"
           style="--thumbcolor: #0071bc; --thumbborder: transparent"
           @change="
@@ -378,13 +377,13 @@
             updateClickAnalytics('task_clip_4_sound');
           "
           @mouseout="mouseoutPause('clip_4_audio')"
+          v-model="formData[id+'_clip_4_value']"
         />
         <input
           id="clip_5_value"
           name="clip_5_value"
           type="range"
           min="0"
-          value="53"
           max="100"
           style="--thumbcolor: darkorange; --thumbborder: transparent"
           @change="
@@ -396,6 +395,7 @@
             updateClickAnalytics('task_clip_5_sound');
           "
           @mouseout="mouseoutPause('clip_5_audio')"
+          v-model="formData[id+'_clip_5_value']"
         />
         <input
           id="ref_2_value"
@@ -464,6 +464,7 @@
           name="ordering_checkbox"
           value="ordered"
           @change="update_checkbox($event)"
+          v-model="formData[id+'_ordering_checkbox']"
           disabled
         />
         <label for="ordering_checkbox">
@@ -517,6 +518,7 @@
           name="distance_checkbox"
           value="distance"
           @change="update_checkbox($event)"
+          v-model="formData[id+'_distance_checkbox']"
           disabled
         />
         <label for="distance_checkbox">
@@ -530,11 +532,10 @@
     <div>&nbsp;</div>
   </div>
 </template>
-
 <script  type="module">
 import { mapActions, mapGetters } from "vuex";
-
 export default {
+  props: ['id', 'audio_samples'],
   data() {
     return {
       num_thumbs: 7,
@@ -542,42 +543,61 @@ export default {
       sounds_in_sequence: [],
       current_playing_arrangement: "",
       disable_mouse_over_and_out: false,
-      rem_left_line_widths:{},
+      rem_left_line_widths: {},
       left_rel_line_widths: {},
       right_rel_line_widths: {},
-      rem_right_line_widths:{},
+      rem_right_line_widths: {},
     };
   },
+  created() {
+    if(!Object.keys(this.formData).some((key) => key.startsWith(this.id))){ 
+      //Init clip positions if user has not moved them yet.
+      var obj = {};
+      obj['clip_1_value'] = '45';
+      obj['clip_2_value'] = '47';
+      obj['clip_3_value'] = '49';
+      obj['clip_4_value'] = '51';
+      obj['clip_5_value'] = '53';
+      this.updateFormData(obj);
+    }
+  },
+  mounted(){
+    document.getElementById('relative-lines-section').style.visibility = 'hidden';
+  },
   computed: {
-    ...mapGetters(["formData", "config"]),
+    ...mapGetters(["formData", "config", "currentLevel"]),
     ref1_url: function () {
-      return this.config.ref1_url;
+      return this.audio_samples.ref1_url;
     },
     ref2_url: function () {
-      return this.config.ref2_url;
+      return this.audio_samples.ref2_url;
     },
     audio_1_url: function () {
-      return this.config.audio_1_url;
+      return this.audio_samples.audio_1_url;
     },
     audio_2_url: function () {
-      return this.config.audio_2_url;
+      return this.audio_samples.audio_2_url;
     },
     audio_3_url: function () {
-      return this.config.audio_3_url;
+      return this.audio_samples.audio_3_url;
     },
     audio_4_url: function () {
-      return this.config.audio_4_url;
+      return this.audio_samples.audio_4_url;
     },
     audio_5_url: function () {
-      return this.config.audio_5_url;
+      return this.audio_samples.audio_5_url;
     },
+    
   },
   methods: {
     ...mapActions(["updateFormData", "updateClickAnalytics"]),
+    getFormDataValue(nm) {
+      return this.formData[this.id+'_'+nm]
+    },
     sliderChanged(nm, e) {
       var obj = {};
       obj[nm] = true;
-      obj[e.target.name] = e.target.value;
+      // obj[e.target.name] = e.target.value;
       this.updateFormData(obj);
     },
     listenedCheck(nm) {
@@ -690,10 +710,6 @@ export default {
           document.getElementById('relative-lines-section').style.setProperty('--rightlinewidth',this.right_rel_line_widths[slider_id]+'%')
           document.getElementById('relative-lines-section').style.setProperty('--remleftlinewidth',this.rem_left_line_widths[slider_id]+'%')
           document.getElementById('relative-lines-section').style.setProperty('--remrightlinewidth',this.rem_right_line_widths[slider_id]+'%')
-          console.log(slider_id+'--'+this.rem_left_line_widths[slider_id]+'%'
-          +this.left_rel_line_widths[slider_id]+'%'
-          +this.right_rel_line_widths[slider_id]+'%'
-          +this.rem_right_line_widths[slider_id]+'%')
         } else {
           document.getElementById('relative-lines-section').style.visibility = 'hidden';
         }
@@ -736,16 +752,56 @@ export default {
       this.playSequence();
     },
     validateForm() {
-      const ref_1_listened = this.formData.ref_1_listened;
-      const ref_2_listened = this.formData.ref_2_listened;
-      const clip_1_listened = this.formData.clip_1_listened;
-      const clip_2_listened = this.formData.clip_2_listened;
-      const clip_3_listened = this.formData.clip_3_listened;
-      const clip_4_listened = this.formData.clip_4_listened;
-      const clip_5_listened = this.formData.clip_5_listened;
+      // const ref_1_listened = this.formData.ref_1_listened;
+      // const ref_2_listened = this.formData.ref_2_listened;
+      // const clip_1_listened = this.formData.clip_1_listened;
+      // const clip_2_listened = this.formData.clip_2_listened;
+      // const clip_3_listened = this.formData.clip_3_listened;
+      // const clip_4_listened = this.formData.clip_4_listened;
+      // const clip_5_listened = this.formData.clip_5_listened;
+      // const full_arrangement_listened =
+      //   this.formData.ordering_arrangement_listened &&
+      //   this.formData.distance_arrangement_listened;
+
+      // const listened =
+      //   ref_1_listened &&
+      //   ref_2_listened &&
+      //   clip_1_listened &&
+      //   clip_2_listened &&
+      //   clip_3_listened &&
+      //   clip_4_listened &&
+      //   clip_5_listened &&
+      //   full_arrangement_listened;
+
+      // const clip_1_slider_changed = this.formData.clip_1_slider_changed;
+      // const clip_2_slider_changed = this.formData.clip_2_slider_changed;
+      // const clip_3_slider_changed = this.formData.clip_3_slider_changed;
+      // const clip_4_slider_changed = this.formData.clip_4_slider_changed;
+      // const clip_5_slider_changed = this.formData.clip_5_slider_changed;
+
+      // const sliderChangedTest =
+      //   clip_1_slider_changed &&
+      //   clip_2_slider_changed &&
+      //   clip_3_slider_changed &&
+      //   clip_4_slider_changed &&
+      //   clip_5_slider_changed;
+
+      // const allFieldsUpdated =
+      //   this.formData.distance_checkbox != undefined &&
+      //   this.formData.distance_checkbox != false &&
+      //   this.formData.ordering_checkbox != undefined &&
+      //   this.formData.ordering_checkbox != false;
+
+      const ref_1_listened = this.getFormDataValue('ref_1_listened');
+      const ref_2_listened = this.getFormDataValue('ref_2_listened');
+      const clip_1_listened = this.getFormDataValue('clip_1_listened');
+      const clip_2_listened = this.getFormDataValue('clip_2_listened');
+      const clip_3_listened = this.getFormDataValue('clip_3_listened');
+      const clip_4_listened = this.getFormDataValue('clip_4_listened');
+      const clip_5_listened = this.getFormDataValue('clip_5_listened');
       const full_arrangement_listened =
-        this.formData.ordering_arrangement_listened &&
-        this.formData.distance_arrangement_listened;
+        this.getFormDataValue('ordering_arrangement_listened') &&
+        this.getFormDataValue('distance_arrangement_listened');
 
       const listened =
         ref_1_listened &&
@@ -757,11 +813,11 @@ export default {
         clip_5_listened &&
         full_arrangement_listened;
 
-      const clip_1_slider_changed = this.formData.clip_1_slider_changed;
-      const clip_2_slider_changed = this.formData.clip_2_slider_changed;
-      const clip_3_slider_changed = this.formData.clip_3_slider_changed;
-      const clip_4_slider_changed = this.formData.clip_4_slider_changed;
-      const clip_5_slider_changed = this.formData.clip_5_slider_changed;
+      const clip_1_slider_changed = this.getFormDataValue('clip_1_slider_changed');
+      const clip_2_slider_changed = this.getFormDataValue('clip_2_slider_changed');
+      const clip_3_slider_changed = this.getFormDataValue('clip_3_slider_changed');
+      const clip_4_slider_changed = this.getFormDataValue('clip_4_slider_changed');
+      const clip_5_slider_changed = this.getFormDataValue('clip_5_slider_changed');
 
       const sliderChangedTest =
         clip_1_slider_changed &&
@@ -771,17 +827,17 @@ export default {
         clip_5_slider_changed;
 
       const allFieldsUpdated =
-        this.formData.distance_checkbox != undefined &&
-        this.formData.distance_checkbox != false &&
-        this.formData.ordering_checkbox != undefined &&
-        this.formData.ordering_checkbox != false;
+        this.getFormDataValue('distance_checkbox') &&
+        this.getFormDataValue('distance_checkbox') &&
+        this.getFormDataValue('ordering_checkbox') &&
+        this.getFormDataValue('ordering_checkbox');
 
       if (!(listened && sliderChangedTest && allFieldsUpdated))
         errorModal.style.display = "block";
       return listened && sliderChangedTest && allFieldsUpdated;
+      return true;
     },
   },
-  mounted() {},
 };
 </script>
 
