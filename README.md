@@ -38,7 +38,7 @@ A frontend focused framework to setup and conduct perceptual listening tests on 
     },
     "save_worker_api": "<AWS Lambda Gateway API URL>", # AWS Lambda API. If left blank, API call is skipped. 
     "instruction_video_url": "" # Instruction video appears on the Overview page. If left blank, not shown.
-}
+} 
 
 
 ```
