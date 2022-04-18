@@ -4,16 +4,16 @@ A frontend focused framework to setup and conduct perceptual listening tests on 
 
 ```json
 {
-    "experiment_name": "exp2", # Unique Experiment Name
-    "url_base": "ui/pitched", # Url Base. Your experiment will be located at https://<your domain>/ui/pitched/index.html
-    "ui_levels": [ # Different levels on the listening test interface. Should match with level names
+    "experiment_name": "exp2",  // Unique Experiment Name
+    "url_base": "ui/pitched",  // Url Base. Your experiment will be located at https://<your domain>/ui/pitched/index.html
+    "ui_levels": [  // Different levels on the listening test interface. Should match with level names
         "overview",
         "consent",
         "task",
         "post_survey",
         "thanks"
     ],
-    "ui_levels_names": [ # Different levels on the listening test interface. Should match with levels above.
+    "ui_levels_names": [ // Different levels on the listening test interface. Should match with levels above.
         "Overview",
         "Consent",
         "Listening Test",
@@ -21,8 +21,8 @@ A frontend focused framework to setup and conduct perceptual listening tests on 
         "Thank you"
     ],
     "task_config": {
-        "num_tasks": 1, # Number of tasks. You can build one task interface and loop multiple samples. 
-        "order_random": true, # If true samples below are randomly presented. 
+        "num_tasks": 1, // Number of tasks. You can build one task interface and loop multiple samples. 
+        "order_random": true, // If true samples below are randomly presented. 
         "task_config": {
             "num_tasks": 1,
             "order_random": false,
@@ -36,8 +36,8 @@ A frontend focused framework to setup and conduct perceptual listening tests on 
             }
         }
     },
-    "save_worker_api": "<AWS Lambda Gateway API URL>", # AWS Lambda API. If left blank, API call is skipped. 
-    "instruction_video_url": "" # Instruction video appears on the Overview page. If left blank, not shown.
+    "save_worker_api": "<AWS Lambda Gateway API URL>", // AWS Lambda API. If left blank, API call is skipped. 
+    "instruction_video_url": "" // Instruction video appears on the Overview page. If left blank, not shown.
 } 
 
 
