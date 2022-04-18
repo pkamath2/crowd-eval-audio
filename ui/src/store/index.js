@@ -55,8 +55,8 @@ export default createStore({
         },
         updateClickAnalytics(ctx, key) {
             let val = 0
-            if(Object.keys(ctx.state.clickAnalytics).indexOf(key) > -1){
-                val = ctx.state.clickAnalytics[key]
+            if(Object.keys(ctx.state.clickAnalytics).indexOf(ctx.state.current_level+'_'+key) > -1){
+                val = ctx.state.clickAnalytics[ctx.state.current_level+'_'+key]
             }
             val = val + 1;
             var obj = {};
