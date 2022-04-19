@@ -6,7 +6,7 @@ The web interface uses an API fronted by AWS Gateway routed to a Lambda. It also
 
 ![technology stack used for developing unique worker logging](assets/techstack.png "") 
   
-We follow a very simple AWS setup as outlined in some of the tutorials below. The links below are what worked for this project and outlined here for posterity.
+We follow a very simple AWS setup as outlined in some of the tutorials below. The tutorial links below are what worked for this project and outlined here for posterity.
 
 Generally to host an API, we follow the steps below -   
 1. [Create Aurora Serverless DB](#aurora-serverless-db)  
