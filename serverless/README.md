@@ -4,7 +4,9 @@ A frontend focused framework to setup and conduct perceptual listening tests on 
 
 The web interface uses an API fronted by AWS Gateway routed to a Lambda. It also uses a Aurora serverless Http Data API enabled DB. The technology stack looks something like in the image below. We use this API to enable worker id logging, to enable Between-Groups experiments (where we need ensure unique participation in our online experiments)
 
-![technology stack used for developing unique worker logging](assets/techstack.png "") 
+<p align="center">
+  <img src="assets/techstack.png" alt="technology stack used for developing unique worker logging" width="60%" style="padding-left:20%"/>
+</p>
   
 We follow a very simple AWS setup as outlined in some of the tutorials below. The tutorial links below are what worked for this project and outlined here for posterity.
 
