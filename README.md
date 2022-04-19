@@ -4,7 +4,6 @@ A frontend focused framework to setup and conduct perceptual listening tests on 
 
 This framework used in conjunction with the External API on Mechanical Turk provides an configurable, multi-page, intuitive listening test interface for participants. 
 
-
 This project has the following structure. Please see individual directories for instructions to setup for development and deployment.
 
 * [ui/](./ui) : Source for the configurable web interface iframed inside Mechanical Turk
