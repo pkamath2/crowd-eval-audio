@@ -2,53 +2,17 @@
 
 A frontend focused framework to setup and conduct perceptual listening tests on crowdsourced platforms such as Amazon's Mechanical Turk.  
 
-```json
-{
-    "experiment_name": "exp2",  // Unique Experiment Name
-    "url_base": "ui/pitched",  // Url Base. Your experiment will be located at https://<your domain>/ui/pitched/index.html
-    "ui_levels": [  // Different levels on the listening test interface. Should match with level names
-        "overview",
-        "consent",
-        "task",
-        "post_survey",
-        "thanks"
-    ],
-    "ui_levels_names": [ // Different levels on the listening test interface. Should match with levels above.
-        "Overview",
-        "Consent",
-        "Listening Test",
-        "Post Test Survey",
-        "Thank you"
-    ],
-    "task_config": {
-        "num_tasks": 1, // Number of tasks. You can build one task interface and loop multiple samples. 
-        "order_random": true, // If true samples below are randomly presented. 
-        "task_config": {
-            "num_tasks": 1,
-            "order_random": false,
-            "audio_samples": {
-                "task_1": {
-                    "task_id": "pitched_fm",
-                    "ref1_url": "https://...",
-                    "audio_1_url": "https://...",
-                    "...": "..."
-                }
-            }
-        }
-    },
-    "save_worker_api": "<AWS Lambda Gateway API URL>", // AWS Lambda API. If left blank, API call is skipped. 
-    "instruction_video_url": "" // Instruction video appears on the Overview page. If left blank, not shown.
-} 
+This framework used in conjunction with the External API on Mechanical Turk provides an configurable, multi-page, intuitive listening test interface for participants. 
 
+
+This project has the following structure. Please see individual directories for instructions to setup for development and deployment.
+
+* [ui/](./ui) : Source for the configurable web interface iframed inside Mechanical Turk
+* [serverless/](./serverless) : Source for AWS Lambda. Currently (optionally) used by the web interface to log unique participant ids for Between-Groups experiments.
+* [notebooks/](./notebooks) : Set of notebooks used to setup experiments on Mechanical Turk. Also to download responses and programatically pay Mechanical Turk participants etc. 
+
+Please cite this work as - 
+```
+Kamath, P., Li, Z., Gupta, C., Wyse, L.. "Crowdsourcing Descriptive Audio Quality Evaluation Using Image Schemas." --- Under review/Awaiting acceptance or publication ----
 
 ```
-
-This codebase has the following structure - 
-
-* [ui/](./ui)
-    * [src/](./ui/src)
-    * [assets/](./ui/src/assets)
-    * [components/](./ui/src/components)
-    * [config/](./ui/src/config)
-        * [experiment-config.json](./ui/src/config/experiment-config.json)
-    * [build.sh](./ui/build.sh)
