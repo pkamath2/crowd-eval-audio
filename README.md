@@ -1,6 +1,6 @@
 # Crowd-Eval-Audio Framework
 
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
 A frontend focused framework to setup and conduct perceptual listening tests on crowdsourced platforms such as Amazon's Mechanical Turk.  
 
