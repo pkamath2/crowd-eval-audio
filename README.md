@@ -11,4 +11,4 @@ This project has the following structure. Please see individual directories for 
 * [notebooks/](./notebooks) : Set of notebooks used to setup experiments on Mechanical Turk. Also to download responses and programatically pay Mechanical Turk participants etc. 
 
 Please cite this work as (WIP) -   
-```Kamath, P., Li, Z., Gupta, C., Wyse, L., "Crowdsourcing Descriptive Audio Quality Evaluation Using Image Schemas." 2022 --- Work In Progress ---```
+```TBD```
