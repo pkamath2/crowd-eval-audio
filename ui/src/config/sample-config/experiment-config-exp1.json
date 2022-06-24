@@ -1,6 +1,6 @@
 {
     "experiment_name": "exp1",
-    "url_base": "ismir2022/crowd-eval-audio/ui/pitched",
+    "url_base": "hci/ui/pitched",
     "priming_available": false,
     "ui_levels": [
         "overview",
@@ -37,6 +37,6 @@
             }
         }
     },
-    "save_worker_api": "https://1tuoubyuzd.execute-api.us-east-2.amazonaws.com/Dev",
+    "save_worker_api": "",
     "instruction_video_url": ""
 }
