@@ -1,0 +1,42 @@
+{
+    "experiment_name": "exp1",
+    "url_base": "ismir2022/crowd-eval-audio/ui/pitched",
+    "priming_available": false,
+    "ui_levels": [
+        "overview",
+        "consent",
+        "task",
+        "post_survey",
+        "thanks"
+    ],
+    "ui_levels_names": [
+        "Overview",
+        "Consent",
+        "Listening Test",
+        "Post Test Survey",
+        "Thank you"
+    ],
+    "task_config": {
+        "num_tasks": 3,
+        "order_random": true,
+        "audio_samples": {
+            "task_1": {
+                "task_id": "row_2",
+                "first_sound_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp1/nsynth_trumpinet_som_row_2.wav",
+                "second_sound_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp1/nsynth_trumpinet_gan_row_2.wav"
+            },
+            "task_2": {
+                "task_id": "row_3",
+                "first_sound_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp1/nsynth_trumpinet_som_row_3.wav",
+                "second_sound_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp1/nsynth_trumpinet_gan_row_3.wav"
+            },
+            "task_3": {
+                "task_id": "row_8",
+                "first_sound_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp1/nsynth_trumpinet_gan_row_8.wav",
+                "second_sound_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp1/nsynth_trumpinet_som_row_8.wav"
+            }
+        }
+    },
+    "save_worker_api": "https://1tuoubyuzd.execute-api.us-east-2.amazonaws.com/Dev",
+    "instruction_video_url": ""
+}

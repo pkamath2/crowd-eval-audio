@@ -39,7 +39,7 @@ Navigate to http://localhost:3000 (preferably on Chrome or Firefox).
 
 
 ## Configuration
-
+See below for some details on individual config line items. Also find some more sample configuration files under [sample-config](./src/config/sample-config/)   
 ```
 {
     "experiment_name": "exp2",  # An unique Experiment Name

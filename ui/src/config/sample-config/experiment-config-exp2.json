@@ -1,0 +1,37 @@
+{
+    "experiment_name": "exp2",
+    "url_base": "ismir2022/crowd-eval-audio/ui/pitched",
+    "priming_available": false,
+    "ui_levels": [
+        "overview",
+        "consent",
+        "task",
+        "post_survey",
+        "thanks"
+    ],
+    "ui_levels_names": [
+        "Overview",
+        "Consent",
+        "Listening Test",
+        "Post Test Survey",
+        "Thank you"
+    ],
+    "task_config": {
+        "num_tasks": 1,
+        "order_random": false,
+        "audio_samples": {
+            "task_1": {
+                "task_id": "pitched_fm",
+                "ref1_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFMunscParamMapperdadacfunscexpdazezedozezedadavdazenn.wav",
+                "audio_1_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFMunscParamMapperdadacfunscexpdazezedofozedadavdazenn.wav",
+                "audio_2_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFMunscParamMapperdadacfunscexpdazezedosvzedadavdazenn.wav",
+                "audio_3_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFMunscParamMapperdadacfunscexpdazezedotwzedadavdazenn.wav",
+                "audio_4_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFMunscParamMapperdadacfunscexpdazezedonnzedadavdazenn.wav",
+                "audio_5_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFMunscParamMapperdadacfunscexpdazezedosxzedadavdazenn.wav",
+                "ref2_url": "https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/pitched/exp2/BasicFMunscParamMapperdadacfunscexpdazeondozezedadavdazenn.wav"
+            }
+        }
+    },
+    "save_worker_api": "https://1tuoubyuzd.execute-api.us-east-2.amazonaws.com/Dev",
+    "instruction_video_url": ""
+}
