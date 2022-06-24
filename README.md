@@ -2,7 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-A frontend focused framework to setup and conduct perceptual listening tests on crowdsourced platforms such as Amazon's Mechanical Turk.  
+A frontend focused framework to setup and conduct perceptual listening tests on crowdsourced platforms such as Amazon's Mechanical Turk. This project resulted from a need for a lightweight plug and play framework for conducting listening tests w/ minimal setup requirements (no DB installations etc for basic setup).
 
 This framework used in conjunction with the External API on Mechanical Turk provides an configurable, multi-page, intuitive listening test interface for participants. 
 

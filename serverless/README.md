@@ -1,5 +1,7 @@
 # Crowd-Eval-Audio Framework Serverless Setup
 
+Note: Setting this up is optional. To be setup only if your experiments follow a between-subjects design and you need unique responses across HITs. 
+
 A frontend focused framework to setup and conduct perceptual listening tests on crowdsourced platforms such as Amazon's Mechanical Turk.  
 
 The web interface uses an API fronted by AWS Gateway routed to a Lambda. It also uses a Aurora serverless Http Data API enabled DB. The technology stack looks something like in the image below. We use this API to enable worker id logging, to enable Between-Groups experiments (where we need ensure unique participation in our online experiments)
