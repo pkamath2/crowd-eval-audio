@@ -1,0 +1,188 @@
+<QuestionForm xmlns='http://mechanicalturk.amazonaws.com/AWSMechanicalTurkDataSchemas/2005-10-01/QuestionForm.xsd'>
+  <Overview>
+    <Title>Animated Sound Hearing Screening and Qualifier Test</Title>
+    <Text>It is important that you use a pair of headphone to listen to the sounds going forward. \nFirst, listen to the following audio file. While you are listening, adjust the volume of your headphones to be as loud and comfortable as possible. \nOnce it is set, do not change the volume for the entire experiment.</Text>
+    <Binary>
+      <MimeType>
+        <Type>audio</Type>
+        <SubType>wav</SubType>
+      </MimeType>
+      <DataURL>https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/hearing_test_audio/1000hztone.wav</DataURL>
+      <AltText>An audio tone to adjust the volume of your headphones.</AltText>
+    </Binary>
+  </Overview>
+  <Question>
+    <QuestionIdentifier>self_report</QuestionIdentifier>
+    <DisplayName>Q1</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Text> Which statement best describes your hearing? </Text>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>radiobutton</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>listening_aid</SelectionIdentifier>
+            <Text>I am currently wearing a hearing aid.</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>difficult_hearing</SelectionIdentifier>
+            <Text>I have difficulty recognizing certain high or low pitched sounds.</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>other</SelectionIdentifier>
+            <Text>I have some other issue with my hearing.</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>normal</SelectionIdentifier>
+            <Text>I am of normal hearing.</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+  <Question>
+    <QuestionIdentifier>audio_test_1</QuestionIdentifier>
+    <DisplayName>Q2</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Text> Listen to the following audio file fully. How many tones do you hear? </Text>
+      <Binary>
+        <MimeType>
+          <Type>audio</Type>
+          <SubType>wav</SubType>
+        </MimeType>
+        <DataURL>https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/hearing_test_audio/tonesff_cc.wav</DataURL>
+        <AltText>An audio sample with few tones.</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>dropdown</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>0</SelectionIdentifier>
+            <Text>0</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>1</SelectionIdentifier>
+            <Text>1</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>2</SelectionIdentifier>
+            <Text>2</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>3</SelectionIdentifier>
+            <Text>3</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>4</SelectionIdentifier>
+            <Text>4</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>5</SelectionIdentifier>
+            <Text>5</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>6</SelectionIdentifier>
+            <Text>6</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>7</SelectionIdentifier>
+            <Text>7</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>8</SelectionIdentifier>
+            <Text>8</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>9</SelectionIdentifier>
+            <Text>9</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>10</SelectionIdentifier>
+            <Text>10</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>more than 10</SelectionIdentifier>
+            <Text>more than 10</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+  <Question>
+    <QuestionIdentifier>audio_test_2</QuestionIdentifier>
+    <DisplayName>Q3</DisplayName>
+    <IsRequired>true</IsRequired>
+    <QuestionContent>
+      <Text> Listen to the following audio file fully. How many tones do you hear? </Text>
+      <Binary>
+        <MimeType>
+          <Type>audio</Type>
+          <SubType>wav</SubType>
+        </MimeType>
+        <DataURL>https://animatedsound-listening-test.s3.us-east-2.amazonaws.com/audio_samples/hearing_test_audio/tonesdd_aa.wav</DataURL>
+        <AltText>An audio sample with few tones.</AltText>
+      </Binary>
+    </QuestionContent>
+    <AnswerSpecification>
+      <SelectionAnswer>
+        <StyleSuggestion>dropdown</StyleSuggestion>
+        <Selections>
+          <Selection>
+            <SelectionIdentifier>0</SelectionIdentifier>
+            <Text>0</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>1</SelectionIdentifier>
+            <Text>1</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>2</SelectionIdentifier>
+            <Text>2</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>3</SelectionIdentifier>
+            <Text>3</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>4</SelectionIdentifier>
+            <Text>4</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>5</SelectionIdentifier>
+            <Text>5</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>6</SelectionIdentifier>
+            <Text>6</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>7</SelectionIdentifier>
+            <Text>7</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>8</SelectionIdentifier>
+            <Text>8</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>9</SelectionIdentifier>
+            <Text>9</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>10</SelectionIdentifier>
+            <Text>10</Text>
+          </Selection>
+          <Selection>
+            <SelectionIdentifier>more than 10</SelectionIdentifier>
+            <Text>more than 10</Text>
+          </Selection>
+        </Selections>
+      </SelectionAnswer>
+    </AnswerSpecification>
+  </Question>
+</QuestionForm>
+
