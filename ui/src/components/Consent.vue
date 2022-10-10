@@ -8,7 +8,7 @@
       <table>
         <tr>
           <td style="padding-left: 1%; width: 10%">
-            <img src="../assets/NUS_logo_full-vertical.jpeg" width="100" />
+            <img src="../assets/No-Logo.png" width="100" />
           </td>
           <td>
             <span style="font-size: larger; font-weight: bold"
