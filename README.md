@@ -12,5 +12,5 @@ This project has the following structure. Please see individual directories for 
 * [serverless/](./serverless) : Source for AWS Lambda. Currently (optionally) used by the web interface to log unique participant ids for Between-Groups experiments.
 * [notebooks/](./notebooks) : Set of notebooks used to setup experiments on Mechanical Turk. Also to download responses and programatically pay Mechanical Turk participants etc. 
 
-Please cite this work as (WIP) -   
-Kamath, P., Li, Z., Gupta, C., Jaidka, K., Nanayakkara, S., Wyse, L. Crowdsourcing Descriptive Audio Quality Evaluation Using Image-Schemas. In Proceedings of Intelligent User Interfaces 2023. (Accepted and pending publication)
+Please cite this work as  -   
+```Kamath, P., Li, Z., Gupta, C., Jaidka, K., Nanayakkara, S., Wyse, L. Crowdsourcing Descriptive Audio Quality Evaluation Using Image-Schemas. In Proceedings of Intelligent User Interfaces 2023. (Accepted and pending publication)```
