@@ -13,8 +13,6 @@ This project has the following structure. Please see individual directories for 
 * [notebooks/](./notebooks) : Set of notebooks used to setup experiments on Mechanical Turk. Also to download responses and programatically pay Mechanical Turk participants etc. 
 
 Please cite this work as  -   
-```Purnima Kamath, Zhuoyao Li, Chitralekha Gupta, Kokil Jaidka, Suranga Nanayakkara, and Lonce Wyse. 2023. Evaluating Descriptive Quality of AI-Generated Audio Using Image-Schemas. In 28th International Conference on Intelligent User Interfaces (IUI ’23), March 27–31, 2023, Sydney, NSW, Australia. ACM, New York, NY, USA, 20 pages. https://doi.org/10.1145/3581641.3584083 (Accepted, Pending Publication)```
-
 ```
 @inproceedings{10.1145/3581641.3584083,
 author = {Kamath, Purnima and Li, Zhuoyao and Gupta, Chitralekha and Jaidka, Kokil and Nanayakkara, Suranga and Wyse, Lonce},
