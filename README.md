@@ -14,3 +14,22 @@ This project has the following structure. Please see individual directories for 
 
 Please cite this work as  -   
 ```Purnima Kamath, Zhuoyao Li, Chitralekha Gupta, Kokil Jaidka, Suranga Nanayakkara, and Lonce Wyse. 2023. Evaluating Descriptive Quality of AI-Generated Audio Using Image-Schemas. In 28th International Conference on Intelligent User Interfaces (IUI ’23), March 27–31, 2023, Sydney, NSW, Australia. ACM, New York, NY, USA, 20 pages. https://doi.org/10.1145/3581641.3584083 (Accepted, Pending Publication)```
+
+```
+@inproceedings{10.1145/3581641.3584083,
+author = {Kamath, Purnima and Li, Zhuoyao and Gupta, Chitralekha and Jaidka, Kokil and Nanayakkara, Suranga and Wyse, Lonce},
+title = {Evaluating Descriptive Quality of AI-Generated Audio Using Image-Schemas},
+year = {2023},
+isbn = {9798400701061},
+publisher = {Association for Computing Machinery},
+address = {New York, NY, USA},
+url = {https://doi.org/10.1145/3581641.3584083},
+doi = {10.1145/3581641.3584083},
+booktitle = {Proceedings of the 28th International Conference on Intelligent User Interfaces},
+pages = {621–632},
+numpages = {12},
+keywords = {listening tests, audio evaluations, web-based interactions, AI-generated audio},
+location = {Sydney, NSW, Australia},
+series = {IUI '23}
+}
+```
